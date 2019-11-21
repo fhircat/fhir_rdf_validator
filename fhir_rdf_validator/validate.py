@@ -117,6 +117,8 @@ def main():
     """
     dlp = dirlistproc.DirectoryListProcessor(None, "Validate FHIR RDF", ".ttl", None, addargs=addargs,
                                              postparse=add_cache)
+    if not (dlp.opts.infile or dlp.opts.indir):
+        dirlistproc.DirectoryListProcessor(["--help"], "Validate FHIR RDF", ".ttl", None, addargs=addargs)
     nfiles, nsuccess = dlp.run(validate_rdf, file_filter_2=input_filter)
     print(f"Total={nfiles} Successful={nsuccess}")
     return 0 if nfiles == nsuccess else 1
