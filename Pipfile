@@ -6,9 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-dirlistproc = "*"
-rdflib = "*"
-pyshex = "*"
+dirlistproc = ">= 1.4.5"
+rdflib = ">=4.2.2"
+pyshex = ">=0.7.14"
 
-[requires]
-python_version = "3.7"
