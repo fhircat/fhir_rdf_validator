@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+v0.0.2
+------
+
+* Added ShExJ cache and log of transformations
+
 v0.0.1
 ------
 
