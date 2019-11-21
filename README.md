@@ -1,6 +1,11 @@
 # FHIR RDF Validation Toolkit
 Validate an RDF file or directory containing RDF (in turtle format) against the expected FHIR Schema
 
+[![Pyversions](https://img.shields.io/pypi/pyversions/fhir_rdf_validator.svg)](https://pypi.python.org/pypi/fhir_rdf_validator)
+
+[![PyPi](https://img.shields.io/pypi/v/fhir_rdf_validator.svg)](https://pypi.python.org/pypi/fhir_rdf_validator)
+
+
 ## Usage
 This package can be used to validate a single RDF file or a directory containing RDF (turtle) files using:
 * ShEx - FHIR Shape Expressions definitions of resources and/or

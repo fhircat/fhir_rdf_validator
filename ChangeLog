@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v0.0.1
+------
+
+* Fix command line issue
 * First cut at distributable
 * First cut at distributable
 * Initial drop
