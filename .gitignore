@@ -108,3 +108,6 @@ venv.bak/
 
 # Mac
 **/.DS_Store
+
+# Test output directory
+tests/data_compare/
