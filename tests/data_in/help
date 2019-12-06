@@ -1,0 +1,23 @@
+usage: _jb_unittest_runner.py [-h] [-i [INFILE [INFILE ...]]] [-id INDIR]
+                              [-o [OUTFILE [OUTFILE ...]]] [-od OUTDIR] [-f]
+                              [-s] [--shex] [-sd SHEXDIR] [-cd CACHEDIR]
+
+Validate FHIR RDF
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i [INFILE [INFILE ...]], --infile [INFILE [INFILE ...]]
+                        Input file(s)
+  -id INDIR, --indir INDIR
+                        Input directory
+  -o [OUTFILE [OUTFILE ...]], --outfile [OUTFILE [OUTFILE ...]]
+                        Output file(s)
+  -od OUTDIR, --outdir OUTDIR
+                        Output directory
+  -f, --flatten         Flatten output directory
+  -s, --stoponerror     Stop on processing error
+  --shex                Do ShEx validaton
+  -sd SHEXDIR, --shexdir SHEXDIR
+                        Base directory of ShEx definitions. Default: indir
+  -cd CACHEDIR, --cachedir CACHEDIR
+                        Cache directory for cached ShEx

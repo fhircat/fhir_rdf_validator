@@ -1,12 +1,14 @@
 import os
 from argparse import ArgumentParser
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 import dirlistproc
 from rdflib import Graph, Namespace, RDF
 from rdflib.plugins.parsers.notation3 import BadSyntax
 from pyshex.shex_evaluator import ShExEvaluator
 from jsonasobj import as_json
+
+from fhir_rdf_validator.compare_rdf import compare_rdf
 
 FHIR = Namespace("http://hl7.org/fhir/")
 
@@ -89,8 +91,16 @@ def validate_rdf(input_fn: str, output_fn: str, opts: Namespace) -> bool:
             print (f"***** {result[0].reason}")
             return False
     if opts.outdir:
-        # TODO: Compare the RDF in indir to the RDF in outdir
-        pass
+        output_ttl = output_fn + ".ttl"
+        if os.path.exists(output_ttl):
+            rslts = compare_rdf(output_ttl, opts.graph)
+            if rslts:
+                print("-" * 40)
+                print(rslts)
+                return False
+        else:
+            print(f"*****> Output file: {output_ttl} does not exist!")
+            return False
     return True
 
 
@@ -110,12 +120,13 @@ def addargs(parser: ArgumentParser) -> None:
     parser.add_argument('-cd', '--cachedir', help="Cache directory for cached ShEx")
 
 
-def main():
+def main(argv: List[str] = None):
     """
     Process RDF files in indir, doing ShEx validation and/or comparing the RDF to the files in outdir
+    :param argv: Argument list.  If None, use sys.argv
     :return: 0 if all RDF files that had valid FHIR in them were successful, 1 otherwise
     """
-    dlp = dirlistproc.DirectoryListProcessor(None, "Validate FHIR RDF", ".ttl", None, addargs=addargs,
+    dlp = dirlistproc.DirectoryListProcessor(argv, "Validate FHIR RDF", ".ttl", None, addargs=addargs,
                                              postparse=add_cache)
     if not (dlp.opts.infile or dlp.opts.indir):
         dirlistproc.DirectoryListProcessor(["--help"], "Validate FHIR RDF", ".ttl", None, addargs=addargs)
@@ -125,4 +136,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])
