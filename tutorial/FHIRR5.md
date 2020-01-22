@@ -10,6 +10,7 @@ have also recorded transformations that can be accomplished via the [framing API
    @context: {
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"fhir": "http://hl7.org/fhir/",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"owl": "http://www.w3.org/2002/07/owl#",
+    <br/>&nbsp;&nbsp; &nbsp; &nbsp;"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"xsd": "http://www.w3.org/2001/XMLSchema#",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"dc": "http://purl.org/dc/elements/1.1/",
@@ -21,7 +22,6 @@ have also recorded transformations that can be accomplished via the [framing API
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"fhir-vs": "http://hl7.org/fhir/ValueSet/",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"loinc": "http://loinc.org/rdf#",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"os": "http://open-services.net/ns/core#",
-    <br/>&nbsp;&nbsp; &nbsp; &nbsp;"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"rim": "http://hl7.org/orim/class/",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"rim": "http://hl7.org/owl/rim/",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"sct": "http://snomed.info/id/",
@@ -237,7 +237,7 @@ otherwise specified.
     for a concept identifier that references a URL. The current mappings can be found at 
      [RDFTypeMap.java.decorateCoding()](https://github.com/HL7/fhir/blob/master/implementations/java/org.hl7.fhir.rdf/src/org/hl7/fhir/rdf/RDFTypeMap.java#111)
      
-6) ** References **
+6) **References**
    
    The [Reference](http://build.fhir.org/references.html#Reference) data type includes the `reference` attribute, a "Literal reference, Relative, 
    internal or absolute URL".  If this is a relative reference, it is relative to the _parent_ of the resource, not the
@@ -247,19 +247,17 @@ otherwise specified.
    consequence, ".." needs to be prepended to any _relative_ `Reference.reference` entry.  Example:
    
    ```json
-   { ...
      "subject": {
-     "reference": "Patient/f001",
-     "display": "P. van de Heuvel"
-      },
+       "reference": "Patient/f001",
+       "display": "P. van de Heuvel"
+      }
     ``` 
    Becomes:
    ```json
-   { ...
      "subject": {
-     "reference": "../Patient/f001",
-     "display": "P. van de Heuvel"
-      },
+       "reference": "../Patient/f001",
+       "display": "P. van de Heuvel"
+      }
     ``` 
    
    The R4 specification also adds a "type arc", in the form:
@@ -268,15 +266,35 @@ otherwise specified.
    ```
    If the type of the reference can be determined.  Since the R4 RDF specification was published, a new (albeit optional)
    field was added to the `Reference` type, `type`, which (while specified as a URI?) identifies the FHIR data type.  To
-   completely match the R4 specification, the pre-processor needs to:
+   completely match the R4 specification, and _if_ there is a `reference` attribute the pre-processor needs to insert 
+   the `link` arc:
+    ```json
+    "subject": {
+       "reference": "Patient/f001",
+       "display": "P. van de Heuvel",
+       "link": {
+          "@id": "../Patient/f001",
+          "@type": "Patient"
+       }   
+    }
+    ``` 
+   where the `"@id"` is the `reference` with a '..' prepended if it is relative, and the type is the `"type"` field if
+   it is present and, if not, if the URL matches the recommended FHIR Regexp (to be supplied), the resource type from
+   there, otherwise, omit it.
    
-   1) if `type` is present and it is a relative 
-
-       
-   
-   
-6) **Link properties**
-
-7) **Reference type arcs**
+   See: http://tinyurl.com/s6gkyx7 for an example
 
 8) **OWL Ontology Header**
+
+    The OWL Ontology header is often used as a "poor man's" document wrapper in OWL and RDF land.  It asserts provenance
+    for the set of triples that occur in the same physical document as the header itself.  The following should be added
+    to every JSON resource to generate the header:
+    
+    ```json
+      "@included": {
+         "@id": "Observation/f001.ttl",
+         "owl:imports": "fhir:fhir.ttl",
+         "owl:versionIRI": "Observation/f001.ttl"
+      }
+```
+   
