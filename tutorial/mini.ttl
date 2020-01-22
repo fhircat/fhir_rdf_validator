@@ -1,0 +1,14 @@
+@prefix : <http://bigcorp.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:E12 a foaf:Person;
+     <http://schema.org/name> [foaf:givenName "Sam";
+            foaf:familyName "Smith"];
+     foaf:knows (:E117483 :VE1251) .
+:E117483 a foaf:Person;
+     <http://schema.org/name> [foaf:givenName "Melissa";
+            foaf:familyName "Chu"] .
+:VE1251 a foaf:Person;
+     <http://schema.org/name> [foaf:givenName "Frank";
+            foaf:familyName "Spartz"];
+      foaf:knows (:E12) .

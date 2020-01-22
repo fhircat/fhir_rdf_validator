@@ -1,0 +1,24 @@
+{  "id": "E12",
+  "class": "foaf:Person",
+  "name": {
+    "last": "Smith",
+    "first": "Sam" },
+  "friends": [ {
+      "id": "E117483",
+      "class": "foaf:Person",
+      "name": {
+        "last": "Chu",
+        "first": "Melissa" }
+    },
+    {  "id": "VE1251",
+      "class": "foaf:Person",
+      "name": {
+        "last": "Spartz",
+        "first": "Frank" },
+      "friends": [ {
+          "id": "E12"
+        }
+      ]
+    }
+  ]
+}

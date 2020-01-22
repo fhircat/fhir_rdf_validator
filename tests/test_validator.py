@@ -68,8 +68,7 @@ Total=3 Successful=2""", out_text.getvalue().strip())
         self.assertEqual("""Testing visionprescription-example-1.ttl Type: http://hl7.org/fhir/VisionPrescription
 Testing visionprescription-example.ttl Type: http://hl7.org/fhir/VisionPrescription
 Testing verificationresult-example.ttl Type: http://hl7.org/fhir/VerificationResult
-Total=3 Successful=3
-""", out_text.getvalue().strip())
+Total=3 Successful=3""", out_text.getvalue().strip())
 
 
 if __name__ == '__main__':

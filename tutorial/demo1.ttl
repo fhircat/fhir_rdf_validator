@@ -1,0 +1,18 @@
+@prefix ns1: <http://example.org/person/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://hl7.org/patient/1173418> ns1:active true ;
+    ns1:birthdate "2002-07-21"^^xsd:date ;
+    ns1:children "Dick",
+        "Harry",
+        "Tom" ;
+    ns1:id "1173418" ;
+    ns1:name <http://hl7.org/patient/1173418/name> .
+
+<http://hl7.org/patient/1173418/name> ns1:first "Seymour" ;
+    ns1:last "Snodgrass" ;
+    ns1:middle "P" .
+

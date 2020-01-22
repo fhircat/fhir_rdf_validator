@@ -1,0 +1,46 @@
+{
+  "@graph": [
+    {
+      "@id": "http://anotheruniversity.org/melissa",
+      "@type": "http://schema.org/Person",
+      "http://schema.org/member": {
+        "@id": "http://anotheruniversity.org/melissa"
+      }
+    },
+    {
+      "@id": "http://biguniversity.org/john",
+      "@type": "http://schema.org/Person",
+      "http://xmlns.com/foaf/0.1/age": 39,
+      "http://xmlns.com/foaf/0.1/knows": {
+        "@id": "http://anotheruniversity.org/melissa",
+        "@type": "http://schema.org/Person",
+        "http://schema.org/member": {
+          "@id": "http://anotheruniversity.org/melissa"
+        }
+      }
+    },
+    {
+      "@id": "http://biguniversity.org/sam",
+      "@type": "http://schema.org/Person",
+      "http://xmlns.com/foaf/0.1/knows": {
+        "@list": [
+          {
+            "@id": "http://biguniversity.org/john",
+            "@type": "http://schema.org/Person",
+            "http://xmlns.com/foaf/0.1/age": 39,
+            "http://xmlns.com/foaf/0.1/knows": {
+              "@id": "http://anotheruniversity.org/melissa"
+            }
+          },
+          {
+            "@id": "http://anotheruniversity.org/melissa",
+            "@type": "http://schema.org/Person",
+            "http://schema.org/member": {
+              "@id": "http://anotheruniversity.org/melissa"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
