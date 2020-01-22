@@ -1,0 +1,114 @@
+{
+  "@graph": [
+    {
+      "@id": "_:b0",
+      "http://hl7.org/fhir/DomainResource.text": {
+        "@id": "_:b1"
+      },
+      "http://hl7.org/fhir/Patient.active": true,
+      "http://hl7.org/fhir/Patient.contact": {
+        "@id": "_:b2"
+      },
+      "http://hl7.org/fhir/Patient.gender": "male",
+      "http://hl7.org/fhir/Patient.identifier": {
+        "@id": "_:b6"
+      },
+      "http://hl7.org/fhir/Patient.link": {
+        "@id": "_:b9"
+      },
+      "http://hl7.org/fhir/Patient.managingOrganization": {
+        "@id": "_:b11"
+      },
+      "http://hl7.org/fhir/Patient.name": {
+        "@id": "_:b12"
+      },
+      "http://hl7.org/fhir/Patient.photo": {
+        "@id": "_:b13"
+      },
+      "http://hl7.org/fhir/Resource.id": "pat1",
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+        "@id": "Patient"
+      }
+    },
+    {
+      "@id": "_:b1",
+      "http://hl7.org/fhir/Narrative.div": {
+        "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>Patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321</p>\n    \n    </div>"
+      },
+      "http://hl7.org/fhir/Narrative.status": "generated"
+    },
+    {
+      "@id": "_:b10",
+      "http://hl7.org/fhir/Reference.reference": "Patient/pat2"
+    },
+    {
+      "@id": "_:b11",
+      "http://hl7.org/fhir/Reference.display": "ACME Healthcare, Inc",
+      "http://hl7.org/fhir/Reference.reference": "Organization/1"
+    },
+    {
+      "@id": "_:b12",
+      "http://hl7.org/fhir/HumanName.family": "Donald",
+      "http://hl7.org/fhir/HumanName.given": "Duck",
+      "http://hl7.org/fhir/HumanName.use": "official"
+    },
+    {
+      "@id": "_:b13",
+      "http://hl7.org/fhir/Attachment.contentType": "image/gif",
+      "http://hl7.org/fhir/Attachment.data": "R0lGODlhEwARAPcAAAAAAAAA/+9aAO+1AP/WAP/eAP/eCP/eEP/eGP/nAP/nCP/nEP/nIf/nKf/nUv/nWv/vAP/vCP/vEP/vGP/vIf/vKf/vMf/vOf/vWv/vY//va//vjP/3c//3lP/3nP//tf//vf///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEAAAEALAAAAAATABEAAAi+AAMIDDCgYMGBCBMSvMCQ4QCFCQcwDBGCA4cLDyEGECDxAoAQHjxwyKhQAMeGIUOSJJjRpIAGDS5wCDly4AALFlYOgHlBwwOSNydM0AmzwYGjBi8IHWoTgQYORg8QIGDAwAKhESI8HIDgwQaRDI1WXXAhK9MBBzZ8/XDxQoUFZC9IiCBh6wEHGz6IbNuwQoSpWxEgyLCXL8O/gAnylNlW6AUEBRIL7Og3KwQIiCXb9HsZQoIEUzUjNEiaNMKAAAA7"
+    },
+    {
+      "@id": "_:b2",
+      "http://hl7.org/fhir/Patient.contact.organization": {
+        "@id": "_:b3"
+      },
+      "http://hl7.org/fhir/Patient.contact.relationship": {
+        "@id": "_:b4"
+      }
+    },
+    {
+      "@id": "_:b3",
+      "http://hl7.org/fhir/Reference.display": "Walt Disney Corporation",
+      "http://hl7.org/fhir/Reference.reference": "Organization/1"
+    },
+    {
+      "@id": "_:b4",
+      "http://hl7.org/fhir/CodeableConcept.coding": {
+        "@id": "_:b5"
+      }
+    },
+    {
+      "@id": "_:b5",
+      "http://hl7.org/fhir/Coding.code": "E",
+      "http://hl7.org/fhir/Coding.system": "http://terminology.hl7.org/CodeSystem/v2-0131"
+    },
+    {
+      "@id": "_:b6",
+      "http://hl7.org/fhir/Identifier.system": "urn:oid:0.1.2.3.4.5.6.7",
+      "http://hl7.org/fhir/Identifier.type": {
+        "@id": "_:b7"
+      },
+      "http://hl7.org/fhir/Identifier.use": "usual",
+      "http://hl7.org/fhir/Identifier.value": "654321"
+    },
+    {
+      "@id": "_:b7",
+      "http://hl7.org/fhir/CodeableConcept.coding": {
+        "@id": "_:b8"
+      }
+    },
+    {
+      "@id": "_:b8",
+      "http://hl7.org/fhir/Coding.code": "MR",
+      "http://hl7.org/fhir/Coding.system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+    },
+    {
+      "@id": "_:b9",
+      "http://hl7.org/fhir/Patient.link.other": {
+        "@id": "_:b10"
+      },
+      "http://hl7.org/fhir/Patient.link.type": "seealso"
+    }
+  ]
+}

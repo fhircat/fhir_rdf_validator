@@ -1,0 +1,17 @@
+@prefix ns1: <http://xmlns.com/foaf/0.1/> .
+@prefix ns2: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://biguniversity.org/sam> a ns2:Person ;
+    ns1:knows ( <http://biguniversity.org/john> <http://anotheruniversity.org/melissa> ) .
+
+<http://biguniversity.org/john> a ns2:Person ;
+    ns1:age 39 ;
+    ns1:knows <http://anotheruniversity.org/melissa> .
+
+<http://anotheruniversity.org/melissa> a ns2:Person ;
+    ns2:member <http://anotheruniversity.org/melissa> .
+

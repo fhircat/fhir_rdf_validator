@@ -1,0 +1,116 @@
+{
+  "@context": {
+    "fhir": "http://hl7.org/fhir/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://hl7.org/fhir/Patient/example",
+      "@type": "fhir:Patient"
+    },
+    {
+      "@id": "http://hl7.org/fhir/Coverage/7546D",
+      "@type": "fhir:Coverage"
+    },
+    {
+      "@id": "http://hl7.org/fhir/Organization/hl7",
+      "@type": "fhir:Organization"
+    },
+    {
+      "@id": "http://hl7.org/fhir/Account/example",
+      "@type": "fhir:Account",
+      "fhir:Account.identifier": {
+        "@id": "_:ub1bL10C27"
+      },
+      "fhir:Account.status": {
+        "@id": "_:ub1bL15C23"
+      },
+      "fhir:Account.type": {
+        "@id": "_:ub1bL16C21"
+      },
+      "fhir:Resource.id": {
+        "@id": "_:ub1bL9C20"
+      },
+      "fhir:nodeRole": {
+        "@id": "fhir:treeRoot"
+      }
+    },
+    {
+      "@id": "_:ub1bL10C27",
+      "fhir:Identifier.system": {
+        "@id": "_:ub1bL12C29"
+      },
+      "fhir:Identifier.value": {
+        "@id": "_:ub1bL13C28"
+      },
+      "fhir:index": 0
+    },
+    {
+      "@id": "_:ub1bL13C28",
+      "fhir:value": "654321"
+    },
+    {
+      "@id": "_:ub1bL12C29",
+      "fhir:value": "urn:oid:0.1.2.3.4.5.6.7"
+    },
+    {
+      "@id": "_:ub1bL9C20",
+      "fhir:value": "example"
+    },
+    {
+      "@id": "_:ub1bL16C21",
+      "fhir:CodeableConcept.coding": {
+        "@id": "_:ub1bL17C34"
+      },
+      "fhir:CodeableConcept.text": {
+        "@id": "_:ub1bL23C32"
+      }
+    },
+    {
+      "@id": "_:ub1bL17C34",
+      "fhir:Coding.code": {
+        "@id": "_:ub1bL20C25"
+      },
+      "fhir:Coding.display": {
+        "@id": "_:ub1bL21C28"
+      },
+      "fhir:Coding.system": {
+        "@id": "_:ub1bL19C27"
+      },
+      "fhir:index": 0
+    },
+    {
+      "@id": "_:ub1bL20C25",
+      "fhir:value": "PBILLACCT"
+    },
+    {
+      "@id": "_:ub1bL19C27",
+      "fhir:value": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+    },
+    {
+      "@id": "_:ub1bL21C28",
+      "fhir:value": "patient billing account"
+    },
+    {
+      "@id": "_:ub1bL23C32",
+      "fhir:value": "patient"
+    },
+    {
+      "@id": "_:ub1bL15C23",
+      "fhir:value": "active"
+    },
+    {
+      "@id": "http://hl7.org/fhir/Account/example.ttl",
+      "@type": "owl:Ontology",
+      "owl:imports": {
+        "@id": "fhir:fhir.ttl"
+      },
+      "owl:versionIRI": {
+        "@id": "http://build.fhir.org/Account/example.ttl"
+      }
+    }
+  ]
+}

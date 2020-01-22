@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://bigcorp.org/VE1251",
+      "@type": "foaf:Person",
+      "foaf:knows": {
+        "@list": [
+          {
+            "@id": "http://bigcorp.org/E12"
+          }
+        ]
+      },
+      "http://schema.org/name": {
+        "@id": "_:ub1bL11C31"
+      }
+    },
+    {
+      "@id": "_:ub1bL11C31",
+      "foaf:familyName": "Spartz",
+      "foaf:givenName": "Frank"
+    },
+    {
+      "@id": "http://bigcorp.org/E12",
+      "@type": "foaf:Person",
+      "foaf:knows": {
+        "@list": [
+          {
+            "@id": "http://bigcorp.org/E117483"
+          },
+          {
+            "@id": "http://bigcorp.org/VE1251"
+          }
+        ]
+      },
+      "http://schema.org/name": {
+        "@id": "_:ub1bL4C31"
+      }
+    },
+    {
+      "@id": "_:ub1bL4C31",
+      "foaf:familyName": "Smith",
+      "foaf:givenName": "Sam"
+    },
+    {
+      "@id": "http://bigcorp.org/E117483",
+      "@type": "foaf:Person",
+      "http://schema.org/name": {
+        "@id": "_:ub1bL8C31"
+      }
+    },
+    {
+      "@id": "_:ub1bL8C31",
+      "foaf:familyName": "Chu",
+      "foaf:givenName": "Melissa"
+    }
+  ]
+}

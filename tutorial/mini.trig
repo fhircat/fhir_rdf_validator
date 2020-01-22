@@ -1,0 +1,24 @@
+@prefix : <http://bigcorp.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+_:Nf8080d1d1ce142ba87705b8ee103cc86 {
+    :E117483 a foaf:Person ;
+        ns1:name [ foaf:familyName "Chu" ;
+                foaf:givenName "Melissa" ] .
+
+    :E12 a foaf:Person ;
+        ns1:name [ foaf:familyName "Smith" ;
+                foaf:givenName "Sam" ] ;
+        foaf:knows ( :E117483 :VE1251 ) .
+
+    :VE1251 a foaf:Person ;
+        ns1:name [ foaf:familyName "Spartz" ;
+                foaf:givenName "Frank" ] ;
+        foaf:knows ( :E12 ) .
+}
+
