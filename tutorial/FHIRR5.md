@@ -28,7 +28,8 @@ have also recorded transformations that can be accomplished via the [framing API
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"vs": "http://hl7.org/orim/valueset/",
     <br/>&nbsp;&nbsp; &nbsp; &nbsp;"w5": "http://hl7.org/fhir/w5#",
 
-   
+   http://tinyurl.com/unhd57f
+   http://tinyurl.com/ve7bjvt
 2) **resource subject**
    
    A FHIR resource references its subject via the `"id"` key, which will form the URI _relative_ to the document base.
@@ -296,5 +297,7 @@ otherwise specified.
          "owl:imports": "fhir:fhir.ttl",
          "owl:versionIRI": "Observation/f001.ttl"
       }
-```
+    ```
+   
+   See: http://tinyurl.com/tskoco5 for sample
    
