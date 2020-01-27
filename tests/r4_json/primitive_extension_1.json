@@ -1,0 +1,72 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": {
+            "value": "example"
+         },
+         "birthDate": {
+            "value": "1974-12-25",
+            "extension": [
+               {
+                  "url": {
+                     "value": "http://hl7.org/fhir/StructureDefinition/patient-birthTime"
+                  },
+                  "valueDateTime": {
+                     "value": "1974-12-25T14:35:45-05:00"
+                  },
+                  "index": 0
+               }
+            ]
+         },
+         "contact": [
+            {
+               "name": {
+                  "family": {
+                     "value": "du March\u00e9",
+                     "extension": [
+                        {
+                           "url": {
+                              "value": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix"
+                           },
+                           "valueString": {
+                              "value": "VV"
+                           },
+                           "index": 0
+                        }
+                     ]
+                  },
+                  "given": [
+                     "B\u00e9n\u00e9dicte"
+                  ]
+               },
+               "index": 0
+            }
+         ],
+         "@id": "Patient/example",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/example.ttl",
+         "owl:versionIRI": "Patient/example.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}

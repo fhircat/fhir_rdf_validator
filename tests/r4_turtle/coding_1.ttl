@@ -1,0 +1,26 @@
+@prefix ns1: <http://hl7.org/fhir/> .
+@prefix ns2: <http://example.com/UNKNOWN#> .
+@prefix ns3: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://build.fhir.org/Observation/bmd> a ns1:Observation ;
+    ns1:Observation.bodySite [ ns1:CodeableConcept.coding [ a <http://snomed.info/id/71341001:272741003=7771000> ;
+                    ns1:Coding.code [ ns2:value "71341001:272741003=7771000" ] ;
+                    ns1:Coding.system [ ns1:value "http://snomed.info/sct"^^xsd:anyURI ] ;
+                    ns1:index 0 ] ;
+            ns1:CodeableConcept.text [ ns1:value "Left Femur" ] ] ;
+    ns1:Observation.code [ ns1:CodeableConcept.coding [ a <http://loinc.org/rdf#24701-5> ;
+                    ns1:Coding.code [ ns2:value "24701-5" ] ;
+                    ns1:Coding.display [ ns1:value "Femur DXA Bone density" ] ;
+                    ns1:Coding.system [ ns1:value "http://loinc.org"^^xsd:anyURI ] ;
+                    ns1:index 0 ] ;
+            ns1:CodeableConcept.text [ ns1:value "BMD - Left Femur" ] ] ;
+    ns1:Resource.id [ ns1:value "bmd" ] ;
+    ns1:nodeRole ns1:treeRoot .
+
+<http://build.fhir.org/Observation/bmd.ttl> ns3:imports ns1:fhir.ttl ;
+    ns3:versionIRI <http://build.fhir.org/Observation/bmd.ttl> .
+

@@ -1,0 +1,89 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": {
+            "value": "example"
+         },
+         "telecom": [
+            {
+               "use": {
+                  "value": "home"
+               },
+               "index": 0
+            },
+            {
+               "system": {
+                  "value": "phone"
+               },
+               "value": {
+                  "value": "(03) 5555 6473"
+               },
+               "use": {
+                  "value": "work"
+               },
+               "rank": {
+                  "value": 1
+               },
+               "index": 1
+            },
+            {
+               "system": {
+                  "value": "phone"
+               },
+               "value": {
+                  "value": "(03) 3410 5613"
+               },
+               "use": {
+                  "value": "mobile"
+               },
+               "rank": {
+                  "value": 2
+               },
+               "index": 2
+            },
+            {
+               "system": {
+                  "value": "phone"
+               },
+               "value": {
+                  "value": "(03) 5555 8834"
+               },
+               "use": {
+                  "value": "old"
+               },
+               "period": {
+                  "end": {
+                     "value": "2014"
+                  }
+               },
+               "index": 3
+            }
+         ],
+         "@id": "Patient/example",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/example.ttl",
+         "owl:versionIRI": "Patient/example.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}

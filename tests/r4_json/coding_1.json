@@ -1,0 +1,71 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Observation",
+         "id": {
+            "value": "bmd"
+         },
+         "code": {
+            "coding": [
+               {
+                  "system": {
+                     "value": "http://loinc.org"
+                  },
+                  "code": {
+                     "value": "24701-5"
+                  },
+                  "display": {
+                     "value": "Femur DXA Bone density"
+                  },
+                  "index": 0,
+                  "@type": "loinc:24701-5"
+               }
+            ],
+            "text": {
+               "value": "BMD - Left Femur"
+            }
+         },
+         "bodySite": {
+            "coding": [
+               {
+                  "system": {
+                     "value": "http://snomed.info/sct"
+                  },
+                  "code": {
+                     "value": "71341001:272741003=7771000"
+                  },
+                  "index": 0,
+                  "@type": "sct:71341001:272741003=7771000"
+               }
+            ],
+            "text": {
+               "value": "Left Femur"
+            }
+         },
+         "@id": "Observation/bmd",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Observation/bmd.ttl",
+         "owl:versionIRI": "Observation/bmd.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/observation.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}

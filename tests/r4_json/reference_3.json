@@ -1,0 +1,180 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:MedicationAdministration",
+         "id": {
+            "value": "medadmin0301"
+         },
+         "contained": [
+            {
+               "resourceType": "fhir:Medication",
+               "id": {
+                  "value": "med0301"
+               },
+               "@id": "#med0301",
+               "index": 0
+            },
+            {
+               "resourceType": "fhir:Provenance",
+               "id": {
+                  "value": "signature"
+               },
+               "target": [
+                  {
+                     "reference": {
+                        "value": "ServiceRequest/physiotherapy"
+                     },
+                     "fhir:link": {
+                        "@id": "../ServiceRequest/physiotherapy",
+                        "@type": "fhir:ServiceRequest"
+                     },
+                     "index": 0
+                  }
+               ],
+               "agent": [
+                  {
+                     "role": [
+                        {
+                           "coding": [
+                              {
+                                 "system": {
+                                    "value": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
+                                 },
+                                 "code": {
+                                    "value": "AUT"
+                                 },
+                                 "index": 0,
+                                 "@type": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType/AUT"
+                              }
+                           ],
+                           "index": 0
+                        }
+                     ],
+                     "who": {
+                        "reference": {
+                           "value": "Practitioner/example"
+                        },
+                        "display": {
+                           "value": "Dr Adam Careful"
+                        },
+                        "fhir:link": {
+                           "@id": "../Practitioner/example",
+                           "@type": "fhir:Practitioner"
+                        }
+                     },
+                     "index": 0
+                  }
+               ],
+               "@id": "#signature",
+               "index": 1
+            }
+         ],
+         "status": {
+            "value": "in-progress"
+         },
+         "medicationReference": {
+            "reference": {
+               "value": "#med0301"
+            },
+            "fhir:link": {
+               "@id": "../#med0301",
+               "@type": "fhir:#med0301"
+            }
+         },
+         "subject": {
+            "reference": {
+               "value": "Patient/pat1"
+            },
+            "display": {
+               "value": "Donald Duck"
+            },
+            "fhir:link": {
+               "@id": "../Patient/pat1",
+               "@type": "fhir:Patient"
+            }
+         },
+         "encounter": {
+            "reference": {
+               "value": "Encounter/f001"
+            },
+            "display": {
+               "value": "encounter who leads to this prescription"
+            },
+            "fhir:link": {
+               "@id": "../Encounter/f001",
+               "@type": "fhir:Encounter"
+            }
+         },
+         "occurencePeriod": {
+            "start": {
+               "value": "2015-01-15T14:30:00+01:00"
+            }
+         },
+         "performer": [
+            {
+               "actor": {
+                  "reference": {
+                     "value": "Practitioner/f007"
+                  },
+                  "display": {
+                     "value": "Patrick Pump"
+                  },
+                  "fhir:link": {
+                     "@id": "../Practitioner/f007",
+                     "@type": "fhir:Practitioner"
+                  }
+               },
+               "index": 0
+            }
+         ],
+         "request": {
+            "reference": {
+               "value": "MedicationRequest/medrx0318"
+            },
+            "fhir:link": {
+               "@id": "../MedicationRequest/medrx0318",
+               "@type": "fhir:MedicationRequest"
+            }
+         },
+         "eventHistory": [
+            {
+               "reference": {
+                  "value": "#signature"
+               },
+               "display": {
+                  "value": "Author's Signature"
+               },
+               "fhir:link": {
+                  "@id": "../#signature",
+                  "@type": "fhir:#signature"
+               },
+               "index": 0
+            }
+         ],
+         "@id": "MedicationAdministration/medadmin0301",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "MedicationAdministration/medadmin0301.ttl",
+         "owl:versionIRI": "MedicationAdministration/medadmin0301.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/medicationadministration.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}
