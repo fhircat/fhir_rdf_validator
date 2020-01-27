@@ -1,287 +1,297 @@
 {
-   "resourceType": "fhir:MedicationAdministration",
-   "id": "medadmin0301",
-   "text": {
-      "status": {
-         "fhir:value": "generated"
-      },
-      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medadmin0301</p><p><b>contained</b>: , </p><p><b>status</b>: in-progress</p><p><b>medication</b>: id: med0301; Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE) <span>(Details : {http://hl7.org/fhir/sid/ndc code '0409-6531-02' = '10 VIAL in 1 TRAY (0409-6531-02)  &gt; 1 INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION in 1 VIAL', given as 'Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)'})</span></p><p><b>subject</b>: <a>Donald Duck</a></p><p><b>encounter</b>: <a>encounter who leads to this prescription</a></p><p><b>occurence</b>: Jan 15, 2015 2:30:00 PM --&gt; (ongoing)</p><h3>Performers</h3><table><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a>Patrick Pump</a></td></tr></table><p><b>reason</b>: </p><p><b>request</b>: <a>MedicationRequest/medrx0318</a></p><h3>Dosages</h3><table><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Method</b></td><td><b>Dose</b></td></tr><tr><td>*</td><td>500mg IV q6h x 3 days</td><td>Intravenous route (qualifier value) <span>(Details : {SNOMED CT code '47625008' = 'Intravenous route', given as 'Intravenous route (qualifier value)'})</span></td><td>IV Push <span>(Details )</span></td><td>500 mg<span> (Details: UCUM code mg = 'mg')</span></td></tr></table><p><b>eventHistory</b>: Author's Signature. Generated Summary: id: signature; recorded: Feb 1, 2017 5:23:07 PM; </p></div>"
-   },
-   "contained": [
+   "@graph": [
       {
-         "resourceType": "fhir:Medication",
-         "id": "med0301",
-         "code": {
-            "coding": [
-               {
-                  "system": {
-                     "fhir:value": "http://hl7.org/fhir/sid/ndc"
-                  },
-                  "code": {
-                     "fhir:value": "0409-6531-02"
-                  },
-                  "display": {
-                     "fhir:value": "Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)"
-                  },
-                  "index": 0,
-                  "@type": "http://hl7.org/fhir/sid/ndc/0409-6531-02"
-               }
-            ]
+         "resourceType": "fhir:MedicationAdministration",
+         "id": {
+            "value": "medadmin0301"
          },
-         "@id": "#med0301",
-         "index": 0
-      },
-      {
-         "resourceType": "fhir:Provenance",
-         "id": "signature",
-         "target": [
-            {
-               "reference": {
-                  "fhir:value": "ServiceRequest/physiotherapy"
-               },
-               "fhir:link": {
-                  "@id": "../ServiceRequest/physiotherapy",
-                  "@type": "fhir:ServiceRequest"
-               },
-               "index": 0
-            }
-         ],
-         "recorded": {
-            "fhir:value": "2017-02-01T17:23:07Z"
-         },
-         "agent": [
-            {
-               "role": [
-                  {
-                     "coding": [
-                        {
-                           "system": {
-                              "fhir:value": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
-                           },
-                           "code": {
-                              "fhir:value": "AUT"
-                           },
-                           "index": 0,
-                           "@type": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType/AUT"
-                        }
-                     ],
-                     "index": 0
-                  }
-               ],
-               "who": {
-                  "reference": {
-                     "fhir:value": "Practitioner/example"
-                  },
-                  "display": {
-                     "fhir:value": "Dr Adam Careful"
-                  },
-                  "fhir:link": {
-                     "@id": "../Practitioner/example",
-                     "@type": "fhir:Practitioner"
-                  }
-               },
-               "index": 0
-            }
-         ],
-         "signature": [
-            {
-               "type": [
-                  {
-                     "system": {
-                        "fhir:value": "urn:iso-astm:E1762-95:2013"
-                     },
-                     "code": {
-                        "fhir:value": "1.2.840.10065.1.12.1.1"
-                     },
-                     "display": {
-                        "fhir:value": "Author's Signature"
-                     },
-                     "index": 0
-                  }
-               ],
-               "when": {
-                  "fhir:value": "2017-02-01T17:23:07Z"
-               },
-               "who": {
-                  "reference": {
-                     "fhir:value": "Practitioner/example"
-                  },
-                  "display": {
-                     "fhir:value": "Dr Adam Careful"
-                  },
-                  "fhir:link": {
-                     "@id": "../Practitioner/example",
-                     "@type": "fhir:Practitioner"
-                  }
-               },
-               "targetFormat": {
-                  "fhir:value": "application/fhir+xml"
-               },
-               "sigFormat": {
-                  "fhir:value": "application/signature+xml"
-               },
-               "data": {
-                  "fhir:value": "dGhpcyBibG9iIGlzIHNuaXBwZWQ="
-               },
-               "index": 0
-            }
-         ],
-         "@id": "#signature",
-         "index": 1
-      }
-   ],
-   "status": {
-      "fhir:value": "in-progress"
-   },
-   "medicationReference": {
-      "reference": {
-         "fhir:value": "#med0301"
-      },
-      "fhir:link": {
-         "@id": "../#med0301",
-         "@type": "fhir:#med0301"
-      }
-   },
-   "subject": {
-      "reference": {
-         "fhir:value": "Patient/pat1"
-      },
-      "display": {
-         "fhir:value": "Donald Duck"
-      },
-      "fhir:link": {
-         "@id": "../Patient/pat1",
-         "@type": "fhir:Patient"
-      }
-   },
-   "encounter": {
-      "reference": {
-         "fhir:value": "Encounter/f001"
-      },
-      "display": {
-         "fhir:value": "encounter who leads to this prescription"
-      },
-      "fhir:link": {
-         "@id": "../Encounter/f001",
-         "@type": "fhir:Encounter"
-      }
-   },
-   "occurencePeriod": {
-      "start": {
-         "fhir:value": "2015-01-15T14:30:00+01:00"
-      }
-   },
-   "performer": [
-      {
-         "actor": {
-            "reference": {
-               "fhir:value": "Practitioner/f007"
+         "text": {
+            "status": {
+               "value": "generated"
             },
-            "display": {
-               "fhir:value": "Patrick Pump"
-            },
-            "fhir:link": {
-               "@id": "../Practitioner/f007",
-               "@type": "fhir:Practitioner"
-            }
+            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medadmin0301</p><p><b>contained</b>: , </p><p><b>status</b>: in-progress</p><p><b>medication</b>: id: med0301; Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE) <span>(Details : {http://hl7.org/fhir/sid/ndc code '0409-6531-02' = '10 VIAL in 1 TRAY (0409-6531-02)  &gt; 1 INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION in 1 VIAL', given as 'Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)'})</span></p><p><b>subject</b>: <a>Donald Duck</a></p><p><b>encounter</b>: <a>encounter who leads to this prescription</a></p><p><b>occurence</b>: Jan 15, 2015 2:30:00 PM --&gt; (ongoing)</p><h3>Performers</h3><table><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a>Patrick Pump</a></td></tr></table><p><b>reason</b>: </p><p><b>request</b>: <a>MedicationRequest/medrx0318</a></p><h3>Dosages</h3><table><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Method</b></td><td><b>Dose</b></td></tr><tr><td>*</td><td>500mg IV q6h x 3 days</td><td>Intravenous route (qualifier value) <span>(Details : {SNOMED CT code '47625008' = 'Intravenous route', given as 'Intravenous route (qualifier value)'})</span></td><td>IV Push <span>(Details )</span></td><td>500 mg<span> (Details: UCUM code mg = 'mg')</span></td></tr></table><p><b>eventHistory</b>: Author's Signature. Generated Summary: id: signature; recorded: Feb 1, 2017 5:23:07 PM; </p></div>"
          },
-         "index": 0
-      }
-   ],
-   "reason": [
-      {
-         "concept": {
-            "coding": [
-               {
-                  "system": {
-                     "fhir:value": "http://terminology.hl7.org/CodeSystem/reason-medication-given"
-                  },
-                  "code": {
-                     "fhir:value": "b"
-                  },
-                  "display": {
-                     "fhir:value": "Given as Ordered"
-                  },
-                  "index": 0,
-                  "@type": "http://terminology.hl7.org/CodeSystem/reason-medication-given/b"
-               }
-            ]
-         },
-         "index": 0
-      }
-   ],
-   "request": {
-      "reference": {
-         "fhir:value": "MedicationRequest/medrx0318"
-      },
-      "fhir:link": {
-         "@id": "../MedicationRequest/medrx0318",
-         "@type": "fhir:MedicationRequest"
-      }
-   },
-   "dosage": {
-      "text": {
-         "fhir:value": "500mg IV q6h x 3 days"
-      },
-      "route": {
-         "coding": [
+         "contained": [
             {
-               "system": {
-                  "fhir:value": "http://snomed.info/sct"
+               "resourceType": "fhir:Medication",
+               "id": {
+                  "value": "med0301"
                },
                "code": {
-                  "fhir:value": "47625008"
+                  "coding": [
+                     {
+                        "system": {
+                           "value": "http://hl7.org/fhir/sid/ndc"
+                        },
+                        "code": {
+                           "value": "0409-6531-02"
+                        },
+                        "display": {
+                           "value": "Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)"
+                        },
+                        "index": 0,
+                        "@type": "http://hl7.org/fhir/sid/ndc/0409-6531-02"
+                     }
+                  ]
+               },
+               "@id": "#med0301",
+               "index": 0
+            },
+            {
+               "resourceType": "fhir:Provenance",
+               "id": {
+                  "value": "signature"
+               },
+               "target": [
+                  {
+                     "reference": {
+                        "value": "ServiceRequest/physiotherapy"
+                     },
+                     "fhir:link": {
+                        "@id": "../ServiceRequest/physiotherapy",
+                        "@type": "fhir:ServiceRequest"
+                     },
+                     "index": 0
+                  }
+               ],
+               "recorded": {
+                  "value": "2017-02-01T17:23:07Z"
+               },
+               "agent": [
+                  {
+                     "role": [
+                        {
+                           "coding": [
+                              {
+                                 "system": {
+                                    "value": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
+                                 },
+                                 "code": {
+                                    "value": "AUT"
+                                 },
+                                 "index": 0,
+                                 "@type": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType/AUT"
+                              }
+                           ],
+                           "index": 0
+                        }
+                     ],
+                     "who": {
+                        "reference": {
+                           "value": "Practitioner/example"
+                        },
+                        "display": {
+                           "value": "Dr Adam Careful"
+                        },
+                        "fhir:link": {
+                           "@id": "../Practitioner/example",
+                           "@type": "fhir:Practitioner"
+                        }
+                     },
+                     "index": 0
+                  }
+               ],
+               "signature": [
+                  {
+                     "type": [
+                        {
+                           "system": {
+                              "value": "urn:iso-astm:E1762-95:2013"
+                           },
+                           "code": {
+                              "value": "1.2.840.10065.1.12.1.1"
+                           },
+                           "display": {
+                              "value": "Author's Signature"
+                           },
+                           "index": 0
+                        }
+                     ],
+                     "when": {
+                        "value": "2017-02-01T17:23:07Z"
+                     },
+                     "who": {
+                        "reference": {
+                           "value": "Practitioner/example"
+                        },
+                        "display": {
+                           "value": "Dr Adam Careful"
+                        },
+                        "fhir:link": {
+                           "@id": "../Practitioner/example",
+                           "@type": "fhir:Practitioner"
+                        }
+                     },
+                     "targetFormat": {
+                        "value": "application/fhir+xml"
+                     },
+                     "sigFormat": {
+                        "value": "application/signature+xml"
+                     },
+                     "data": {
+                        "value": "dGhpcyBibG9iIGlzIHNuaXBwZWQ="
+                     },
+                     "index": 0
+                  }
+               ],
+               "@id": "#signature",
+               "index": 1
+            }
+         ],
+         "status": {
+            "value": "in-progress"
+         },
+         "medicationReference": {
+            "reference": {
+               "value": "#med0301"
+            },
+            "fhir:link": {
+               "@id": "../#med0301",
+               "@type": "fhir:#med0301"
+            }
+         },
+         "subject": {
+            "reference": {
+               "value": "Patient/pat1"
+            },
+            "display": {
+               "value": "Donald Duck"
+            },
+            "fhir:link": {
+               "@id": "../Patient/pat1",
+               "@type": "fhir:Patient"
+            }
+         },
+         "encounter": {
+            "reference": {
+               "value": "Encounter/f001"
+            },
+            "display": {
+               "value": "encounter who leads to this prescription"
+            },
+            "fhir:link": {
+               "@id": "../Encounter/f001",
+               "@type": "fhir:Encounter"
+            }
+         },
+         "occurencePeriod": {
+            "start": {
+               "value": "2015-01-15T14:30:00+01:00"
+            }
+         },
+         "performer": [
+            {
+               "actor": {
+                  "reference": {
+                     "value": "Practitioner/f007"
+                  },
+                  "display": {
+                     "value": "Patrick Pump"
+                  },
+                  "fhir:link": {
+                     "@id": "../Practitioner/f007",
+                     "@type": "fhir:Practitioner"
+                  }
+               },
+               "index": 0
+            }
+         ],
+         "reason": [
+            {
+               "concept": {
+                  "coding": [
+                     {
+                        "system": {
+                           "value": "http://terminology.hl7.org/CodeSystem/reason-medication-given"
+                        },
+                        "code": {
+                           "value": "b"
+                        },
+                        "display": {
+                           "value": "Given as Ordered"
+                        },
+                        "index": 0,
+                        "@type": "http://terminology.hl7.org/CodeSystem/reason-medication-given/b"
+                     }
+                  ]
+               },
+               "index": 0
+            }
+         ],
+         "request": {
+            "reference": {
+               "value": "MedicationRequest/medrx0318"
+            },
+            "fhir:link": {
+               "@id": "../MedicationRequest/medrx0318",
+               "@type": "fhir:MedicationRequest"
+            }
+         },
+         "dosage": {
+            "text": {
+               "value": "500mg IV q6h x 3 days"
+            },
+            "route": {
+               "coding": [
+                  {
+                     "system": {
+                        "value": "http://snomed.info/sct"
+                     },
+                     "code": {
+                        "value": "47625008"
+                     },
+                     "display": {
+                        "value": "Intravenous route (qualifier value)"
+                     },
+                     "index": 0,
+                     "@type": "sct:47625008"
+                  }
+               ]
+            },
+            "method": {
+               "text": {
+                  "value": "IV Push"
+               }
+            },
+            "dose": {
+               "value": {
+                  "value": 500
+               },
+               "unit": {
+                  "value": "mg"
+               },
+               "system": {
+                  "value": "http://unitsofmeasure.org"
+               },
+               "code": {
+                  "value": "mg"
+               }
+            }
+         },
+         "eventHistory": [
+            {
+               "reference": {
+                  "value": "#signature"
                },
                "display": {
-                  "fhir:value": "Intravenous route (qualifier value)"
+                  "value": "Author's Signature"
                },
-               "index": 0,
-               "@type": "sct:47625008"
+               "fhir:link": {
+                  "@id": "../#signature",
+                  "@type": "fhir:#signature"
+               },
+               "index": 0
             }
-         ]
+         ],
+         "@id": "MedicationAdministration/medadmin0301",
+         "nodeRole": "fhir:treeRoot"
       },
-      "method": {
-         "text": {
-            "fhir:value": "IV Push"
-         }
-      },
-      "dose": {
-         "value": {
-            "fhir:value": 500
-         },
-         "unit": {
-            "fhir:value": "mg"
-         },
-         "system": {
-            "fhir:value": "http://unitsofmeasure.org"
-         },
-         "code": {
-            "fhir:value": "mg"
-         }
-      }
-   },
-   "eventHistory": [
       {
-         "reference": {
-            "fhir:value": "#signature"
-         },
-         "display": {
-            "fhir:value": "Author's Signature"
-         },
-         "fhir:link": {
-            "@id": "../#signature",
-            "@type": "fhir:#signature"
-         },
-         "index": 0
+         "@id": "MedicationAdministration/medadmin0301.ttl",
+         "owl:versionIRI": "MedicationAdministration/medadmin0301.ttl",
+         "owl:imports": "fhir:fhir.ttl"
       }
    ],
-   "@id": "MedicationAdministration/medadmin0301",
-   "nodeRole": "fhir:treeRoot",
-   "@included": {
-      "@id": "MedicationAdministration/medadmin0301.ttl",
-      "owl:versionIRI": "MedicationAdministration/medadmin0301.ttl",
-      "owl:imports": "fhir:fhir.ttl"
-   },
    "@context": [
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/medicationadministration.context.jsonld",
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
@@ -290,7 +300,13 @@
             "@type": "@id",
             "@id": "fhir:nodeRole"
          },
-         "@base": "http://build.fhir.org/"
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
       }
    ]
 }

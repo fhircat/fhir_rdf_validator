@@ -3,14 +3,14 @@
       {
          "resourceType": "fhir:Observation",
          "id": {
-            "fhir:value": "obs1"
+            "value": "obs1"
          },
          "subject": {
             "reference": {
-               "fhir:value": "Patient/f001"
+               "value": "Patient/f001"
             },
             "display": {
-               "fhir:value": "P. van de Heuvel"
+               "value": "P. van de Heuvel"
             },
             "fhir:link": {
                "@id": "../Patient/f001",

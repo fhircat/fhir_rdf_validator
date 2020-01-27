@@ -1,0 +1,8 @@
+{
+  "resourceType": "Patient",
+  "id": "pat4",
+  "managingOrganization": {
+    "reference": "Organization/1",
+    "display": "ACME Healthcare, Inc"
+  }
+}

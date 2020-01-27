@@ -1,6 +1,6 @@
 usage: _jb_unittest_runner.py [-h] [-i [INFILE [INFILE ...]]] [-id INDIR]
                               [-o [OUTFILE [OUTFILE ...]]] [-od OUTDIR] [-f]
-                              [-s]
+                              [-s] [-c] [-fs FHIRSERVER]
 
 Add FHIR R4 edits to JSON file
 
@@ -16,3 +16,6 @@ optional arguments:
                         Output directory
   -f, --flatten         Flatten output directory
   -s, --stoponerror     Stop on processing error
+  -c, --addcontext      Add JSON-LD context reference
+  -fs FHIRSERVER, --fhirserver FHIRSERVER
+                        FHIR server base

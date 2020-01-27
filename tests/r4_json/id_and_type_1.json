@@ -3,7 +3,7 @@
       {
          "resourceType": "fhir:Patient",
          "id": {
-            "fhir:value": "pat4"
+            "value": "pat4"
          },
          "@id": "Patient/pat4",
          "nodeRole": "fhir:treeRoot"

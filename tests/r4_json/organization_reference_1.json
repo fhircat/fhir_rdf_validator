@@ -1,0 +1,46 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": {
+            "value": "pat4"
+         },
+         "managingOrganization": {
+            "reference": {
+               "value": "Organization/1"
+            },
+            "display": {
+               "value": "ACME Healthcare, Inc"
+            },
+            "fhir:link": {
+               "@id": "../Organization/1",
+               "@type": "fhir:Organization"
+            }
+         },
+         "@id": "Patient/pat4",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/pat4.ttl",
+         "owl:versionIRI": "Patient/pat4.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}

@@ -1,0 +1,91 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:PrimitiveTypes",
+         "id": {
+            "value": "obs1"
+         },
+         "id1": {
+            "value": "alpha-gamma-14"
+         },
+         "instant": {
+            "value": "2015-02-07T13:28:17.239+02:00"
+         },
+         "time": {
+            "value": "14:35"
+         },
+         "dateTime1": {
+            "value": "1951-06-04"
+         },
+         "dateTime2": {
+            "value": "1951-06"
+         },
+         "base64Binary": {
+            "value": "/9j/4...KAP//Z"
+         },
+         "decimal": {
+            "value": "3.14159265358979323846264338327950288419716939937510"
+         },
+         "boolean": {
+            "value": true
+         },
+         "url": {
+            "value": "http://hl7.org/fhir"
+         },
+         "uri": {
+            "value": "urn:isbn:0451450523"
+         },
+         "code1": {
+            "value": "acq4+acq5"
+         },
+         "code2": {
+            "value": "Question 4b"
+         },
+         "markdown": {
+            "value": "# Document \n## Subhead\n"
+         },
+         "integer": {
+            "value": -14
+         },
+         "unsignedInt": {
+            "value": "11279034922371"
+         },
+         "positiveInt": {
+            "value": "11279034922372"
+         },
+         "oid": {
+            "value": "urn:oid:2.16.840.1.113883"
+         },
+         "uuid": {
+            "value": "urn:uuid:a5afddf4-e880-459b-876e-e4591b0acc11"
+         },
+         "canonical": {
+            "value": "http://myserver.com/Patient/joe"
+         },
+         "@id": "PrimitiveTypes/obs1",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "PrimitiveTypes/obs1.ttl",
+         "owl:versionIRI": "PrimitiveTypes/obs1.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/primitivetypes.context.jsonld",
+      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         }
+      }
+   ]
+}

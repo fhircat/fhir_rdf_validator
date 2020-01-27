@@ -15,6 +15,7 @@ CODE_SYSTEM_MAP = {
     "http://loinc.org": "loinc"
 }
 
+VALUE_TAG = "value"
 
 def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     """
@@ -26,10 +27,10 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     :return: reference to "o" with changes applied.  Warning: object is NOT copied before change
     """
     def to_value(v: Any) -> JsonObj:
-        return JsonObj(**{"fhir:value": v})
+        return JsonObj(**{VALUE_TAG: v})
 
     def from_value(v: Any) -> Any:
-        return v['fhir:value'] if isinstance(v, JsonObj) and 'fhir:value' in as_dict(v) else v
+        return v[VALUE_TAG] if isinstance(v, JsonObj) and VALUE_TAG in as_dict(v) else v
 
     def add_type_arc(n: JsonObj) -> None:
         if hasattr(n, 'system') and hasattr(n, 'code'):
