@@ -1,13 +1,19 @@
 {
-   "resourceType": "fhir:Patient",
-   "id": "pat4",
-   "@id": "Patient/pat4",
-   "nodeRole": "fhir:treeRoot",
-   "@included": {
-      "@id": "Patient/pat4.ttl",
-      "owl:versionIRI": "Patient/pat4.ttl",
-      "owl:imports": "fhir:fhir.ttl"
-   },
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": {
+            "fhir:value": "pat4"
+         },
+         "@id": "Patient/pat4",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/pat4.ttl",
+         "owl:versionIRI": "Patient/pat4.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
    "@context": [
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld",
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",

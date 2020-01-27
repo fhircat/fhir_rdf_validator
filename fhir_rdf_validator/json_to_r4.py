@@ -1,5 +1,6 @@
 import os
 from argparse import Namespace, ArgumentParser
+from copy import deepcopy
 from typing import Any, List, Optional
 
 import dirlistproc
@@ -92,6 +93,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
                 d[k] = list_processor(k, v)
             elif k == "id":                     # Internal ids are relative to the document
                 d['@id'] = ('#' if inside and not v.startswith('#') else (resource_type + '/')) + v
+                d[k] = to_value(v)
             elif k == "reference":              # Link to another document
                 if not hasattr(d, 'link'):
                     d["fhir:link"] = gen_reference(d)
@@ -157,9 +159,9 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     hdr["@id"] = o['@id'] + ".ttl"
     hdr["owl:versionIRI"] = hdr["@id"]
     hdr["owl:imports"] = "fhir:fhir.ttl"
-    o["@included"] = hdr
-
-
+    # TODO: replace this with included once we get the bug fixed.
+    o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
+    # o["@included"] = hdr
 
     # Fill out the rest of the context
     if add_context:

@@ -1,4 +1,25 @@
 {
+   "@graph": [
+      {
+         "resourceType": "fhir:MedicationAdministration",
+         "id": {
+            "fhir:value": "medadmin0301"
+         },
+         "text": {
+            "status": {
+               "fhir:value": "generated"
+            },
+            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medadmin0301</p><p><b>contained</b>: , </p><p><b>status</b>: in-progress</p><p><b>medication</b>: id: med0301; Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE) <span>(Details : {http://hl7.org/fhir/sid/ndc code '0409-6531-02' = '10 VIAL in 1 TRAY (0409-6531-02)  &gt; 1 INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION in 1 VIAL', given as 'Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)'})</span></p><p><b>subject</b>: <a>Donald Duck</a></p><p><b>encounter</b>: <a>encounter who leads to this prescription</a></p><p><b>occurence</b>: Jan 15, 2015 2:30:00 PM --&gt; (ongoing)</p><h3>Performers</h3><table><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a>Patrick Pump</a></td></tr></table><p><b>reason</b>: </p><p><b>request</b>: <a>MedicationRequest/medrx0318</a></p><h3>Dosages</h3><table><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Method</b></td><td><b>Dose</b></td></tr><tr><td>*</td><td>500mg IV q6h x 3 days</td><td>Intravenous route (qualifier value) <span>(Details : {SNOMED CT code '47625008' = 'Intravenous route', given as 'Intravenous route (qualifier value)'})</span></td><td>IV Push <span>(Details )</span></td><td>500 mg<span> (Details: UCUM code mg = 'mg')</span></td></tr></table><p><b>eventHistory</b>: Author's Signature. Generated Summary: id: signature; recorded: Feb 1, 2017 5:23:07 PM; </p></div>"
+         },
+         "@id": "MedicationAdministration/medadmin0301",
+         "nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "MedicationAdministration/medadmin0301.ttl",
+         "owl:versionIRI": "MedicationAdministration/medadmin0301.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
    "@context": [
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/medicationadministration.context.jsonld",
       "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
@@ -15,20 +36,5 @@
             "@type": "@id"
          }
       }
-   ],
-   "resourceType": "fhir:MedicationAdministration",
-   "id": "medadmin0301",
-   "text": {
-      "status": {
-         "fhir:value": "generated"
-      },
-      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medadmin0301</p><p><b>contained</b>: , </p><p><b>status</b>: in-progress</p><p><b>medication</b>: id: med0301; Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE) <span>(Details : {http://hl7.org/fhir/sid/ndc code '0409-6531-02' = '10 VIAL in 1 TRAY (0409-6531-02)  &gt; 1 INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION in 1 VIAL', given as 'Vancomycin Hydrochloride (VANCOMYCIN HYDROCHLORIDE)'})</span></p><p><b>subject</b>: <a>Donald Duck</a></p><p><b>encounter</b>: <a>encounter who leads to this prescription</a></p><p><b>occurence</b>: Jan 15, 2015 2:30:00 PM --&gt; (ongoing)</p><h3>Performers</h3><table><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a>Patrick Pump</a></td></tr></table><p><b>reason</b>: </p><p><b>request</b>: <a>MedicationRequest/medrx0318</a></p><h3>Dosages</h3><table><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Method</b></td><td><b>Dose</b></td></tr><tr><td>*</td><td>500mg IV q6h x 3 days</td><td>Intravenous route (qualifier value) <span>(Details : {SNOMED CT code '47625008' = 'Intravenous route', given as 'Intravenous route (qualifier value)'})</span></td><td>IV Push <span>(Details )</span></td><td>500 mg<span> (Details: UCUM code mg = 'mg')</span></td></tr></table><p><b>eventHistory</b>: Author's Signature. Generated Summary: id: signature; recorded: Feb 1, 2017 5:23:07 PM; </p></div>"
-   },
-   "@id": "MedicationAdministration/medadmin0301",
-   "nodeRole": "fhir:treeRoot",
-   "@included": {
-      "@id": "MedicationAdministration/medadmin0301.ttl",
-      "owl:versionIRI": "MedicationAdministration/medadmin0301.ttl",
-      "owl:imports": "fhir:fhir.ttl"
-   }
+   ]
 }
