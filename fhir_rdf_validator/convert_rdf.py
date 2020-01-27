@@ -1,9 +1,10 @@
+import sys
+
 from argparse import ArgumentParser, Namespace
 from typing import List, Optional, Tuple
 
 import dirlistproc
 from rdflib import Graph
-from rdflib.util import guess_format
 from rdflib.plugin import plugins as rdf_plugins, Parser as rdf_Parser, Serializer as rdf_Serializer
 
 
@@ -56,7 +57,7 @@ def main(argv: List[str] = None):
 
     dlp = dlp(argv)
     if not (dlp.opts.infile or dlp.opts.indir):
-        dirlistproc.DirectoryListProcessor(["--help"])
+        dirlistproc.DirectoryListProcessor(argv + ["--help"])
     dlp.infile_suffix, dlp.opts.informat = set_suffix(dlp.opts.infile, dlp.opts.informat)
     dlp.outfile_suffix, dlp.opts.outformat = set_suffix(dlp.opts.outfile, dlp.opts.outformat)
     if not dlp.opts.informat:

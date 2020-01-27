@@ -54,10 +54,12 @@ class ConvertRDFTestCase(unittest.TestCase):
         # main(["-i", "../tutorial/demo3.json", "-o", "../tutorial/demo3.ttl"])
         # main(["-i", "../tutorial/demo3.json", "-o", "../tutorial/demo3.ttl"])
         # main(["-i", "../tutorial/account-example.ttl", "-o", "../tutorial/account-example.json"])
-        main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.json"])
-        main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.xml"])
-        main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.ntriples"])
-        main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.trig"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.json"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.xml"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.ntriples"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.trig"])
+        # main(["-i", "../tutorial/tweaked_patient_output.ttl", "-o", "../tutorial/tweaked_patient_output_pretty.ttl"])
+        main(["-i", "../tutorial/patient_example_dicom.ttl", "-o", "../tutorial/patient_example_dicom_out.ttl"])
 
 
 if __name__ == '__main__':
