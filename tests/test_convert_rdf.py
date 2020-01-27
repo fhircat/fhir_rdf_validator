@@ -59,7 +59,8 @@ class ConvertRDFTestCase(unittest.TestCase):
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.ntriples"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.trig"])
         # main(["-i", "../tutorial/tweaked_patient_output.ttl", "-o", "../tutorial/tweaked_patient_output_pretty.ttl"])
-        main(["-i", "../tutorial/patient_example_dicom.ttl", "-o", "../tutorial/patient_example_dicom_out.ttl"])
+        # main(["-i", "../tutorial/patient_example_dicom.ttl", "-o", "../tutorial/patient_example_dicom_out.ttl"])
+        main(["-i", "r4_turtle/coding_1.n3", "-o", "r4_turtle/coding_1.ttl"])
 
 
 if __name__ == '__main__':

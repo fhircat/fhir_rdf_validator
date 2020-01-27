@@ -117,6 +117,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
                         print(f"Extension element {kp} is already in the base for {k}")
                     else:
                         d[base_k][kp] = vp
+            del(d[k])
 
     def list_processor(k: str, l: List) -> Any:
         """
@@ -226,7 +227,7 @@ def addargs(parser: ArgumentParser) -> None:
     parser.add_argument("-fs", "--fhirserver", help="FHIR server base")
 
 
-def main(argv: Optional[List[str]] = None):
+def main(argv: object = None) -> object:
     """
     Apply R4 edits to FHIR JSON files
 

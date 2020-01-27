@@ -1,0 +1,7 @@
+{
+  "resourceType": "Observation",
+  "id": "bmd",
+  "subject": {
+    "reference": "Patient/pat2"
+  }
+}

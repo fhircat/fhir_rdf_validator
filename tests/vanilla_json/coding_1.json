@@ -1,0 +1,23 @@
+{
+  "resourceType": "Observation",
+  "id": "bmd",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "24701-5",
+        "display": "Femur DXA Bone density"
+      }
+    ],
+    "text": "BMD - Left Femur"
+  },
+  "bodySite": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "71341001:272741003=7771000"
+      }
+    ],
+    "text": "Left Femur"
+  }
+}

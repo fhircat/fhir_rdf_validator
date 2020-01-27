@@ -1,0 +1,28 @@
+<http://build.fhir.org/Observation/bmd.ttl> <http://www.w3.org/2002/07/owl#imports> <http://hl7.org/fhir/fhir.ttl> .
+<http://build.fhir.org/Observation/bmd.ttl> <http://www.w3.org/2002/07/owl#versionIRI> <http://build.fhir.org/Observation/bmd.ttl> .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.bodySite> _:c14n5 .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.code> _:c14n4 .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Resource.id> _:c14n10 .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/nodeRole> <http://hl7.org/fhir/treeRoot> .
+<http://build.fhir.org/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
+_:c14n0 <http://hl7.org/fhir/Coding.code> _:c14n8 .
+_:c14n0 <http://hl7.org/fhir/Coding.system> _:c14n1 .
+_:c14n0 <http://hl7.org/fhir/index> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://snomed.info/id/71341001:272741003=7771000> .
+_:c14n1 <http://hl7.org/fhir/value> "http://snomed.info/sct"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+_:c14n10 <http://hl7.org/fhir/value> "bmd" .
+_:c14n11 <http://hl7.org/fhir/Coding.code> _:c14n7 .
+_:c14n11 <http://hl7.org/fhir/Coding.display> _:c14n9 .
+_:c14n11 <http://hl7.org/fhir/Coding.system> _:c14n2 .
+_:c14n11 <http://hl7.org/fhir/index> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:c14n11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://loinc.org/rdf#24701-5> .
+_:c14n2 <http://hl7.org/fhir/value> "http://loinc.org"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+_:c14n3 <http://hl7.org/fhir/value> "BMD - Left Femur" .
+_:c14n4 <http://hl7.org/fhir/CodeableConcept.coding> _:c14n11 .
+_:c14n4 <http://hl7.org/fhir/CodeableConcept.text> _:c14n3 .
+_:c14n5 <http://hl7.org/fhir/CodeableConcept.coding> _:c14n0 .
+_:c14n5 <http://hl7.org/fhir/CodeableConcept.text> _:c14n6 .
+_:c14n6 <http://hl7.org/fhir/value> "Left Femur" .
+_:c14n7 <http://example.com/UNKNOWN#value> "24701-5" .
+_:c14n8 <http://example.com/UNKNOWN#value> "71341001:272741003=7771000" .
+_:c14n9 <http://hl7.org/fhir/value> "Femur DXA Bone density" .

@@ -165,186 +165,277 @@ element turns out to be an exception to the FHIR extensibility rule.
    "(key)" : {"value": "(val)"},
 
 ```
-See:  
+See: [vanilla_json/primitive_types_1.json](https://github.com/fhircat/fhir_rdf_validator/blob/master/tests/vanilla_json/primitive_types_1.json)
+and
+[primitive_types_1.json](https://github.com/fhircat/fhir_rdf_validator/blob/master/tests/r4_json/primitive_types_1.json)
+for input and output samples.
+
+_Note:_ We still need to create a comprehensive test around this -- the primitive_types context doesn't currently exist
     
-6) **list ordering**
+### List Order
  
-    JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements.
-   
-    _**Question**_: Is it possible to have a list within a list in FHIR (e.g. `"foo": [["bar": 17, ...], ...])`?
-    
-    For each _object_ within a list, add a relative index:
-    
-    R4 JSON
-    ```json
+JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements.
+
+_**Question**_: Is it possible to have a list within a list in FHIR (e.g. `"foo": [["bar": 17, ...], ...])`?
+
+For each _object_ within a list, add a relative index:
+
+**JSON
+```json
+{
+    "telecom": [
     {
-        "telecom": [
-        {
-          "index": 0,
-          "use": "home"
-        },
-        {
-           "index": 1,
-          "system": "phone",
-          "value": "(03) 5555 6473",
-          "use": "work",
-          "rank": 1
-        },
-        {
-           "index": 2,
-          "system": "phone",
-          "value": "(03) 3410 5613",
-          "use": "mobile",
-          "rank": 2
-        },
-        {
-          "index": 3,
-          "system": "phone",
-          "value": "(03) 5555 8834",
-          "use": "old",
-          "period": {
-            "end": "2014"
-          }
-        }
-      ]
-   }
-   ```
-   
-   Note that lists may be (indirectly) nested within other lists
-
-6) **References**
-    FHIR references require two additions:
-   
-   1) The [Reference](http://build.fhir.org/references.html#Reference) data type includes the `reference` attribute, a "Literal reference, Relative, 
-   internal or absolute URL".  If this is a relative reference, it is relative to the _parent_ of the resource, not the
-   resource itself.  As an example, if the resource at the URL `https://fhirserver.org/Observation/o12345` contains a reference
-   to `"Patient/P1111`, the full URI reference would be `"https://fhirserver.org/Patient/P1111"` instead of 
-   `"https://fhirserver.org/Observation/Patient/P1111"`, which is what you would get with a normal web page.  As a 
-   consequence, ".." needs to be prepended to any _relative_ `Reference.reference` entry.  Example:
-   
-   ```json
-     "subject": {
-       "reference": "Patient/f001",
-       "display": "P. van de Heuvel"
+      "index": 0,
+      "use": "home"
+    },
+    {
+       "index": 1,
+      "system": "phone",
+      "value": "(03) 5555 6473",
+      "use": "work",
+      "rank": 1
+    },
+    {
+       "index": 2,
+      "system": "phone",
+      "value": "(03) 3410 5613",
+      "use": "mobile",
+      "rank": 2
+    },
+    {
+      "index": 3,
+      "system": "phone",
+      "value": "(03) 5555 8834",
+      "use": "old",
+      "period": {
+        "end": "2014"
       }
-    ``` 
-   Becomes:
-   ```json
-     "subject": {
-       "fhir:link": {"@id": "../Patient/f001"},
-       "reference": "Patient/f001",
-       "display": "P. van de Heuvel"
-      }
-    ``` 
-   
-   The R4 specification also adds a "type arc", in the form:
-   ```text
-   <http://hl7.org/fhir/Patient/f001> a fhir:Patient .
-   ```
-   If the type of the reference can be determined.  Since the R4 RDF specification was published, a new (albeit optional)
-   field was added to the `Reference` type, `type`, which (while specified as a URI?) identifies the FHIR data type.  To
-   completely match the R4 specification, and _if_ there is a `reference` attribute the pre-processor needs to insert 
-   the `link` arc:
-    ```json
-    "subject": {
-       "reference": "Patient/f001",
-       "display": "P. van de Heuvel",
-       "link": {
-          "@id": "../Patient/f001",
-          "@type": "Patient"
-       }   
     }
-    ``` 
-   where the `"@id"` is the `reference` with a '..' prepended if it is relative, and the type is the `"type"` field if
-   it is present and, if not, if the URL matches the recommended FHIR Regexp (to be supplied), the resource type from
-   there, otherwise, omit it.
+  ]
+}
+```
 
-        
-3) **RDF data types**
+Note that lists may be (indirectly) nested within other lists
 
-    All non-string values need to have a corresponding RDF datatype inserted.  This requires access to the 
-    FHIR metamodel, as the JSON itself does not have sufficient typing information.
-    
-    1) **Case 1:** value has an explicit type - see: http://build.fhir.org/datatypes.html#Period for an example, where both
-       the start and end nodes are of the _FHIR_ type `dateTime`. The current R4 type map can be found in 
-       [RDFTypeMap.java](https://github.com/HL7/fhir/blob/master/implementations/java/org.hl7.fhir.rdf/src/org/hl7/fhir/rdf/RDFTypeMap.java).
-       
-    2) **Case 2:** variable value type - the datatype is encoded onto the end of the variable name.  This can be identified
-       in the FHIR metamodel, and is represented as `<tag>[x]` where `x` is the actual datatype (e.g. `valueBoolean`, 
-       `valueDateTime`, etc.) The data type has to be parsed from the key and then mapped as with Case 1 above.
-       
-4) **ID and extension transformation for primitive types**
-    
-    FHIR primitive types derive from [Element](http://build.fhir.org/types.html#Element), meaning that _any_ data element
-    can have an `id` and/or `extension`.  The FHIR JSON rendering keeps underlying data "primitive" (i.e. represented as
-    a value, not a JSON Object), but uses a lexical convention to associate the base element with the additional attributes.
-    The JSON will prepend an underscore ('_') to the key name with an object that contains the `id` and/or `extension`.
-    
-    Whenever you encounter a tag with an underscore, locate the corresponding tag without the underscore and merge the 
-    contents of the underscored object with the contents of the basic tag (which will already _be_ an object from step 1:
-    
-    ```json
-   {
-    "birthDate": "1970-03-30",
-     "_birthDate": {
-       "id": "314159",
-       "extension" : [ {
-          "url" : "http://example.org/fhir/StructureDefinition/text",
-          "valueString" : "Easter 1970"
-       }]
-     }
-   }
-   ```
-   Step 1:
-   ```json
-   {
-    "birthDate": {"value": "1970-03-30"},
-     "_birthDate": {
-       "id": {"value": "314159"},
-       "extension" : [ {
-          "url" : {"value": "http://example.org/fhir/StructureDefinition/text"},
-          "valueString" : {"value": "Easter 1970"}
-       }]
-     }
-   }
-   ```
-    Step 2:
-   ```json
-   {
-    "birthDate": {"value": "1970-03-30", "@type": "xsd:dateTime"},
-     "_birthDate": {
-       "id": {"value": "314159"},
-       "extension" : [ {
-          "url" : {"value": "http://example.org/fhir/StructureDefinition/text", "@type":  "xsd:anyURI"},
-          "valueString" : {"value": "Easter 1970"}
-       }]
-     }
-   }
-   ```
-    And finally:
-   ```json
-   {
-    "birthDate": {
-      "value": "1970-03-30", 
-      "@type": "xsd:dateTime",
-       "id": {"value": "314159"},
-       "extension" : [ {
-          "url" : {"value": "http://example.org/fhir/StructureDefinition/text", "@type":  "xsd:anyURI"},
-          "valueString" : {"value": "Easter 1970"}
-       }]
-     }
-   }
-   ```  
-      
+**[Example](http://tinyurl.com/vzgx6rc)**
 
+## References
+FHIR references require two additions:
+
+1) The [Reference](http://build.fhir.org/references.html#Reference) data type includes the `reference` attribute, a "Literal reference, Relative, 
+internal or absolute URL".  If this is a relative reference, it is relative to the _parent_ of the resource, not the
+resource itself.  As an example, if the resource at the URL `https://fhirserver.org/Observation/o12345` contains a reference
+to `"Patient/P1111`, the full URI reference would be `"https://fhirserver.org/Patient/P1111"` instead of 
+`"https://fhirserver.org/Observation/Patient/P1111"`, which is what you would get with a normal web page.  As a 
+consequence, ".." needs to be prepended to any _relative_ `Reference.reference` entry.
+2) When possible, R4 Specification also add a "type arc" in the form ` <http://hl7.org/fhir/Patient/f001> a fhir:Patient .`
+Sometimes this is explicitly available 
    
-5) **Concept References**
+**JSON:**
+Sample 1:
+```
+"subject": {
+   "reference": "Patient/f001",
+   "display": "P. van de Heuvel"
+}
+```
+
+Sample 2:
+```json
+{
+  "resourceType": "Observation",
+  "id": "bmd",
+  "subject": {
+    "reference": "http://example.org/nonfhirurl/bmd",
+    "type": "Patient"
+  }
+}
+```
+
+Sample 3:
+```json
+{
+  "resourceType": "Observation",
+  "id": "bmd",
+  "subject": {
+    "reference": "http://example.org/nonfhirurl/bmd"
+  }
+}
+```
     
-    FHIR uses the composite [Coding](http://build.fhir.org/datatypes.html#Coding) datatype to reference a concept identifier.
-    A key element of the RDF implementation is the notion of concept URI's.  Where _possible_, we need generate a "type arc"
-    for a concept identifier that references a URL. Note that there Were more mappings in our original submission, but the
-    current two (with an error in LOINC) can be found at 
-    https://github.com/hapifhir/org.hl7.fhir.core/blob/master/org.hl7.fhir.r5/src/main/java/org/hl7/fhir/r5/formats/RdfParserBase.java
+**R4 JSON:**
+Sample 1:
+```json
+"subject": {
+    "reference": {
+       "value": "Patient/f001"
+    },
+    "display": {
+       "value": "P. van de Heuvel"
+    },
+    "fhir:link": {
+       "@id": "../Patient/f001",
+       "@type": "fhir:Patient"
+    }
+ },
+```
+
+Sample 2:
+```json
+"subject": {
+    "reference": {
+       "value": "http://example.org/nonfhirurl/bmd"
+    },
+    "type": {
+       "value": "Patient"
+    },
+    "fhir:link": {
+       "@id": "http://example.org/nonfhirurl/bmd",
+       "@type": "fhir:Patient"
+    }
+ },
+```
+
+Sample 3:
+```json
+"subject": {
+    "reference": {
+       "value": "http://example.org/nonfhirurl/bmd"
+    },
+    "fhir:link": {
+       "@id": "http://example.org/nonfhirurl/bmd"
+    }
+ },
+```
+
+## RDF Data Types
+
+All non-string values need to have a corresponding RDF datatype inserted.  This requires access to the 
+FHIR metamodel, as the JSON itself does not have sufficient typing information.
+
+1) **Case 1:** value has an explicit type - see: http://build.fhir.org/datatypes.html#Period for an example, where both
+   the start and end nodes are of the _FHIR_ type `dateTime`. The current R4 type map can be found in 
+   [RDFTypeMap.java](https://github.com/HL7/fhir/blob/master/implementations/java/org.hl7.fhir.rdf/src/org/hl7/fhir/rdf/RDFTypeMap.java).
+   
+2) **Case 2:** variable value type - the datatype is encoded onto the end of the variable name.  This can be identified
+   in the FHIR metamodel, and is represented as `<tag>[x]` where `x` is the actual datatype (e.g. `valueBoolean`, 
+   `valueDateTime`, etc.) The data type has to be parsed from the key and then mapped as with Case 1 above.
+       
+## Primitive Type and ID Extensions
+    
+FHIR primitive types derive from [Element](http://build.fhir.org/types.html#Element), meaning that _any_ data element
+can have an `id` and/or `extension`.  The FHIR JSON rendering keeps underlying data "primitive" (i.e. represented as
+a value, not a JSON Object), but uses a lexical convention to associate the base element with the additional attributes.
+The JSON will prepend an underscore ('_') to the key name with an object that contains the `id` and/or `extension`.
+
+Whenever you encounter a tag with an underscore, locate the corresponding tag without the underscore and merge the 
+contents of the underscored object with the contents of the basic tag (which will already _be_ an object from step 1:
+
+**JSON:**
+```json
+"birthDate": "1974-12-25",
+"_birthDate": {
+"extension": [
+  {
+    "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+    "valueDateTime": "1974-12-25T14:35:45-05:00"
+  }
+]
+```
+
+**R4 JSON**
+```json
+ "birthDate": {
+    "value": "1974-12-25",
+    "extension": [
+       {
+          "url": {
+             "value": "http://hl7.org/fhir/StructureDefinition/patient-birthTime"
+          },
+          "valueDateTime": {
+             "value": "1974-12-25T14:35:45-05:00"
+          },
+          "index": 0
+       }
+    ]
+ },
+```
+      
+## Concept References
+    
+FHIR uses the composite [Coding](http://build.fhir.org/datatypes.html#Coding) datatype to reference a concept identifier.
+A key element of the RDF implementation is the notion of concept URI's.  Where _possible_, we need generate a "type arc"
+for a concept identifier that references a URL. Note that there Were more mappings in our original submission, but the
+current two (with an error in LOINC) can be found at 
+https://github.com/hapifhir/org.hl7.fhir.core/blob/master/org.hl7.fhir.r5/src/main/java/org/hl7/fhir/r5/formats/RdfParserBase.java.
+
+**JSON:**
+```
+{
+  "resourceType": "Observation",
+  "id": "bmd",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "24701-5",
+        "display": "Femur DXA Bone density"
+      }
+    ],
+    "text": "BMD - Left Femur"
+  },
+  "bodySite": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "71341001:272741003=7771000"
+      }
+    ],
+    "text": "Left Femur"
+  }
+}
+```
+
+**R4 JSON:**
+```json
+"code": {
+    "coding": [
+       {
+          "system": {
+             "value": "http://loinc.org"
+          },
+          "code": {
+             "value": "24701-5"
+          },
+          "display": {
+             "value": "Femur DXA Bone density"
+          },
+          "index": 0,
+          "@type": "loinc:24701-5"
+       }
+    ],
+    "text": {
+       "value": "BMD - Left Femur"
+    }
+ },
+ "bodySite": {
+    "coding": [
+       {
+          "system": {
+             "value": "http://snomed.info/sct"
+          },
+          "code": {
+             "value": "71341001:272741003=7771000"
+          },
+          "index": 0,
+          "@type": "sct:71341001:272741003=7771000"
+       }
+    ],
+    "text": {
+       "value": "Left Femur"
+    }
+ },
+```
 
    
    See: http://tinyurl.com/s6gkyx7 for an example
