@@ -144,8 +144,8 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             elif isinstance(e, list):
                 print(f"Problem: {k} has a list in a list", file=sys.stderr)
             else:
-                v = to_value(e)
-                v.index = pos
+                e = to_value(e)
+                e.index = pos
             return e
 
         return [list_element(le, p) for le, p in zip(l, range(0,len(l)))]
