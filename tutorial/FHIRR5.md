@@ -1,4 +1,4 @@
-# Converting vanilla JSON to FHIR RDF
+# Converting vanilla FHIR/JSON to FHIR/RDF
 See: https://github.com/fhircat/FHIRCat/issues/2 for additional information
 
 
