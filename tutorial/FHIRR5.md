@@ -13,8 +13,8 @@ specification.
 
 ## Nomenclature
 * **Vanilla JSON (or just "JSON" when the context is obvious)** - FHIR JSON representations in use in the FHIR ecosystem today.
-* **R4 JSON** - FHIR JSON that has been modified to include additional elements, such as the `fhir:nodeRole` item,
-explicit list ordering, extensible values, etc.
+* **R4 JSON** - FHIR JSON that has been modified to include additional elements -- such as the `fhir:nodeRole` item,
+explicit list ordering, extensible values, etc. -- which are used in the R4 version of FHIR/RDF.  The R4 version is the existing version of FHIR/RDF as of 2019.  R5 refers to a proposed next version.
 
 
 ## JSON LD 1.1 Contexts
