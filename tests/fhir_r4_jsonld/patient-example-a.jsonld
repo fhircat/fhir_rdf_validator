@@ -1,0 +1,164 @@
+{
+  "@context": [
+    "https://fhircat.org/fhir/contexts/r5/patient.context.jsonld",
+    {
+      "@base": "server",
+      "nodeRole": {
+        "@type": "@id",
+        "@id": "fhir:nodeRole"
+      },
+      "@owl:imports": {
+        "@type": "@id"
+      },
+      "@owl:versionIRI": {
+        "@type": "@id"
+      }
+    }
+  ],
+  "@graph": [
+    {
+      "resourceType": "fhir:Patient",
+      "id": {
+        "fhir:value": "pat1"
+      },
+      "text": {
+        "status": {
+          "fhir:value": "generated"
+        },
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>Patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321</p>\n    \n    </div>"
+      },
+      "identifier": [
+        {
+          "use": {
+            "fhir:value": "usual"
+          },
+          "type": {
+            "coding": [
+              {
+                "system": {
+                  "fhir:value": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                },
+                "code": {
+                  "fhir:value": "MR"
+                },
+                "index": 0,
+                "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR"
+              }
+            ]
+          },
+          "system": {
+            "fhir:value": "urn:oid:0.1.2.3.4.5.6.7"
+          },
+          "value": {
+            "fhir:value": "654321"
+          },
+          "index": 0
+        }
+      ],
+      "active": {
+        "fhir:value": true
+      },
+      "name": [
+        {
+          "use": {
+            "fhir:value": "official"
+          },
+          "family": {
+            "fhir:value": "Donald"
+          },
+          "given": [
+            {
+              "fhir:value": "Duck",
+              "index": 0
+            }
+          ],
+          "index": 0
+        }
+      ],
+      "gender": {
+        "fhir:value": "male"
+      },
+      "photo": [
+        {
+          "contentType": {
+            "fhir:value": "image/gif"
+          },
+          "data": {
+            "fhir:value": "R0lGODlhEwARAPcAAAAAAAAA/+9aAO+1AP/WAP/eAP/eCP/eEP/eGP/nAP/nCP/nEP/nIf/nKf/nUv/nWv/vAP/vCP/vEP/vGP/vIf/vKf/vMf/vOf/vWv/vY//va//vjP/3c//3lP/3nP//tf//vf///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEAAAEALAAAAAATABEAAAi+AAMIDDCgYMGBCBMSvMCQ4QCFCQcwDBGCA4cLDyEGECDxAoAQHjxwyKhQAMeGIUOSJJjRpIAGDS5wCDly4AALFlYOgHlBwwOSNydM0AmzwYGjBi8IHWoTgQYORg8QIGDAwAKhESI8HIDgwQaRDI1WXXAhK9MBBzZ8/XDxQoUFZC9IiCBh6wEHGz6IbNuwQoSpWxEgyLCXL8O/gAnylNlW6AUEBRIL7Og3KwQIiCXb9HsZQoIEUzUjNEiaNMKAAAA7"
+          },
+          "index": 0
+        }
+      ],
+      "contact": [
+        {
+          "relationship": [
+            {
+              "coding": [
+                {
+                  "system": {
+                    "fhir:value": "http://terminology.hl7.org/CodeSystem/v2-0131"
+                  },
+                  "code": {
+                    "fhir:value": "E"
+                  },
+                  "index": 0,
+                  "@type": "http://terminology.hl7.org/CodeSystem/v2-0131/E"
+                }
+              ],
+              "index": 0
+            }
+          ],
+          "organization": {
+            "reference": {
+              "fhir:value": "Organization/1"
+            },
+            "display": {
+              "fhir:value": "Walt Disney Corporation"
+            },
+            "fhir:link": {
+              "@id": "../Organization/1",
+              "@type": "fhir:Organization"
+            }
+          },
+          "index": 0
+        }
+      ],
+      "managingOrganization": {
+        "reference": {
+          "fhir:value": "Organization/1"
+        },
+        "display": {
+          "fhir:value": "ACME Healthcare, Inc"
+        },
+        "fhir:link": {
+          "@id": "../Organization/1",
+          "@type": "fhir:Organization"
+        }
+      },
+      "link": [
+        {
+          "other": {
+            "reference": {
+              "fhir:value": "Patient/pat2"
+            },
+            "fhir:link": {
+              "@id": "../Patient/pat2",
+              "@type": "fhir:Patient"
+            }
+          },
+          "type": {
+            "fhir:value": "seealso"
+          },
+          "index": 0
+        }
+      ],
+      "nodeRole": "fhir:treeRoot",
+      "@id": "Patient/pat1"
+    },
+    {
+      "@id": "Patient/pat1.ttl",
+      "owl:versionIRI": "Patient/pat1.ttl",
+      "owl:imports": "fhir:fhir.ttl"
+    }
+  ]
+}
