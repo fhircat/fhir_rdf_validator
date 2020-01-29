@@ -1,0 +1,282 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://fhircat.org/jsonld/playground/Patient/pat1.ttl",
+      "owl:imports": "fhir:fhir.ttl",
+      "owl:versionIRI": "Patient/pat1.ttl"
+    },
+    {
+      "@id": "https://fhircat.org/jsonld/playground/Patient/pat1",
+      "@type": "http://hl7.org/fhir/Patient",
+      "http://hl7.org/fhir/DomainResource.text": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb1"
+      },
+      "http://hl7.org/fhir/Patient.active": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb2"
+      },
+      "http://hl7.org/fhir/Patient.contact": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb3"
+      },
+      "http://hl7.org/fhir/Patient.gender": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb4"
+      },
+      "http://hl7.org/fhir/Patient.identifier": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb5"
+      },
+      "http://hl7.org/fhir/Patient.link": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb6"
+      },
+      "http://hl7.org/fhir/Patient.managingOrganization": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb7"
+      },
+      "http://hl7.org/fhir/Patient.name": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb8"
+      },
+      "http://hl7.org/fhir/Patient.photo": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb9"
+      },
+      "http://hl7.org/fhir/Resource.id": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb10"
+      },
+      "http://hl7.org/fhir/nodeRole": {
+        "@id": "http://hl7.org/fhir/treeRoot"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb6",
+      "http://hl7.org/fhir/Patient.link.other": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb25"
+      },
+      "http://hl7.org/fhir/Patient.link.type": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb22"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb22",
+      "http://hl7.org/fhir/value": "seealso"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb25",
+      "http://hl7.org/fhir/Reference.reference": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb24"
+      },
+      "http://hl7.org/fhir/link": {
+        "@id": "https://fhircat.org/jsonld/Patient/pat2"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb24",
+      "http://hl7.org/fhir/value": "Patient/pat2"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb8",
+      "http://hl7.org/fhir/HumanName.family": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb26"
+      },
+      "http://hl7.org/fhir/HumanName.given": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb14"
+      },
+      "http://hl7.org/fhir/HumanName.use": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb27"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb26",
+      "http://hl7.org/fhir/value": "Donald"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb14",
+      "http://hl7.org/fhir/index": 0,
+      "http://hl7.org/fhir/value": "Duck"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb27",
+      "http://hl7.org/fhir/value": "official"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb5",
+      "http://hl7.org/fhir/Identifier.system": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb16"
+      },
+      "http://hl7.org/fhir/Identifier.type": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb21"
+      },
+      "http://hl7.org/fhir/Identifier.use": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb32"
+      },
+      "http://hl7.org/fhir/Identifier.value": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb15"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb16",
+      "http://hl7.org/fhir/value": "urn:oid:0.1.2.3.4.5.6.7"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb32",
+      "http://hl7.org/fhir/value": "usual"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb15",
+      "http://hl7.org/fhir/value": "654321"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb21",
+      "http://hl7.org/fhir/CodeableConcept.coding": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb11"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb11",
+      "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR",
+      "http://hl7.org/fhir/Coding.code": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb12"
+      },
+      "http://hl7.org/fhir/Coding.system": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb13"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb13",
+      "http://hl7.org/fhir/value": "http://terminology.hl7.org/CodeSystem/v2-0203"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb12",
+      "http://hl7.org/fhir/value": "MR"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb4",
+      "http://hl7.org/fhir/value": "male"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb9",
+      "http://hl7.org/fhir/Attachment.contentType": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb28"
+      },
+      "http://hl7.org/fhir/Attachment.data": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb29"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb29",
+      "http://hl7.org/fhir/value": "R0lGODlhEwARAPcAAAAAAAAA/+9aAO+1AP/WAP/eAP/eCP/eEP/eGP/nAP/nCP/nEP/nIf/nKf/nUv/nWv/vAP/vCP/vEP/vGP/vIf/vKf/vMf/vOf/vWv/vY//va//vjP/3c//3lP/3nP//tf//vf///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEAAAEALAAAAAATABEAAAi+AAMIDDCgYMGBCBMSvMCQ4QCFCQcwDBGCA4cLDyEGECDxAoAQHjxwyKhQAMeGIUOSJJjRpIAGDS5wCDly4AALFlYOgHlBwwOSNydM0AmzwYGjBi8IHWoTgQYORg8QIGDAwAKhESI8HIDgwQaRDI1WXXAhK9MBBzZ8/XDxQoUFZC9IiCBh6wEHGz6IbNuwQoSpWxEgyLCXL8O/gAnylNlW6AUEBRIL7Og3KwQIiCXb9HsZQoIEUzUjNEiaNMKAAAA7"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb28",
+      "http://hl7.org/fhir/value": "image/gif"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb2",
+      "http://hl7.org/fhir/value": true
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb1",
+      "http://hl7.org/fhir/Narrative.div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>Patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321</p>\n    \n    </div>",
+      "http://hl7.org/fhir/Narrative.status": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb35"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb35",
+      "http://hl7.org/fhir/value": "generated"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb7",
+      "http://hl7.org/fhir/Reference.display": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb31"
+      },
+      "http://hl7.org/fhir/Reference.reference": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb34"
+      },
+      "http://hl7.org/fhir/link": {
+        "@id": "https://fhircat.org/jsonld/Organization/1"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb31",
+      "http://hl7.org/fhir/value": "ACME Healthcare, Inc"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb34",
+      "http://hl7.org/fhir/value": "Organization/1"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb10",
+      "http://hl7.org/fhir/value": "pat1"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb3",
+      "http://hl7.org/fhir/Patient.contact.organization": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb17"
+      },
+      "http://hl7.org/fhir/Patient.contact.relationship": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb18"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb17",
+      "http://hl7.org/fhir/Reference.display": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb30"
+      },
+      "http://hl7.org/fhir/Reference.reference": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb33"
+      },
+      "http://hl7.org/fhir/link": {
+        "@id": "https://fhircat.org/jsonld/Organization/1"
+      }
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb30",
+      "http://hl7.org/fhir/value": "Walt Disney Corporation"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb33",
+      "http://hl7.org/fhir/value": "Organization/1"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb18",
+      "http://hl7.org/fhir/CodeableConcept.coding": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb19"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb19",
+      "@type": "http://terminology.hl7.org/CodeSystem/v2-0131/E",
+      "http://hl7.org/fhir/Coding.code": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb20"
+      },
+      "http://hl7.org/fhir/Coding.system": {
+        "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb23"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb23",
+      "http://hl7.org/fhir/value": "http://terminology.hl7.org/CodeSystem/v2-0131"
+    },
+    {
+      "@id": "_:fdc8d9e4e196c4028bd527b115e7172cfb20",
+      "http://hl7.org/fhir/value": "E"
+    },
+    {
+      "@id": "https://fhircat.org/jsonld/Organization/1",
+      "@type": "http://hl7.org/fhir/Organization"
+    },
+    {
+      "@id": "https://fhircat.org/jsonld/Patient/pat2",
+      "@type": "http://hl7.org/fhir/Patient"
+    }
+  ]
+}

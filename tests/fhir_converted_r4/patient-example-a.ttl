@@ -1,0 +1,58 @@
+@prefix ns1: <http://hl7.org/fhir/> .
+@prefix ns2: <owl:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://hl7.org/fhir/Patient/pat1> a ns1:Patient ;
+    ns1:DomainResource.text [ ns1:Narrative.div """<div xmlns="http://www.w3.org/1999/xhtml">
+      
+      <p>Patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321</p>
+    
+    </div>""" ;
+            ns1:Narrative.status [ ns1:value "generated" ] ] ;
+    ns1:Patient.active [ ns1:value true ] ;
+    ns1:Patient.contact [ ns1:Patient.contact.organization [ ns1:Reference.display [ ns1:value "Walt Disney Corporation" ] ;
+                    ns1:Reference.reference [ ns1:value "Organization/1" ] ;
+                    ns1:link <https://fhircat.org/jsonld/Organization/1> ] ;
+            ns1:Patient.contact.relationship [ ns1:CodeableConcept.coding [ a <http://terminology.hl7.org/CodeSystem/v2-0131/E> ;
+                            ns1:Coding.code [ ns1:value "E" ] ;
+                            ns1:Coding.system [ ns1:value "http://terminology.hl7.org/CodeSystem/v2-0131" ] ;
+                            ns1:index 0 ] ;
+                    ns1:index 0 ] ;
+            ns1:index 0 ] ;
+    ns1:Patient.gender [ ns1:value "male" ] ;
+    ns1:Patient.identifier [ ns1:Identifier.system [ ns1:value "urn:oid:0.1.2.3.4.5.6.7" ] ;
+            ns1:Identifier.type [ ns1:CodeableConcept.coding [ a <http://terminology.hl7.org/CodeSystem/v2-0203/MR> ;
+                            ns1:Coding.code [ ns1:value "MR" ] ;
+                            ns1:Coding.system [ ns1:value "http://terminology.hl7.org/CodeSystem/v2-0203" ] ;
+                            ns1:index 0 ] ] ;
+            ns1:Identifier.use [ ns1:value "usual" ] ;
+            ns1:Identifier.value [ ns1:value "654321" ] ;
+            ns1:index 0 ] ;
+    ns1:Patient.link [ ns1:Patient.link.other [ ns1:Reference.reference [ ns1:value "Patient/pat2" ] ;
+                    ns1:link <https://fhircat.org/jsonld/Patient/pat2> ] ;
+            ns1:Patient.link.type [ ns1:value "seealso" ] ;
+            ns1:index 0 ] ;
+    ns1:Patient.managingOrganization [ ns1:Reference.display [ ns1:value "ACME Healthcare, Inc" ] ;
+            ns1:Reference.reference [ ns1:value "Organization/1" ] ;
+            ns1:link <https://fhircat.org/jsonld/Organization/1> ] ;
+    ns1:Patient.name [ ns1:HumanName.family [ ns1:value "Donald" ] ;
+            ns1:HumanName.given [ ns1:index 0 ;
+                    ns1:value "Duck" ] ;
+            ns1:HumanName.use [ ns1:value "official" ] ;
+            ns1:index 0 ] ;
+    ns1:Patient.photo [ ns1:Attachment.contentType [ ns1:value "image/gif" ] ;
+            ns1:Attachment.data [ ns1:value "R0lGODlhEwARAPcAAAAAAAAA/+9aAO+1AP/WAP/eAP/eCP/eEP/eGP/nAP/nCP/nEP/nIf/nKf/nUv/nWv/vAP/vCP/vEP/vGP/vIf/vKf/vMf/vOf/vWv/vY//va//vjP/3c//3lP/3nP//tf//vf///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH5BAEAAAEALAAAAAATABEAAAi+AAMIDDCgYMGBCBMSvMCQ4QCFCQcwDBGCA4cLDyEGECDxAoAQHjxwyKhQAMeGIUOSJJjRpIAGDS5wCDly4AALFlYOgHlBwwOSNydM0AmzwYGjBi8IHWoTgQYORg8QIGDAwAKhESI8HIDgwQaRDI1WXXAhK9MBBzZ8/XDxQoUFZC9IiCBh6wEHGz6IbNuwQoSpWxEgyLCXL8O/gAnylNlW6AUEBRIL7Og3KwQIiCXb9HsZQoIEUzUjNEiaNMKAAAA7" ] ;
+            ns1:index 0 ] ;
+    ns1:Resource.id [ ns1:value "pat1" ] ;
+    ns1:nodeRole ns1:treeRoot .
+
+<http://hl7.org/fhir/Patient/pat1.ttl> ns2:imports "fhir:fhir.ttl" ;
+    ns2:versionIRI "Patient/pat1.ttl" .
+
+<https://fhircat.org/jsonld/Patient/pat2> a ns1:Patient .
+
+<https://fhircat.org/jsonld/Organization/1> a ns1:Organization .
+

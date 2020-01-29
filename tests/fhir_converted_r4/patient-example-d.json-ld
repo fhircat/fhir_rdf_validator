@@ -1,0 +1,182 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://fhircat.org/jsonld/playground/Patient/pat4",
+      "@type": "http://hl7.org/fhir/Patient",
+      "http://hl7.org/fhir/DomainResource.text": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab1"
+      },
+      "http://hl7.org/fhir/Patient.active": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab2"
+      },
+      "http://hl7.org/fhir/Patient.birthDate": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab3"
+      },
+      "http://hl7.org/fhir/Patient.deceasedBoolean": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab4"
+      },
+      "http://hl7.org/fhir/Patient.gender": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab5"
+      },
+      "http://hl7.org/fhir/Patient.identifier": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab6"
+      },
+      "http://hl7.org/fhir/Patient.managingOrganization": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab7"
+      },
+      "http://hl7.org/fhir/Patient.name": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab8"
+      },
+      "http://hl7.org/fhir/Resource.id": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab9"
+      },
+      "http://hl7.org/fhir/nodeRole": {
+        "@id": "http://hl7.org/fhir/treeRoot"
+      }
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab4",
+      "http://hl7.org/fhir/value": true
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab3",
+      "http://hl7.org/fhir/value": "1982-08-02"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab8",
+      "http://hl7.org/fhir/HumanName.family": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab19"
+      },
+      "http://hl7.org/fhir/HumanName.given": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab17"
+      },
+      "http://hl7.org/fhir/HumanName.use": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab20"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab17",
+      "http://hl7.org/fhir/index": 0,
+      "http://hl7.org/fhir/value": "Sandy"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab20",
+      "http://hl7.org/fhir/value": "official"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab19",
+      "http://hl7.org/fhir/value": "Notsowell"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab6",
+      "http://hl7.org/fhir/Identifier.system": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab13"
+      },
+      "http://hl7.org/fhir/Identifier.type": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab14"
+      },
+      "http://hl7.org/fhir/Identifier.use": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab15"
+      },
+      "http://hl7.org/fhir/Identifier.value": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab16"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab15",
+      "http://hl7.org/fhir/value": "usual"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab14",
+      "http://hl7.org/fhir/CodeableConcept.coding": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab10"
+      }
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab10",
+      "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR",
+      "http://hl7.org/fhir/Coding.code": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab11"
+      },
+      "http://hl7.org/fhir/Coding.system": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab12"
+      },
+      "http://hl7.org/fhir/index": 0
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab12",
+      "http://hl7.org/fhir/value": "http://terminology.hl7.org/CodeSystem/v2-0203"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab11",
+      "http://hl7.org/fhir/value": "MR"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab13",
+      "http://hl7.org/fhir/value": "urn:oid:0.1.2.3.4.5.6.7"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab16",
+      "http://hl7.org/fhir/value": "123458"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab1",
+      "http://hl7.org/fhir/Narrative.div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<p>Patient Sandy Notsowell @ Acme Healthcare, Inc. MR = 123458, DECEASED</p>\n\t\t</div>",
+      "http://hl7.org/fhir/Narrative.status": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab18"
+      }
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab18",
+      "http://hl7.org/fhir/value": "generated"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab9",
+      "http://hl7.org/fhir/value": "pat4"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab5",
+      "http://hl7.org/fhir/value": "female"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab2",
+      "http://hl7.org/fhir/value": true
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab7",
+      "http://hl7.org/fhir/Reference.display": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab21"
+      },
+      "http://hl7.org/fhir/Reference.reference": {
+        "@id": "_:f993e05d1b0334eebaa005436d53cf45ab22"
+      },
+      "http://hl7.org/fhir/link": {
+        "@id": "https://fhircat.org/jsonld/Organization/1"
+      }
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab21",
+      "http://hl7.org/fhir/value": "ACME Healthcare, Inc"
+    },
+    {
+      "@id": "_:f993e05d1b0334eebaa005436d53cf45ab22",
+      "http://hl7.org/fhir/value": "Organization/1"
+    },
+    {
+      "@id": "https://fhircat.org/jsonld/Organization/1",
+      "@type": "http://hl7.org/fhir/Organization"
+    },
+    {
+      "@id": "https://fhircat.org/jsonld/playground/Patient/pat4.ttl",
+      "owl:imports": "fhir:fhir.ttl",
+      "owl:versionIRI": "Patient/pat4.ttl"
+    }
+  ]
+}

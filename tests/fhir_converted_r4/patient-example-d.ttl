@@ -1,0 +1,40 @@
+@prefix ns1: <http://hl7.org/fhir/> .
+@prefix ns2: <owl:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://hl7.org/fhir/Patient/pat4> a ns1:Patient ;
+    ns1:DomainResource.text [ ns1:Narrative.div """<div xmlns="http://www.w3.org/1999/xhtml">
+			<p>Patient Sandy Notsowell @ Acme Healthcare, Inc. MR = 123458, DECEASED</p>
+		</div>""" ;
+            ns1:Narrative.status [ ns1:value "generated" ] ] ;
+    ns1:Patient.active [ ns1:value true ] ;
+    ns1:Patient.birthDate [ ns1:value "1982-08-02" ] ;
+    ns1:Patient.deceasedBoolean [ ns1:value true ] ;
+    ns1:Patient.gender [ ns1:value "female" ] ;
+    ns1:Patient.identifier [ ns1:Identifier.system [ ns1:value "urn:oid:0.1.2.3.4.5.6.7" ] ;
+            ns1:Identifier.type [ ns1:CodeableConcept.coding [ a <http://terminology.hl7.org/CodeSystem/v2-0203/MR> ;
+                            ns1:Coding.code [ ns1:value "MR" ] ;
+                            ns1:Coding.system [ ns1:value "http://terminology.hl7.org/CodeSystem/v2-0203" ] ;
+                            ns1:index 0 ] ] ;
+            ns1:Identifier.use [ ns1:value "usual" ] ;
+            ns1:Identifier.value [ ns1:value "123458" ] ;
+            ns1:index 0 ] ;
+    ns1:Patient.managingOrganization [ ns1:Reference.display [ ns1:value "ACME Healthcare, Inc" ] ;
+            ns1:Reference.reference [ ns1:value "Organization/1" ] ;
+            ns1:link <https://fhircat.org/jsonld/Organization/1> ] ;
+    ns1:Patient.name [ ns1:HumanName.family [ ns1:value "Notsowell" ] ;
+            ns1:HumanName.given [ ns1:index 0 ;
+                    ns1:value "Sandy" ] ;
+            ns1:HumanName.use [ ns1:value "official" ] ;
+            ns1:index 0 ] ;
+    ns1:Resource.id [ ns1:value "pat4" ] ;
+    ns1:nodeRole ns1:treeRoot .
+
+<http://hl7.org/fhir/Patient/pat4.ttl> ns2:imports "fhir:fhir.ttl" ;
+    ns2:versionIRI "Patient/pat4.ttl" .
+
+<https://fhircat.org/jsonld/Organization/1> a ns1:Organization .
+
