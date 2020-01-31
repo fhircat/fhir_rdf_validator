@@ -2,37 +2,20 @@
 <rdf:RDF
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:foaf="http://xmlns.com/foaf/0.1/"
-  xmlns:ns1="http://schema.org/"
+  xmlns="http://example.org/"
 >
-  <foaf:Person rdf:about="http://bigcorp.org/E12">
-    <foaf:knows rdf:parseType="Collection">
-      <rdf:Description rdf:about="http://bigcorp.org/E117483"/>
-      <rdf:Description rdf:about="http://bigcorp.org/VE1251"/>
-    </foaf:knows>
-    <ns1:name>
-      <rdf:Description rdf:nodeID="ub2bL4C31">
-        <foaf:familyName>Smith</foaf:familyName>
+  <foaf:Person rdf:about="http://example.org/Sam">
+    <name>
+      <rdf:Description rdf:nodeID="ub2bL8C11">
         <foaf:givenName>Sam</foaf:givenName>
+        <foaf:familyName>Smith</foaf:familyName>
       </rdf:Description>
-    </ns1:name>
-  </foaf:Person>
-  <foaf:Person rdf:about="http://bigcorp.org/VE1251">
-    <ns1:name>
-      <rdf:Description rdf:nodeID="ub2bL11C31">
-        <foaf:familyName>Spartz</foaf:familyName>
-        <foaf:givenName>Frank</foaf:givenName>
-      </rdf:Description>
-    </ns1:name>
+    </name>
     <foaf:knows rdf:parseType="Collection">
-      <rdf:Description rdf:about="http://bigcorp.org/E12"/>
+      <rdf:Description rdf:about="http://example.org/Melissa"/>
+      <rdf:Description rdf:about="http://example.org/Dazhi"/>
     </foaf:knows>
   </foaf:Person>
-  <foaf:Person rdf:about="http://bigcorp.org/E117483">
-    <ns1:name>
-      <rdf:Description rdf:nodeID="ub2bL8C31">
-        <foaf:givenName>Melissa</foaf:givenName>
-        <foaf:familyName>Chu</foaf:familyName>
-      </rdf:Description>
-    </ns1:name>
-  </foaf:Person>
+  <foaf:Person rdf:about="http://example.org/Dazhi"/>
+  <foaf:Person rdf:about="http://example.org/Melissa"/>
 </rdf:RDF>

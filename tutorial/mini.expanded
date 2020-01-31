@@ -1,0 +1,24 @@
+[
+  { "@id": "http://example.org/Sam",
+    "@type": [ "http://xmlns.com/foaf/0.1/Person" ],
+    "http://example.org/name": [
+        {  "@id": "_:ub3bL8C11" }
+    ]
+  },
+  { "@id": "_:ub3bL8C11",
+    "http://xmlns.com/foaf/0.1/familyName": [
+      { "@value": "Smith"    }
+    ],
+    "http://xmlns.com/foaf/0.1/givenName": [
+      { "@value": "Sam"    }
+    ]
+  },
+  { "http://xmlns.com/foaf/0.1/knows": [
+      { "@list": [
+          { "@id": "http://example.org/Melissa"},
+          { "@id": "http://example.org/Dazhi" }
+        ]
+      }
+    ]
+  }
+]

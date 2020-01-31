@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+* Update knows type
+* Add example context for FHIR connectathon
+* Checkpoint
+* Checkpoint
+* Checkpoint
+* R4 and R5 nomenclature
+* Small edit
+* Fix array string fhir value
+* Checkpoint
+* Checkpoint
+* Checkpoint
+* Switch to \`@graph\` idiom until \`@included\` [bug](https://github.com/digitalbazaar/jsonld.js/issues/358) gets fixed
+* Checkpoint - getting relatively complete
+* Checkpoint - getting relatively complete
+* Checkpoint - getting relatively complete
+* Checkpoint w/ start of FHIRR5 document
+* Checkpoint w/ start of FHIRR5 document
+* Keep test output directory out of submission
+* Add rdf comparator
+* Fix setup issues
+
 v0.0.2
 ------
 

@@ -10,5 +10,7 @@
             foaf:givenName "Sam" ] ;
     foaf:knows ( :Melissa :Dazhi ) .
 
+:Dazhi a foaf:Person .
+
 :Melissa a foaf:Person .
 

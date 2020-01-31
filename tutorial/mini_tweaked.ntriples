@@ -1,0 +1,13 @@
+<http://example.org/Sam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+<http://example.org/Sam> <http://example.org/name> _:b1 .
+_:b1 <http://xmlns.com/foaf/0.1/givenName> "Sam" .
+_:b1 <http://xmlns.com/foaf/0.1/familyName> "Smith" .
+<http://example.org/Sam> <http://xmlns.com/foaf/0.1/knows> _:b2 .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://example.org/Melissa> .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b3 .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://example.org/Dazhi> .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://example.org/Melissa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+<http://example.org/Dazhi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+
+
