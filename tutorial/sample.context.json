@@ -1,0 +1,15 @@
+{
+  "@base": "http://example.org/",
+  "name": "http://example.org/name",
+  "foaf": "http://xmlns.com/foaf/0.1/",
+  "Person": "foaf:Person",
+  "first": "foaf:givenName",
+  "last": "foaf:familyName",
+  "knows": {
+    "@id": "foaf:knows",
+    "@type": "foaf:Person",
+    "@container": "@list"
+  },
+  "id": "@id",
+  "isA": "@type"
+}
