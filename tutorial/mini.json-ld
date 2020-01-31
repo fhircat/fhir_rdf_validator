@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org/Melissa",
+      "@type": "foaf:Person"
+    },
+    {
+      "@id": "http://example.org/Dazhi",
+      "@type": "foaf:Person"
+    },
+    {
+      "@id": "http://example.org/Sam",
+      "@type": "foaf:Person",
+      "foaf:knows": {
+        "@list": [
+          {
+            "@id": "http://example.org/Melissa"
+          },
+          {
+            "@id": "http://example.org/Dazhi"
+          }
+        ]
+      },
+      "http://example.org/name": {
+        "@id": "_:ub3bL8C11"
+      }
+    },
+    {
+      "@id": "_:ub3bL8C11",
+      "foaf:familyName": "Smith",
+      "foaf:givenName": "Sam"
+    }
+  ]
+}

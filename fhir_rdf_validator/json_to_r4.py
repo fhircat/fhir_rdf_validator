@@ -8,7 +8,8 @@ import requests
 import sys
 from jsonasobj import JsonObj, loads, as_dict, as_json
 
-CONTEXT_SERVER = "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/"
+# CONTEXT_SERVER = "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/"
+CONTEXT_SERVER = "https://fhircat.org/fhir/contexts/r5/"
 
 CODE_SYSTEM_MAP = {
     "http://snomed.info/sct": "sct",
