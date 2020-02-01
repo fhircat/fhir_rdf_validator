@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "sdo": "http://schema.org/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "co": "http://companies.com/",
+    "@base": "http://companies.com",
+    "type": "@type",
+    "name": "@id",
+    "people": {
+      "@id": "sdo:employee",
+      "@container": "@id",
+      "@context": {
+      	"name": "sdo:name",
+        "first": "foaf:givenName",
+        "last": "foaf:familyName",
+        "employees": {
+          "@reverse": "co:reports_to",
+          "@type": "@id"
+        }
+      }
+    }
+  }
+}
