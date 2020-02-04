@@ -1,0 +1,181 @@
+[
+  {
+    "@id": "http://build.fhir.org/Observation/bmd",
+    "http://hl7.org/fhir/Observation.bodySite": [
+      {
+        "http://hl7.org/fhir/CodeableConcept.coding": [
+          {
+            "@id": "_:bn3_1",
+            "@type": [
+              "http://snomed.info/id/71341001:272741003=7771000"
+            ],
+            "http://hl7.org/fhir/Coding.code": [
+              {
+                "@value": "71341001:272741003=7771000"
+              }
+            ],
+            "http://hl7.org/fhir/Coding.system": [
+              {
+                "@value": "http://snomed.info/sct"
+              }
+            ]
+          },
+          {
+            "http://hl7.org/fhir/ordered": [
+              {
+                "@value": "_:bn3_1"
+              }
+            ]
+          }
+        ],
+        "http://hl7.org/fhir/CodeableConcept.text": [
+          {
+            "@value": "Left Femur"
+          }
+        ]
+      }
+    ],
+    "http://hl7.org/fhir/Observation.code": [
+      {
+        "http://hl7.org/fhir/CodeableConcept.coding": [
+          {
+            "@id": "_:bn1_1",
+            "@type": [
+              "http://loinc.org/rdf#24701-5"
+            ],
+            "http://hl7.org/fhir/Coding.code": [
+              {
+                "@value": "24701-5"
+              }
+            ],
+            "http://hl7.org/fhir/Coding.display": [
+              {
+                "@value": "Femur DXA Bone density"
+              }
+            ],
+            "http://hl7.org/fhir/Coding.system": [
+              {
+                "@value": "http://loinc.org"
+              }
+            ]
+          },
+          {
+            "http://hl7.org/fhir/ordered": [
+              {
+                "@value": "_:bn1_1"
+              }
+            ]
+          }
+        ],
+        "http://hl7.org/fhir/CodeableConcept.text": [
+          {
+            "@value": "BMD - Left Femur"
+          }
+        ]
+      }
+    ],
+    "http://hl7.org/fhir/Resource.id": [
+      {
+        "@value": "bmd"
+      }
+    ],
+    "http://hl7.org/fhir/nodeRole": [
+      {
+        "@id": "http://hl7.org/fhir/treeRoot"
+      }
+    ],
+    "http://hl7.org/fhir/Observation.performer": [
+      {
+        "@id": "_:bn2_1",
+        "http://hl7.org/fhir/Reference.display": [
+          {
+            "@value": "Acme Imaging Diagnostics"
+          }
+        ],
+        "http://hl7.org/fhir/Reference.reference": [
+          {
+            "@value": "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f"
+          }
+        ]
+      },
+      {
+        "http://hl7.org/fhir/ordered": [
+          {
+            "@value": "_:bn2_1"
+          }
+        ]
+      }
+    ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+      {
+        "@id": "http://hl7.org/fhir/Observation"
+      }
+    ],
+    "http://hl7.org/fhir/Observation.status": [
+      {
+        "@value": "final"
+      }
+    ],
+    "http://hl7.org/fhir/Observation.subject": [
+      {
+        "http://hl7.org/fhir/Reference.reference": [
+          {
+            "@value": "Patient/pat2"
+          }
+        ]
+      }
+    ],
+    "http://hl7.org/fhir/DomainResource.text": [
+      {
+        "http://hl7.org/fhir/Narrative.div": [
+          {
+            "@value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: bmd</p><p><b>status</b>: final</p><p><b>code</b>: BMD - Left Femur <span>(Details : {LOINC code '24701-5' = 'Femur DXA Bone density', given as 'Femur DXA Bone density'})</span></p><p><b>subject</b>: <a>Patient/pat2</a></p><p><b>performer</b>: <a>Acme Imaging Diagnostics</a></p><p><b>value</b>: 0.887 g/cm²<span> (Details: UCUM code g/cm-2 = 'g/cm-2')</span></p><p><b>bodySite</b>: Left Femur <span>(Details : {SNOMED CT code '71341001:272741003=7771000' = 'Femur where Laterality = Left)</span></p></div>"
+          }
+        ],
+        "http://hl7.org/fhir/Narrative.status": [
+          {
+            "@value": "generated"
+          }
+        ]
+      }
+    ],
+    "http://hl7.org/fhir/Observation.valueQuantity": [
+      {
+        "http://hl7.org/fhir/Quantity.code": [
+          {
+            "@value": "g/cm-2"
+          }
+        ],
+        "http://hl7.org/fhir/Quantity.system": [
+          {
+            "@value": "http://unitsofmeasure.org"
+          }
+        ],
+        "http://hl7.org/fhir/Quantity.unit": [
+          {
+            "@value": "g/cm²"
+          }
+        ],
+        "http://hl7.org/fhir/Quantity.value": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+            "@value": 0.887
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "@id": "http://build.fhir.org/Observation/bmd.ttl",
+    "http://www.w3.org/2002/07/owl#imports": [
+      {
+        "@id": "http://hl7.org/fhir/fhir.ttl"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionIRI": [
+      {
+        "@id": "http://build.fhir.org/Observation/bmd.ttl"
+      }
+    ]
+  }
+]

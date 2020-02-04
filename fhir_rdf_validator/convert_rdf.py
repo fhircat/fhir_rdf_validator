@@ -4,12 +4,15 @@ from argparse import ArgumentParser, Namespace
 from typing import List, Optional, Tuple
 
 import dirlistproc
-from rdflib import Graph
+from rdflib import Graph, OWL
 from rdflib.plugin import plugins as rdf_plugins, Parser as rdf_Parser, Serializer as rdf_Serializer
 
 
 def convert_rdf(input_fn: str, output_fn: str, opts: Namespace) -> bool:
     g = Graph()
+    if opts.fhirprefixes:
+        g.bind('fhir', "http://hl7.org/fhir/")
+        g.bind('owl', OWL)
     g.load(input_fn, format=opts.informat)
     auto_compact = opts.outformat == 'json-ld'
     g.serialize(output_fn, format=opts.outformat, auto_compact=auto_compact)
@@ -21,6 +24,7 @@ def addargs(parser: ArgumentParser) -> None:
                         choices = sorted([x.name for x in rdf_plugins(None, rdf_Parser) if '/' not in str(x.name)]))
     parser.add_argument('-of', '--outformat', help="Output RDF format and file suffix",
                         choices = sorted([x.name for x in rdf_plugins(None, rdf_Serializer) if '/' not in str(x.name)]))
+    parser.add_argument('-fp', "--fhirprefixes", help="Add FHIR prefixes", action="store_true")
 
 
 def file_filter(_: str) -> bool:
@@ -51,6 +55,7 @@ def main(argv: List[str] = None):
                 fmt = fname[0].rsplit('.', 1)[1]
         return \
             (".json", "json-ld") if fmt == 'json' else\
+            (".jsonld", "json-ld") if fmt == 'jsonld' else \
             (".xml", "pretty-xml") if fmt == "xml" else\
             (('' if fmt.startswith('.') else '.') + fmt, (fmt[1:] if fmt.startswith('.') else fmt)) if fmt else\
             (None, None)

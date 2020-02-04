@@ -1,0 +1,96 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": "example",
+         "birthDate": "1974-12-25",
+         "_birthDate": {
+            "extension": [
+               [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+                     "valueDateTime": "1974-12-25T14:35:45-05:00",
+                     "@id": "_:bn1_1"
+                  }
+               ],
+               {
+                  "fhir:ordered": [
+                     "_:bn1_1"
+                  ]
+               }
+            ]
+         },
+         "contact": [
+            [
+               {
+                  "name": {
+                     "family": "du March\u00e9",
+                     "_family": {
+                        "extension": [
+                           [
+                              {
+                                 "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
+                                 "valueString": "VV",
+                                 "@id": "_:bn3_1"
+                              }
+                           ],
+                           {
+                              "fhir:ordered": [
+                                 "_:bn3_1"
+                              ]
+                           }
+                        ]
+                     },
+                     "given": [
+                        [
+                           "B\u00e9n\u00e9dicte"
+                        ],
+                        {
+                           "fhir:ordered": [
+                              "B\u00e9n\u00e9dicte"
+                           ]
+                        }
+                     ]
+                  },
+                  "@id": "_:bn4_1"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn4_1"
+               ]
+            }
+         ],
+         "@id": "Patient/example",
+         "fhir:nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/example.ttl",
+         "owl:versionIRI": "Patient/example.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://fhircat.org/fhir/contexts/r5/patient.context.jsonld",
+      "https://fhircat.org/fhir/contexts/r5/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         },
+         "fhir:ordered": {
+            "@type": "@id",
+            "@container": "@list"
+         },
+         "_birthDate": "birthDate",
+         "_family": "family"
+      }
+   ]
+}

@@ -1,0 +1,18 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "account-status",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://hl7.org/fhir"
+        },
+        {
+          "system": "email",
+          "value": "fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ]
+}

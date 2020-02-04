@@ -1,0 +1,15 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "Account",
+  "snapshot" : {
+    "element": [
+      {
+        "id": "Account",
+        "alias": [
+          "Cost center",
+          "Record"
+        ]
+      }
+    ]
+  }
+}

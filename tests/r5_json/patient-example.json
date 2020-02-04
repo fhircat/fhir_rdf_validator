@@ -1,0 +1,349 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Patient",
+         "id": "example",
+         "text": {
+            "status": "generated",
+            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Name</td>\n\t\t\t\t\t\t<td>Peter James \n              <b>Chalmers</b> (&quot;Jim&quot;)\n            </td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Address</td>\n\t\t\t\t\t\t<td>534 Erewhon, Pleasantville, Vic, 3999</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Contacts</td>\n\t\t\t\t\t\t<td>Home: unknown. Work: (03) 5555 6473</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Id</td>\n\t\t\t\t\t\t<td>MRN: 12345 (Acme Healthcare)</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>"
+         },
+         "identifier": [
+            [
+               {
+                  "use": "usual",
+                  "type": {
+                     "coding": [
+                        [
+                           {
+                              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                              "code": "MR",
+                              "@id": "_:bn2_1",
+                              "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR"
+                           }
+                        ],
+                        {
+                           "fhir:ordered": [
+                              "_:bn2_1"
+                           ]
+                        }
+                     ]
+                  },
+                  "system": "urn:oid:1.2.36.146.595.217.0.1",
+                  "value": "12345",
+                  "period": {
+                     "start": "2001-05-06"
+                  },
+                  "assigner": {
+                     "display": "Acme Healthcare"
+                  },
+                  "@id": "_:bn2_1"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn2_1"
+               ]
+            }
+         ],
+         "active": true,
+         "name": [
+            [
+               {
+                  "use": "official",
+                  "family": "Chalmers",
+                  "given": [
+                     [
+                        "Peter",
+                        "James"
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "Peter",
+                           "James"
+                        ]
+                     }
+                  ],
+                  "@id": "_:bn4_1"
+               },
+               {
+                  "use": "usual",
+                  "given": [
+                     [
+                        "Jim"
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "Jim"
+                        ]
+                     }
+                  ],
+                  "@id": "_:bn5_2"
+               },
+               {
+                  "use": "maiden",
+                  "family": "Windsor",
+                  "given": [
+                     [
+                        "Peter",
+                        "James"
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "Peter",
+                           "James"
+                        ]
+                     }
+                  ],
+                  "period": {
+                     "end": "2002"
+                  },
+                  "@id": "_:bn6_3"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn4_1",
+                  "_:bn5_2",
+                  "_:bn6_3"
+               ]
+            }
+         ],
+         "telecom": [
+            [
+               {
+                  "use": "home",
+                  "@id": "_:bn7_1"
+               },
+               {
+                  "system": "phone",
+                  "value": "(03) 5555 6473",
+                  "use": "work",
+                  "rank": 1,
+                  "@id": "_:bn7_2"
+               },
+               {
+                  "system": "phone",
+                  "value": "(03) 3410 5613",
+                  "use": "mobile",
+                  "rank": 2,
+                  "@id": "_:bn7_3"
+               },
+               {
+                  "system": "phone",
+                  "value": "(03) 5555 8834",
+                  "use": "old",
+                  "period": {
+                     "end": "2014"
+                  },
+                  "@id": "_:bn7_4"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn7_1",
+                  "_:bn7_2",
+                  "_:bn7_3",
+                  "_:bn7_4"
+               ]
+            }
+         ],
+         "gender": "male",
+         "birthDate": "1974-12-25",
+         "_birthDate": {
+            "extension": [
+               [
+                  {
+                     "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+                     "valueDateTime": "1974-12-25T14:35:45-05:00",
+                     "@id": "_:bn8_1"
+                  }
+               ],
+               {
+                  "fhir:ordered": [
+                     "_:bn8_1"
+                  ]
+               }
+            ]
+         },
+         "deceasedBoolean": false,
+         "address": [
+            [
+               {
+                  "use": "home",
+                  "type": "both",
+                  "text": "534 Erewhon St PeasantVille, Rainbow, Vic  3999",
+                  "line": [
+                     [
+                        "534 Erewhon St"
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "534 Erewhon St"
+                        ]
+                     }
+                  ],
+                  "city": "PleasantVille",
+                  "district": "Rainbow",
+                  "state": "Vic",
+                  "postalCode": "3999",
+                  "period": {
+                     "start": "1974-12-25"
+                  },
+                  "@id": "_:bn10_1"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn10_1"
+               ]
+            }
+         ],
+         "contact": [
+            [
+               {
+                  "relationship": [
+                     [
+                        {
+                           "coding": [
+                              [
+                                 {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                    "code": "N",
+                                    "@id": "_:bn13_1",
+                                    "@type": "http://terminology.hl7.org/CodeSystem/v2-0131/N"
+                                 }
+                              ],
+                              {
+                                 "fhir:ordered": [
+                                    "_:bn13_1"
+                                 ]
+                              }
+                           ],
+                           "@id": "_:bn13_1"
+                        }
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "_:bn13_1"
+                        ]
+                     }
+                  ],
+                  "name": {
+                     "family": "du March\u00e9",
+                     "_family": {
+                        "extension": [
+                           [
+                              {
+                                 "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
+                                 "valueString": "VV",
+                                 "@id": "_:bn14_1"
+                              }
+                           ],
+                           {
+                              "fhir:ordered": [
+                                 "_:bn14_1"
+                              ]
+                           }
+                        ]
+                     },
+                     "given": [
+                        [
+                           "B\u00e9n\u00e9dicte"
+                        ],
+                        {
+                           "fhir:ordered": [
+                              "B\u00e9n\u00e9dicte"
+                           ]
+                        }
+                     ]
+                  },
+                  "telecom": [
+                     [
+                        {
+                           "system": "phone",
+                           "value": "+33 (237) 998327",
+                           "@id": "_:bn16_1"
+                        }
+                     ],
+                     {
+                        "fhir:ordered": [
+                           "_:bn16_1"
+                        ]
+                     }
+                  ],
+                  "address": {
+                     "use": "home",
+                     "type": "both",
+                     "line": [
+                        [
+                           "534 Erewhon St"
+                        ],
+                        {
+                           "fhir:ordered": [
+                              "534 Erewhon St"
+                           ]
+                        }
+                     ],
+                     "city": "PleasantVille",
+                     "district": "Rainbow",
+                     "state": "Vic",
+                     "postalCode": "3999",
+                     "period": {
+                        "start": "1974-12-25"
+                     }
+                  },
+                  "gender": "female",
+                  "period": {
+                     "start": "2012"
+                  },
+                  "@id": "_:bn17_1"
+               }
+            ],
+            {
+               "fhir:ordered": [
+                  "_:bn17_1"
+               ]
+            }
+         ],
+         "managingOrganization": [
+            {
+               "@id": "../Organization/1",
+               "@type": "fhir:Organization"
+            },
+            {
+               "reference": "Organization/1"
+            }
+         ],
+         "@id": "Patient/example",
+         "fhir:nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Patient/example.ttl",
+         "owl:versionIRI": "Patient/example.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://fhircat.org/fhir/contexts/r5/patient.context.jsonld",
+      "https://fhircat.org/fhir/contexts/r5/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         },
+         "fhir:ordered": {
+            "@type": "@id",
+            "@container": "@list"
+         },
+         "_birthDate": "birthDate",
+         "_family": "family"
+      }
+   ]
+}

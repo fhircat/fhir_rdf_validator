@@ -36,29 +36,29 @@ at least a while yet.
 
    The list below carries  current set of RDF namespaces that are used by at least one FHIR resource.  
    
-   ```  
-   @context: {
-       "fhir": "http://hl7.org/fhir/",
-       "owl": "http://www.w3.org/2002/07/owl#",
-       "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-       "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-       "xsd": "http://www.w3.org/2001/XMLSchema#",
-       "dc": "http://purl.org/dc/elements/1.1/",
-       "cs": "http://hl7.org/orim/codesystem/",
-       "dc": "http://purl.org/dc/elements/1.1/",
-       "dcterms": "http://purl.org/dc/terms/",
-       "dt": "http://hl7.org/orim/datatype/",
-       "ex": "http://hl7.org/fhir/StructureDefinition/",
-       "fhir-vs": "http://hl7.org/fhir/ValueSet/",
-       "loinc": "http://loinc.org/rdf#",
-       "os": "http://open-services.net/ns/core#",
-       "rim": "http://hl7.org/orim/class/",
-       "rim": "http://hl7.org/owl/rim/",
-       "sct": "http://snomed.info/id/",
-       "vs": "http://hl7.org/orim/valueset/",
-       "w5": "http://hl7.org/fhir/w5#"
-   }
-   ```
+```  
+@context: {
+   "fhir": "http://hl7.org/fhir/",
+   "owl": "http://www.w3.org/2002/07/owl#",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "dc": "http://purl.org/dc/elements/1.1/",
+   "cs": "http://hl7.org/orim/codesystem/",
+   "dc": "http://purl.org/dc/elements/1.1/",
+   "dcterms": "http://purl.org/dc/terms/",
+   "dt": "http://hl7.org/orim/datatype/",
+   "ex": "http://hl7.org/fhir/StructureDefinition/",
+   "fhir-vs": "http://hl7.org/fhir/ValueSet/",
+   "loinc": "http://loinc.org/rdf#",
+   "os": "http://open-services.net/ns/core#",
+   "rim": "http://hl7.org/orim/class/",
+   "rim": "http://hl7.org/owl/rim/",
+   "sct": "http://snomed.info/id/",
+   "vs": "http://hl7.org/orim/valueset/",
+   "w5": "http://hl7.org/fhir/w5#"
+}
+```
     
    **TODO:** This list will continue to expand as new code systems and other things are added to FHIR.  We need to
     develop a mechanism ([prefixcommons](https://github.com/prefixcommons)?, CTS2 service?) to maintain them.  For the
@@ -77,14 +77,21 @@ detail later in this document.
 
 **JSON:** 
 ```
+{
   "resourceType": "Patient",
-  "id": "pat4",
+  "id": "example"
+}
 ```
 
 **R5 JSON:**
 Add a single identifier node that combines the resource type and the id
 ```
-   "@id": "Patient/pat4",
+ {
+     "resourceType": "fhir:Patient",
+     "id": "example",
+     "@id": "Patient/example",
+     "fhir:nodeRole": "fhir:treeRoot"
+ }
 ```
 
 **JSON-LD Context:**
@@ -104,8 +111,15 @@ Notes:
   }
 ```
 
+**RDF**
+```text
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Resource.id> "example" .
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/Patient/example> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
 
-**[Example](http://tinyurl.com/u7j8aco)**
+```
+
+**[Example](http://tinyurl.com/w28lyc2)**
    
 ### The Resource Type
 The RDF equivalent of the FHIR JSON `"resourceType"` is `rdf:type`.  The snippet:
@@ -121,7 +135,7 @@ The RDF equivalent of the FHIR JSON `"resourceType"` is `rdf:type`.  The snippet
 is a part of every FHIR JSON-LD Resource Context (e.g. [patient.context.jsonld](https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld)
 The only bit to take note of is that the `resourceType` should not be transformed to to an embedded value.
  
-**[Example](http://tinyurl.com/u7j8aco)**
+**[Example](http://tinyurl.com/w28lyc2)**
     
 ### Tree Root
 JSON notation represents a rooted tree. RDF, on the other hand, can represent any graph, meaning that it is necessary
@@ -135,7 +149,7 @@ Add the following line to the root document
 ```
 
    
-**[Example](http://tinyurl.com/u7j8aco)**
+**[Example](http://tinyurl.com/w28lyc2)**
 
 
 ### Primitive Values
@@ -176,52 +190,69 @@ Example taken from account.profile.json (instance of StructureDefinition)
 **R5 JSON**
 ```json
 {
-  "resourceType": "fhir:StructureDefinition",
-  "id": "Account",
-  "snapshot": {
+ "resourceType": "fhir:StructureDefinition",
+ "id": "Account",
+ "snapshot": {
     "element": [
-      [
-        { "id": "Account",
-          "alias": [
-            [ "Cost center",
-              "Record"
-            ],
-            { "fhir:ordered": [
-                "Cost center",
-                "Record"
-              ]
-            }
-          ],
-          "@id": "#Account"
-        }
-      ],
-      { "fhir:ordered": [
-          "#Account"
-        ]
-      }
+       [
+          {
+             "id": "Account",
+             "alias": [
+                [
+                   "Cost center",
+                   "Record"
+                ],
+                {
+                   "fhir:ordered": [
+                      "Cost center",
+                      "Record"
+                   ]
+                }
+             ],
+             "@id": "#Account"
+          }
+       ],
+       {
+          "fhir:ordered": [
+             {
+                "@id": "#Account"
+             }
+          ]
+       }
     ]
-  }
+ }
 }
 ```
 
 **R5 Context **
 ```json
-   "fhir:ordered": {"@container": "@list", "@type": "@id"}
+   "fhir:ordered": {"@container": "@list"}
 ```
 
 **R5 RDF**
 ```text
-_:b0 <http://hl7.org/ex/alias> "Cost center" .
-_:b0 <http://hl7.org/ex/alias> "Record" .
-_:b0 <http://hl7.org/ex/alias> _:b1 .
-_:b1 <http://hl7.org/ex/ordered> _:b2 .
-_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/Cost center> .
-_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b3 .
-_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/Record> .
-_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://build.fhir.org/#Account> <http://hl7.org/fhir/Element.id> "Account" .
+<http://build.fhir.org/#Account> <http://hl7.org/fhir/ElementDefinition.alias> "Cost center" .
+<http://build.fhir.org/#Account> <http://hl7.org/fhir/ElementDefinition.alias> "Record" .
+<http://build.fhir.org/#Account> <http://hl7.org/fhir/ElementDefinition.alias> _:b1 .
+<http://build.fhir.org/StructureDefinition/Account> <http://hl7.org/fhir/Resource.id> "Account" .
+<http://build.fhir.org/StructureDefinition/Account> <http://hl7.org/fhir/StructureDefinition.snapshot> _:b0 .
+<http://build.fhir.org/StructureDefinition/Account> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/StructureDefinition/Account> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/StructureDefinition> .
+_:b0 <http://hl7.org/fhir/StructureDefinition.snapshot.element> <http://build.fhir.org/#Account> .
+_:b0 <http://hl7.org/fhir/StructureDefinition.snapshot.element> _:b2 .
+_:b1 <http://hl7.org/fhir/ordered> _:b3 .
+_:b2 <http://hl7.org/fhir/ordered> _:b5 .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Cost center" .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b4 .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Record" .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://build.fhir.org/#Account> .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
 ```
 
-[Example](http://tinyurl.com/yx2zxkmf)
+[Example](http://tinyurl.com/wbpffft)
 
 
 #### Lists of FHIR Objects
@@ -230,37 +261,95 @@ the list elements
 
 **JSON
 ```json
-  "samples": [ {"entry2": "val2"}, {"entry1": "val1"}, {"entry3": "val3", "id": "e3"}]
+{
+  "resourceType": "CodeSystem",
+  "id": "account-status",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://hl7.org/fhir"
+        },
+        {
+          "system": "email",
+          "value": "fhir@lists.hl7.org"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 **R5 JSON
 ```json
-  "samples": [ [{"entry2": "val2", "@id": "_:bn1"}, 
-                {"entry1": "val1", "@id": "_:bn3"}, 
-                {"entry3": "val3", "id": "e3", "@id": "#e3"} ],
-                {"ordered": ["_:bn1", "_:bn2", "#e3"] } ]
+{
+ "resourceType": "fhir:CodeSystem",
+ "id": "account-status",
+ "contact": [
+    [
+       {  "telecom": [
+             [
+                {  "system": "url",
+                   "value": "http://hl7.org/fhir",
+                   "@id": "_:bn2_1"
+                },
+                {  "system": "email",
+                   "value": "fhir@lists.hl7.org",
+                   "@id": "_:bn2_2"
+                }
+             ],
+             {  "fhir:ordered": [
+                   {
+                      "@id": "_:bn2_1"
+                   },
+                   {
+                      "@id": "_:bn2_2"
+                   }
+                ]
+             }
+          ],
+          "@id": "_:bn2_1"
+       }
+    ],
+    {  "fhir:ordered": [
+          {
+             "@id": "_:bn2_1"
+          }
+       ]
+    }
+ ],
+ "@id": "CodeSystem/account-status",
+ "fhir:nodeRole": "fhir:treeRoot"
+}
 ```
 
 **R5 RDF
 ```text
-<https://fhircat.org/jsonld/playground/#e3> <http://hl7.org/ex/entry3> "val3" .
-<https://fhircat.org/jsonld/playground/#e3> <http://hl7.org/ex/id> "e3" .
-_:b0 <http://hl7.org/ex/samples> <https://fhircat.org/jsonld/playground/#e3> .
-_:b0 <http://hl7.org/ex/samples> _:b1 .
-_:b0 <http://hl7.org/ex/samples> _:b2 .
-_:b0 <http://hl7.org/ex/samples> _:b3 .
-_:b1 <http://hl7.org/ex/entry2> "val2" .
-_:b2 <http://hl7.org/ex/entry1> "val1" .
-_:b3 <http://hl7.org/ex/ordered> _:b4 .
-_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b1 .
+<http://build.fhir.org/CodeSystem/account-status> <http://hl7.org/fhir/CodeSystem.contact> _:b0 .
+<http://build.fhir.org/CodeSystem/account-status> <http://hl7.org/fhir/CodeSystem.contact> _:b3 .
+<http://build.fhir.org/CodeSystem/account-status> <http://hl7.org/fhir/Resource.id> "account-status" .
+<http://build.fhir.org/CodeSystem/account-status> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/CodeSystem/account-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/CodeSystem> .
+_:b0 <http://hl7.org/fhir/ContactDetail.telecom> _:b0 .
+_:b0 <http://hl7.org/fhir/ContactDetail.telecom> _:b1 .
+_:b0 <http://hl7.org/fhir/ContactDetail.telecom> _:b2 .
+_:b0 <http://hl7.org/fhir/ContactPoint.system> "url" .
+_:b0 <http://hl7.org/fhir/ContactPoint.value> "http://hl7.org/fhir" .
+_:b1 <http://hl7.org/fhir/ContactPoint.system> "email" .
+_:b1 <http://hl7.org/fhir/ContactPoint.value> "fhir@lists.hl7.org" .
+_:b2 <http://hl7.org/fhir/ordered> _:b4 .
+_:b3 <http://hl7.org/fhir/ordered> _:b6 .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b0 .
 _:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b5 .
-_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b2 .
-_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b6 .
-_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/#e3> .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b1 .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b0 .
 _:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 ```
 
-http://tinyurl.com/r4t5t3d
+[Example](http://tinyurl.com/tpb475t)
+
 
 
 ## References
@@ -282,12 +371,14 @@ Sometimes this is explicitly available
 
 **Sample 1 JSON**
 ```json
+{
   "resourceType": "Observation",
   "id": "obs1",
   "subject": {
      "reference": "Patient/f001",
      "display": "P. van de Heuvel"
   }
+}
 ```
 
 **Sample 1 R5 JSON**

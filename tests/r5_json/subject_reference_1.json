@@ -1,0 +1,46 @@
+{
+   "@graph": [
+      {
+         "resourceType": "fhir:Observation",
+         "id": "obs1",
+         "subject": [
+            {
+               "@id": "../Patient/f001",
+               "@type": "fhir:Patient"
+            },
+            {
+               "reference": "Patient/f001",
+               "display": "P. van de Heuvel"
+            }
+         ],
+         "@id": "Observation/obs1",
+         "fhir:nodeRole": "fhir:treeRoot"
+      },
+      {
+         "@id": "Observation/obs1.ttl",
+         "owl:versionIRI": "Observation/obs1.ttl",
+         "owl:imports": "fhir:fhir.ttl"
+      }
+   ],
+   "@context": [
+      "https://fhircat.org/fhir/contexts/r5/observation.context.jsonld",
+      "https://fhircat.org/fhir/contexts/r5/root.context.jsonld",
+      {
+         "nodeRole": {
+            "@type": "@id",
+            "@id": "fhir:nodeRole"
+         },
+         "@base": "http://build.fhir.org/",
+         "owl:imports": {
+            "@type": "@id"
+         },
+         "owl:versionIRI": {
+            "@type": "@id"
+         },
+         "fhir:ordered": {
+            "@type": "@id",
+            "@container": "@list"
+         }
+      }
+   ]
+}

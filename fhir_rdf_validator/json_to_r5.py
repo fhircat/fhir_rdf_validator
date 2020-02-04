@@ -161,13 +161,15 @@ def to_r5(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             return e
 
         adjusted_list = [list_element(le) for le in lst]
-        return [adjusted_list, {"fhir:ordered": [e['@id'] if isinstance(e, JsonObj) else e for e in adjusted_list]}]
+        return [adjusted_list,
+                {"fhir:ordered":
+                     [JsonObj(**{"@id": e['@id']}) if isinstance(e, JsonObj) else e for e in adjusted_list]}]
 
     resource_type = o.resourceType.rsplit(':')[1] if ':' in o.resourceType else o.resourceType
     dict_processor(o, resource_type)
 
     # Add nodeRole
-    o['nodeRole'] = "fhir:treeRoot"
+    o['fhir:nodeRole'] = "fhir:treeRoot"
 
     # Add the "ontology header"
     hdr = JsonObj()
@@ -189,6 +191,7 @@ def to_r5(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
         local_context['owl:imports'] = JsonObj(**{"@type": "@id"})
         local_context['owl:versionIRI'] = JsonObj(**{"@type": "@id"})
         local_context["fhir:ordered"] = JsonObj(**{"@type": "@id", "@container": "@list"})
+        local_context["fhir:orderedp"] = JsonObj(**{"@container": "@list"})
         for u in sorted(underscore_nodes):
             local_context[u] = u[1:]
         o['@context'].append(local_context)

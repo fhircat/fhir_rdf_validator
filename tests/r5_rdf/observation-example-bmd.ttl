@@ -1,0 +1,36 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://build.fhir.org/Observation/bmd> a fhir:Observation ;
+    fhir:DomainResource.text [ fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: bmd</p><p><b>status</b>: final</p><p><b>code</b>: BMD - Left Femur <span>(Details : {LOINC code '24701-5' = 'Femur DXA Bone density', given as 'Femur DXA Bone density'})</span></p><p><b>subject</b>: <a>Patient/pat2</a></p><p><b>performer</b>: <a>Acme Imaging Diagnostics</a></p><p><b>value</b>: 0.887 g/cm²<span> (Details: UCUM code g/cm-2 = 'g/cm-2')</span></p><p><b>bodySite</b>: Left Femur <span>(Details : {SNOMED CT code '71341001:272741003=7771000' = 'Femur where Laterality = Left)</span></p></div>" ;
+            fhir:Narrative.status "generated" ] ;
+    fhir:Observation.bodySite [ fhir:CodeableConcept.coding [ fhir:ordered "_:bn3_1" ],
+                [ a <http://snomed.info/id/71341001:272741003=7771000> ;
+                    fhir:Coding.code "71341001:272741003=7771000" ;
+                    fhir:Coding.system "http://snomed.info/sct" ] ;
+            fhir:CodeableConcept.text "Left Femur" ] ;
+    fhir:Observation.code [ fhir:CodeableConcept.coding [ fhir:ordered "_:bn1_1" ],
+                [ a <http://loinc.org/rdf#24701-5> ;
+                    fhir:Coding.code "24701-5" ;
+                    fhir:Coding.display "Femur DXA Bone density" ;
+                    fhir:Coding.system "http://loinc.org" ] ;
+            fhir:CodeableConcept.text "BMD - Left Femur" ] ;
+    fhir:Observation.performer [ fhir:ordered "_:bn2_1" ],
+        [ fhir:Reference.display "Acme Imaging Diagnostics" ;
+            fhir:Reference.reference "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+    fhir:Observation.status "final" ;
+    fhir:Observation.subject [ fhir:Reference.reference "Patient/pat2" ] ;
+    fhir:Observation.valueQuantity [ fhir:Quantity.code "g/cm-2" ;
+            fhir:Quantity.system "http://unitsofmeasure.org" ;
+            fhir:Quantity.unit "g/cm²" ;
+            fhir:Quantity.value 0.887 ] ;
+    fhir:Resource.id "bmd" ;
+    fhir:nodeRole fhir:treeRoot .
+
+<http://build.fhir.org/Observation/bmd.ttl> owl:imports fhir:fhir.ttl ;
+    owl:versionIRI <http://build.fhir.org/Observation/bmd.ttl> .
+

@@ -50,6 +50,10 @@ class ConvertRDFTestCase(unittest.TestCase):
         self.assertEqual("""Total=3 Successful=3""", out_text.getvalue().strip())
 
     def test_tutorial(self):
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.json"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.xml"])
+        # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.nt"])
+        # main(["-i", "../tutorial/company.nt", "-o", "../tutorial/company.ttl"])
         # main(["-i", "../tutorial/demo1.ttl", "-o", "../tutorial/demo1.json"])
         # main(["-i", "../tutorial/demo3.json", "-o", "../tutorial/demo3.ttl"])
         # main(["-i", "../tutorial/demo3.json", "-o", "../tutorial/demo3.ttl"])
@@ -57,7 +61,7 @@ class ConvertRDFTestCase(unittest.TestCase):
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.ntriples"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.xml"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.json-ld"])
-        main(["-i", "../tutorial/mini_tweaked_expanded.json", "-o", "../tutorial/mini_tweaked_framed.ttl"])
+        # main(["-i", "../tutorial/mini_tweaked_expanded.json", "-o", "../tutorial/mini_tweaked_framed.ttl"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.json"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.xml"])
         # main(["-i", "../tutorial/mini.ttl", "-o", "../tutorial/mini.ntriples"])
@@ -65,6 +69,14 @@ class ConvertRDFTestCase(unittest.TestCase):
         # main(["-i", "../tutorial/tweaked_patient_output.ttl", "-o", "../tutorial/tweaked_patient_output_pretty.ttl"])
         # main(["-i", "../tutorial/patient_example_dicom.ttl", "-o", "../tutorial/patient_example_dicom_out.ttl"])
         # main(["-i", "r4_turtle/coding_1.n3", "-o", "r4_turtle/coding_1.ttl"])
+        pass
+
+    def to_ttl(self, fn: str) -> None:
+        fb = fn.split('.', 1)[0]
+        main(["-fp", "-i", f"r5_rdf/{fn}", "-o", f"r5_rdf/{fb}.ttl"])
+
+    def test_r5_rdf(self):
+        self.to_ttl('observation-example-bmd.jsonld')
 
 
 if __name__ == '__main__':

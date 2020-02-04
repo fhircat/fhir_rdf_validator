@@ -6,58 +6,29 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@graph": [
-    {
-      "@id": "http://bigcorp.org/VE1251",
+    { "@id": "http://example.org/Melissa",
+      "@type": "foaf:Person",
+      "http://example.org/name": {"@id": "_:c1"}
+    },
+    { "@id": "_:c1",
+      "foaf:givenName": "Johnson"
+    },
+    { "@id": "http://example.org/Dazhi",
+      "@type": "foaf:Person"
+    },
+    { "@id": "http://example.org/Sam",
       "@type": "foaf:Person",
       "foaf:knows": {
         "@list": [
-          {
-            "@id": "http://bigcorp.org/E12"
-          }
+          { "@id": "http://example.org/Melissa" },
+          { "@id": "http://example.org/Dazhi" }
         ]
       },
-      "http://schema.org/name": {
-        "@id": "_:ub1bL11C31"
-      }
+      "http://example.org/name": { "@id": "_:c2"}
     },
-    {
-      "@id": "_:ub1bL11C31",
-      "foaf:familyName": "Spartz",
-      "foaf:givenName": "Frank"
-    },
-    {
-      "@id": "http://bigcorp.org/E12",
-      "@type": "foaf:Person",
-      "foaf:knows": {
-        "@list": [
-          {
-            "@id": "http://bigcorp.org/E117483"
-          },
-          {
-            "@id": "http://bigcorp.org/VE1251"
-          }
-        ]
-      },
-      "http://schema.org/name": {
-        "@id": "_:ub1bL4C31"
-      }
-    },
-    {
-      "@id": "_:ub1bL4C31",
+    { "@id": "_:c2",
       "foaf:familyName": "Smith",
       "foaf:givenName": "Sam"
-    },
-    {
-      "@id": "http://bigcorp.org/E117483",
-      "@type": "foaf:Person",
-      "http://schema.org/name": {
-        "@id": "_:ub1bL8C31"
-      }
-    },
-    {
-      "@id": "_:ub1bL8C31",
-      "foaf:familyName": "Chu",
-      "foaf:givenName": "Melissa"
     }
   ]
 }

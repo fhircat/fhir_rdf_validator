@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:foaf="http://xmlns.com/foaf/0.1/"
   xmlns="http://example.org/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
   <foaf:Person rdf:about="http://example.org/Sam">
-    <name>
-      <rdf:Description rdf:nodeID="ub2bL8C11">
-        <foaf:givenName>Sam</foaf:givenName>
-        <foaf:familyName>Smith</foaf:familyName>
-      </rdf:Description>
-    </name>
     <foaf:knows rdf:parseType="Collection">
       <rdf:Description rdf:about="http://example.org/Melissa"/>
       <rdf:Description rdf:about="http://example.org/Dazhi"/>
     </foaf:knows>
+    <name>
+      <rdf:Description rdf:nodeID="ub2bL4C11">
+        <foaf:givenName>Sam</foaf:givenName>
+        <foaf:familyName>Smith</foaf:familyName>
+      </rdf:Description>
+    </name>
+  </foaf:Person>
+  <foaf:Person rdf:about="http://example.org/Melissa">
+    <name>
+      <rdf:Description rdf:nodeID="ub2bL9C11">
+        <foaf:givenName>Johnson</foaf:givenName>
+      </rdf:Description>
+    </name>
   </foaf:Person>
   <foaf:Person rdf:about="http://example.org/Dazhi"/>
-  <foaf:Person rdf:about="http://example.org/Melissa"/>
 </rdf:RDF>
