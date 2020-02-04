@@ -1,17 +1,20 @@
-# Proposed FHIR R5 RDF model
+# Converting vanilla FHIR/JSON to FHIR/RDF
+See: https://github.com/fhircat/FHIRCat/issues/2 for additional information
 
-See: https://github.com/fhircat/FHIRCat/issues/2 and [FHIRR4.md]() for additional information
 
-This document describes the proposed "tweaks" that are used to convert from 
-"vanilla" FHIR JSON into the proposed FHIR RDF format.
+This document describes the additional "tweaks" that are needed beyond the standard JSON-LD 1.1 context extensions that
+are needed to transform "vanilla" FHIR JSON into FHIR RDF.  
 
+The goals of this project include:
+1) To document the (a) minimal set of changes that would be required to generate the RDF found in the 
+[HL7 FHIR ITS specification](http://build.fhir.org/rdf.html) as it exists today.
+2) To provide a foundation on which can be used to prototype, test, and evaluate proposed simplifications to the existing
+specification.
 
 ## Nomenclature
 * **Vanilla JSON (or just "JSON" when the context is obvious)** - FHIR JSON representations in use in the FHIR ecosystem today.
-* **R5 JSON** - FHIR JSON that has been modified to include additional elements -- such as the `fhir:nodeRole` item,
-explicit list ordering, extensible values, etc. -- which are used in the R4 version of FHIR/RDF.  The R5 version
-represents our proposed changes
-* **R5 RDF** - FHIR R5 RDF where appropriate
+* **R4 JSON** - FHIR JSON that has been modified to include additional elements -- such as the `fhir:nodeRole` item,
+explicit list ordering, extensible values, etc. -- which are used in the R4 version of FHIR/RDF.  The R4 version is the existing version of FHIR/RDF as of 2019.  R5 refers to a proposed next version.
 
 
 ## JSON LD 1.1 Contexts
@@ -81,8 +84,17 @@ detail later in this document.
   "id": "pat4",
 ```
 
+**R4 JSON:**
+
+Add the "@id" node as a combination of the Resource type and the `id`
+```
+   "resourceType" : {"value": "Patient"},
+   "id": {"value": "pat4"},
+   "@id": "Patient/pat4",
+```
+
 **R5 JSON:**
-Add a single identifier node that combines the resource type and the id
+Same w/ exception of "value" objects which are unchanged
 ```
    "@id": "Patient/pat4",
 ```
@@ -110,7 +122,7 @@ Notes:
 ### The Resource Type
 The RDF equivalent of the FHIR JSON `"resourceType"` is `rdf:type`.  The snippet:
 
-**R5 JSON-LD Context:**
+**R4 JSON-LD Context:**
 ```
      "resourceType": {
         "@id": "rdf:type",
@@ -128,7 +140,7 @@ JSON notation represents a rooted tree. RDF, on the other hand, can represent an
 to identify the subject that represents the root of the JSON tree.  We do this by adding the `fhir:nodeRole` element
 to the subject of a FHIR resource
 
-**R5 JSON:**
+**R4 JSON:**
 Add the following line to the root document
 ```
    "fhir:nodeRole" : "fhir:treeRoot",
@@ -137,88 +149,104 @@ Add the following line to the root document
    
 **[Example](http://tinyurl.com/u7j8aco)**
 
+**R5 JSON:**
+Same as R4
+```
+   "fhir:nodeRole" : "fhir:treeRoot",
+```
 
 ### Primitive Values
+    
+With the exceptions  below, all FHIR primitive types have to be converted to a JSON object with a `"value` 
+element.
 
-There will be no changes to primitive values in the FHIR R5 IMPLEMENTATION    
+1) elements that begin with '@' (json-ld instructions)
+2) objects and lists -- although they do have to be processed recursively
+3) `"id"` elements -- these become the subjects of their container
+4) '"resourceType", "nodeRole", "index", "div"' elements -- the first three of these have been added and the `"div"`
+element turns out to be an exception to the FHIR extensibility rule.
+    
+**JSON:**
+    
+```
+   "(key)": "(val)"
+```
 
+**R4 JSON:**
+```
+   "(key)" : {"value": "(val)"},
+
+```
+See: [vanilla_json/primitive_types_1.json](https://github.com/fhircat/fhir_rdf_validator/blob/master/tests/vanilla_json/primitive_types_1.json)
+and
+[primitive_types_1.json](https://github.com/fhircat/fhir_rdf_validator/blob/master/tests/r4_json/primitive_types_1.json)
+for input and output samples.
+
+_Note:_ We still need to create a comprehensive test around this -- the primitive_types context doesn't currently exist
+
+### Proposed R5 changes
+This transformation will not happpen in FHIR R5
+    
 ### List Order
  
-JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements *when ordering matters*
+JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements.
 
-In R5, we propose that JSON lists will be represented as both unordered and, when order matters, as duplicate, ordered lists.
+_**Question**_: Is it possible to have a list within a list in FHIR (e.g. `"foo": [["bar": 17, ...], ...])`?
 
-There are two separate use cases:
+For each _object_ within a list, add a relative index:
 
-#### Lists of primitive values
-
-Example taken from account.profile.json (instance of StructureDefinition)
-
-**JSON**
+**R4 JSON
 ```json
- "alias": ["Cost center", "Record"],
+{
+    "telecom": [
+    {
+      "index": 0,
+      "use": "home"
+    },
+    {
+       "index": 1,
+      "system": "phone",
+      "value": "(03) 5555 6473",
+      "use": "work",
+      "rank": 1
+    },
+    {
+       "index": 2,
+      "system": "phone",
+      "value": "(03) 3410 5613",
+      "use": "mobile",
+      "rank": 2
+    },
+    {
+      "index": 3,
+      "system": "phone",
+      "value": "(03) 5555 8834",
+      "use": "old",
+      "period": {
+        "end": "2014"
+      }
+    }
+  ]
+}
 ```
 
-**R5 JSON**
-```json
-     "alias": [ ["Cost center", "Record"], {"ordered": ["Cost center", "Record"]}]
-```
+Note that lists may be (indirectly) nested within other lists
 
-**R5 Context **
-```json
-   "ordered": ["@container": "@list"],
-```
+**[Example](http://tinyurl.com/vzgx6rc)**
 
-**R5 RDF**
-```text
-_:b0 <http://hl7.org/ex/alias> "Cost center" .
-_:b0 <http://hl7.org/ex/alias> "Record" .
-_:b0 <http://hl7.org/ex/alias> _:b1 .
-_:b1 <http://hl7.org/ex/ordered> _:b2 .
-_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/Cost center> .
-_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b3 .
-_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/Record> .
-_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-```
-
-#### Lists of FHIR Objects
-We propose taking the same approach that is taken on primitive types, albeit using the identifiers (blank OR URI) of
-the list elements
+**R5 JSON
+The approach above won't work with lists of primitive types. Proposal:
 
 **JSON
 ```json
-  "samples": [ {"entry2": "val2"}, {"entry1": "val1"}, {"entry3": "val3", "id": "e3"}]
+    "alias": ["Cost center", "Record"],
 ```
 
 **R5 JSON
 ```json
-  "samples": [ [{"entry2": "val2", "@id": "_:bn1"}, 
-                {"entry1": "val1", "@id": "_:bn3"}, 
-                {"entry3": "val3", "id": "e3", "@id": "#e3"} ],
-                {"ordered": ["_:bn1", "_:bn2", "#e3"] } ]
+    "alias": ["Cost center", "Record"],
+
 ```
-
-**R5 RDF
-```text
-<https://fhircat.org/jsonld/playground/#e3> <http://hl7.org/ex/entry3> "val3" .
-<https://fhircat.org/jsonld/playground/#e3> <http://hl7.org/ex/id> "e3" .
-_:b0 <http://hl7.org/ex/samples> <https://fhircat.org/jsonld/playground/#e3> .
-_:b0 <http://hl7.org/ex/samples> _:b1 .
-_:b0 <http://hl7.org/ex/samples> _:b2 .
-_:b0 <http://hl7.org/ex/samples> _:b3 .
-_:b1 <http://hl7.org/ex/entry2> "val2" .
-_:b2 <http://hl7.org/ex/entry1> "val1" .
-_:b3 <http://hl7.org/ex/ordered> _:b4 .
-_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b1 .
-_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b5 .
-_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b2 .
-_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b6 .
-_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/#e3> .
-_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-```
-
-http://tinyurl.com/r4t5t3d
-
 
 ## References
 FHIR references require two additions:
@@ -229,52 +257,19 @@ resource itself.  As an example, if the resource at the URL `https://fhirserver.
 to `"Patient/P1111`, the full URI reference would be `"https://fhirserver.org/Patient/P1111"` instead of 
 `"https://fhirserver.org/Observation/Patient/P1111"`, which is what you would get with a normal web page.  As a 
 consequence, ".." needs to be prepended to any _relative_ `Reference.reference` entry.
-
-As opposed to R4, which injected a "link" arc between the subject and the object, we want to make the connection as
-direct as possible. 
-
 2) When possible, R4 Specification also add a "type arc" in the form ` <http://hl7.org/fhir/Patient/f001> a fhir:Patient .`
 Sometimes this is explicitly available 
    
-
-**Sample 1 JSON**
-```json
-  "resourceType": "Observation",
-  "id": "obs1",
-  "subject": {
-     "reference": "Patient/f001",
-     "display": "P. van de Heuvel"
-  }
-```
-
-**Sample 1 R5 JSON**
+**JSON:**
 Sample 1:
-```json
-{
-  "resourceType": "Observation",
-  "id": "obs1",
-  "@id": "Observation/obs1",
-  "subject": [{"@id": "../Patient/foo1",
-            "@type": "fhir:Patient" },
-            {"reference": "Patient/f001",
-            "display": "P. van de Heuvel"}]
+```
+"subject": {
+   "reference": "Patient/f001",
+   "display": "P. van de Heuvel"
 }
 ```
 
-**Sample 1 RDF**
-```text
-<http://hl7.org/Patient/foo1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Observation.subject> <http://hl7.org/Patient/foo1> .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Resource.id> "obs1" .
-<http://hl7.org/fhir/Observation/obs1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
-_:b0 <http://hl7.org/fhir/Reference.display> "P. van de Heuvel" .
-_:b0 <http://hl7.org/fhir/Reference.reference> "Patient/f001" .
-```
-
-http://tinyurl.com/sdpmuae
-
-**Sample 2 JSON**
+Sample 2:
 ```json
 {
   "resourceType": "Observation",
@@ -286,33 +281,7 @@ http://tinyurl.com/sdpmuae
 }
 ```
 
-**Sample 2 R5 JSON**
-```json
-{
-   "resourceType": "Observation",
-  "id": "bmd",
-  "@id": "Observation/bmd",
-  "subject": [{"@id": "http://example.org/nonfhirurl/bmd",
-               "@type": "fhir:Patient" },
-              {"reference": "http://example.org/nonfhirurl/bmd",
-               "type": "Patient"}]
-}
-```
-
-**Sample 2 RDF**
-```text
-<http://example.org/nonfhirurl/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
-<http://hl7.org/fhir/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
-_:b0 <http://hl7.org/fhir/Reference.reference> "http://example.org/nonfhirurl/bmd" .
-_:b0 <http://hl7.org/fhir/Reference.type> "Patient" .
-```
-
-http://tinyurl.com/tq45w77
-
-**Sample 3 JSON**
+Sample 3:
 ```json
 {
   "resourceType": "Observation",
@@ -323,27 +292,50 @@ http://tinyurl.com/tq45w77
 }
 ```
     
-**Sample 3 R5 JSON:**
+**R4 JSON:**
+Sample 1:
 ```json
-{
-  "resourceType": "Observation",
-  "id": "bmd",
-  "@id": "Observation/bmd",
-  "subject": [{"@id": "http://example.org/nonfhirurl/bmd"},
-              {"reference": "http://example.org/nonfhirurl/bmd"}]
-}
+"subject": {
+    "reference": {
+       "value": "Patient/f001"
+    },
+    "display": {
+       "value": "P. van de Heuvel"
+    },
+    "fhir:link": {
+       "@id": "../Patient/f001",
+       "@type": "fhir:Patient"
+    }
+ },
 ```
 
-**Sample 3 RDF**
-```text
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
-<http://hl7.org/fhir/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
-_:b0 <http://hl7.org/fhir/Reference.reference> "http://example.org/nonfhirurl/bmd" .
+Sample 2:
+```json
+"subject": {
+    "reference": {
+       "value": "http://example.org/nonfhirurl/bmd"
+    },
+    "type": {
+       "value": "Patient"
+    },
+    "fhir:link": {
+       "@id": "http://example.org/nonfhirurl/bmd",
+       "@type": "fhir:Patient"
+    }
+ },
 ```
 
-http://tinyurl.com/sjlz7mr
+Sample 3:
+```json
+"subject": {
+    "reference": {
+       "value": "http://example.org/nonfhirurl/bmd"
+    },
+    "fhir:link": {
+       "@id": "http://example.org/nonfhirurl/bmd"
+    }
+ },
+```
 
 ## RDF Data Types
 
@@ -365,69 +357,39 @@ can have an `id` and/or `extension`.  The FHIR JSON rendering keeps underlying d
 a value, not a JSON Object), but uses a lexical convention to associate the base element with the additional attributes.
 The JSON will prepend an underscore ('_') to the key name with an object that contains the `id` and/or `extension`.
 
-This can be addressed in the context via the following, but we need to consider that it could end up being a very long
-list:
+Whenever you encounter a tag with an underscore, locate the corresponding tag without the underscore and merge the 
+contents of the underscored object with the contents of the basic tag (which will already _be_ an object from step 1:
+
+**JSON:**
 ```json
-{
-  "@context": {
-     "_(tag)": "(tag)"
+"birthDate": "1974-12-25",
+"_birthDate": {
+"extension": [
+  {
+    "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+    "valueDateTime": "1974-12-25T14:35:45-05:00"
   }
-}
+]
 ```
 
-Example:
-
-**Primitive Extension in JSON**
+**R4 JSON**
 ```json
-{
-    "resourceType": "Patient",
-    "id": "somepat",
-    "birthDate": "1974-12-25",
-    "_birthDate": {
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-            "valueDateTime": "1974-12-25T14:35:45-05:00"
-          }
-        ]
-    }
-}
-```
-
-**Primitive Extension in R5 JSON**
-```json
-{
-  "@context": {
-    "_birthDate": "birthDate"
-  },
-  "resourceType": "Patient",
-  "id": "somepat",
-  "@id": "Patient/somepat",
-  "birthDate": "1974-12-25",
-  "_birthDate": {
+ "birthDate": {
+    "value": "1974-12-25",
     "extension": [
-      {
-        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-        "valueDateTime": "1974-12-25T14:35:45-05:00"
-      }
+       {
+          "url": {
+             "value": "http://hl7.org/fhir/StructureDefinition/patient-birthTime"
+          },
+          "valueDateTime": {
+             "value": "1974-12-25T14:35:45-05:00"
+          },
+          "index": 0
+       }
     ]
-  }
-}
-```
-
-**Primitive Extension in RDF**
-```text
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Patient.birthDate> "1974-12-25" .
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Patient.birthDate> _:b0 .
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Resource.id> "somepat" .
-<http://hl7.org/fhir/Patient/somepat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
-_:b0 <http://hl7.org/fhir/DomainResource.extension> _:b1 .
-_:b1 <http://hl7.org/fhir/Extension.url> "http://hl7.org/fhir/StructureDefinition/patient-birthTime" .
-_:b1 <http://hl7.org/fhir/Extension.valueDateTime> "1974-12-25T14:35:45-05:00" .
+ },
 ```
       
-http://tinyurl.com/vefuc8x
-
 ## Concept References
     
 FHIR uses the composite [Coding](http://build.fhir.org/datatypes.html#Coding) datatype to reference a concept identifier.
@@ -463,7 +425,7 @@ https://github.com/hapifhir/org.hl7.fhir.core/blob/master/org.hl7.fhir.r5/src/ma
 }
 ```
 
-**R5 JSON:**
+**R4 JSON:**
 ```json
 "code": {
     "coding": [
@@ -505,9 +467,9 @@ https://github.com/hapifhir/org.hl7.fhir.core/blob/master/org.hl7.fhir.r5/src/ma
 ```
 
    
-   [Coding Example](http://tinyurl.com/s6gkyx7 for an example)
+   See: http://tinyurl.com/s6gkyx7 for an example
 
-## OWL Ontology Header
+8) **OWL Ontology Header**
 
     The OWL Ontology header is often used as a "poor man's" document wrapper in OWL and RDF land.  It asserts provenance
     for the set of triples that occur in the same physical document as the header itself.  The following should be added
@@ -532,3 +494,81 @@ https://github.com/hapifhir/org.hl7.fhir.core/blob/master/org.hl7.fhir.r5/src/ma
    [Ontology Header Example](http://tinyurl.com/sacszom)
    
    
+   
+----------
+Old material
+
+    
+   The FHIR R4 RDF specification _adds_ the type field, meaning that it is necessary to add an attribute to the core
+   JSON:
+   
+        `"@id": "<resourceType>/<id>"
+   
+   
+   A FHIR resource references its subject via the `"id"` key, which will form the URI _relative_ to the document base.
+   
+   _**TODO:**_ We need to establish whether the `"id"` tag is used for anything _but_ identifiers.  If it is, we will
+   either a) identify these situations and disable the default processing or b) change `"id"` to `"@id"` in the JSON
+   preprocessor.  An example of a) would be:
+   
+   ```"@context": {
+         "id": "@id",
+            ...
+         "someReference": {
+            "id": null
+         },
+   ```
+   {
+     "id": "Patient/f001",
+     "name": "fred",
+     "something": {
+        ""
+        "id": {"advice" : "Take drugs"}
+        
+:Patient/f001 fhir:name "fred";
+              fhir:something {
+                 ""
+   JSON: `"id": "<relative or absolute URI>"`
+   <br/>RDF: `<subject URI> a <resourceType>`
+   
+   @context: 
+    <br/>&nbsp;&nbsp; &nbsp; &nbsp;`"id" : "@id",`
+    
+    **[Example](http://tinyurl.com/spex7s8)**
+    
+    _**Note:**_ https://github.com/fhircat/FHIRCat/issues/2 indicates that we need to escape inner `id`'s -- it isn't obvious
+    why this is the case.  Needs further discussion...
+    
+ 
+{
+   "resourceType": "Patient",
+   "id": "Patient/f001"
+   "status": "final" .
+   "_status": {"id": "y"},
+   "state": {"app": 17, "@id": "x"},
+   
+    "_state": {"id": "x"},
+    
+    "_state": {"id": "#x"},
+ 
+    "state": {"x": 17, "id": "i"}
+  
+:s fhir:state :s#x.
+:s#x fhir:app 17.
+    
+http://fhir.org/server/Patient/f001 fhir:status "final".
+http://fhir.org/server/Patient/f001# fhir:x 17.
+
+    
+inst."x"
+
+
+"foo2": 
+"_foo2": 
+
+:s :foo2  ?v .
+:s fhir:extension [...] .
+
+
+This is the set of transformations that can be done using only a JSON-LD Context, although we
+have also recorded transformations that can be accomplished via the [framing API].
