@@ -156,17 +156,57 @@ Example taken from account.profile.json (instance of StructureDefinition)
 
 **JSON**
 ```json
- "alias": ["Cost center", "Record"],
+{
+  "resourceType": "StructureDefinition",
+  "id": "Account",
+  "snapshot" : {
+    "element": [
+      {
+        "id": "Account",
+        "alias": [
+          "Cost center",
+          "Record"
+        ]
+      }
+    ]
+  }
+}
 ```
 
 **R5 JSON**
 ```json
-     "alias": [ ["Cost center", "Record"], {"ordered": ["Cost center", "Record"]}]
+{
+  "resourceType": "fhir:StructureDefinition",
+  "id": "Account",
+  "snapshot": {
+    "element": [
+      [
+        { "id": "Account",
+          "alias": [
+            [ "Cost center",
+              "Record"
+            ],
+            { "fhir:ordered": [
+                "Cost center",
+                "Record"
+              ]
+            }
+          ],
+          "@id": "#Account"
+        }
+      ],
+      { "fhir:ordered": [
+          "#Account"
+        ]
+      }
+    ]
+  }
+}
 ```
 
 **R5 Context **
 ```json
-   "ordered": ["@container": "@list"],
+   "fhir:ordered": {"@container": "@list", "@type": "@id"}
 ```
 
 **R5 RDF**
@@ -180,6 +220,9 @@ _:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b3 .
 _:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://fhircat.org/jsonld/playground/Record> .
 _:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 ```
+
+[Example](http://tinyurl.com/yx2zxkmf)
+
 
 #### Lists of FHIR Objects
 We propose taking the same approach that is taken on primitive types, albeit using the identifiers (blank OR URI) of
