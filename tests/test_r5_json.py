@@ -90,6 +90,10 @@ class ConvertRDFTestCase(unittest.TestCase):
         self.do_r5('resource_subject_1')
         self.do_r5('primitive_example_1')
         self.do_r5('object_list_example_1')
+        self.do_r5('reference_1')
+        self.do_r5('reference_2')
+        self.do_r5('reference_3')
+        self.do_r5('extension_example_1')
 
 
 if __name__ == '__main__':

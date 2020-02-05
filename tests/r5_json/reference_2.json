@@ -2,23 +2,23 @@
    "@graph": [
       {
          "resourceType": "fhir:Observation",
-         "id": "f001",
+         "id": "bmd",
          "subject": [
             {
-               "@id": "../Patient/f001",
+               "@id": "http://example.org/nonfhirurl/bmd",
                "@type": "fhir:Patient"
             },
             {
-               "reference": "Patient/f001",
-               "display": "P. van de Heuvel"
+               "reference": "http://example.org/nonfhirurl/bmd",
+               "type": "Patient"
             }
          ],
-         "@id": "Observation/f001",
+         "@id": "Observation/bmd",
          "fhir:nodeRole": "fhir:treeRoot"
       },
       {
-         "@id": "Observation/f001.ttl",
-         "owl:versionIRI": "Observation/f001.ttl",
+         "@id": "Observation/bmd.ttl",
+         "owl:versionIRI": "Observation/bmd.ttl",
          "owl:imports": "fhir:fhir.ttl"
       }
    ],
@@ -39,6 +39,9 @@
          },
          "fhir:ordered": {
             "@type": "@id",
+            "@container": "@list"
+         },
+         "fhir:orderedp": {
             "@container": "@list"
          }
       }

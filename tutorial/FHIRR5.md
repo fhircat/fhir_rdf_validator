@@ -5,6 +5,9 @@ See: https://github.com/fhircat/FHIRCat/issues/2 and [FHIRR4.md]() for additiona
 This document describes the proposed "tweaks" that are used to convert from 
 "vanilla" FHIR JSON into the proposed FHIR RDF format.
 
+**NOTE:** These examples lack data types at this point because we are using the R4 JSON-LD Contexts.  Once we generate
+an R5 equivalent (pretty much the same w/ exception of no nested values), data types should show up
+
 
 ## Nomenclature
 * **Vanilla JSON (or just "JSON" when the context is obvious)** - FHIR JSON representations in use in the FHIR ecosystem today.
@@ -385,28 +388,36 @@ Sometimes this is explicitly available
 Sample 1:
 ```json
 {
-  "resourceType": "Observation",
-  "id": "obs1",
-  "@id": "Observation/obs1",
-  "subject": [{"@id": "../Patient/foo1",
-            "@type": "fhir:Patient" },
-            {"reference": "Patient/f001",
-            "display": "P. van de Heuvel"}]
+     "resourceType": "fhir:Observation",
+     "id": "obs1",
+     "subject": [
+        {
+           "@id": "../Patient/f001",
+           "@type": "fhir:Patient"
+        },
+        {
+           "reference": "Patient/f001",
+           "display": "P. van de Heuvel"
+        }
+     ],
+     "@id": "Observation/obs1",
+     "fhir:nodeRole": "fhir:treeRoot"
 }
 ```
 
 **Sample 1 RDF**
 ```text
-<http://hl7.org/Patient/foo1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Observation.subject> <http://hl7.org/Patient/foo1> .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/obs1> <http://hl7.org/fhir/Resource.id> "obs1" .
-<http://hl7.org/fhir/Observation/obs1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
+<http://build.fhir.org/Observation/obs1> <http://hl7.org/fhir/Observation.subject> <http://build.fhir.org/Patient/f001> .
+<http://build.fhir.org/Observation/obs1> <http://hl7.org/fhir/Observation.subject> _:b0 .
+<http://build.fhir.org/Observation/obs1> <http://hl7.org/fhir/Resource.id> "obs1" .
+<http://build.fhir.org/Observation/obs1> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/Observation/obs1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
+<http://build.fhir.org/Patient/f001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
 _:b0 <http://hl7.org/fhir/Reference.display> "P. van de Heuvel" .
 _:b0 <http://hl7.org/fhir/Reference.reference> "Patient/f001" .
 ```
 
-http://tinyurl.com/sdpmuae
+[Example](http://tinyurl.com/sfuxj5d)
 
 **Sample 2 JSON**
 ```json
@@ -423,28 +434,36 @@ http://tinyurl.com/sdpmuae
 **Sample 2 R5 JSON**
 ```json
 {
-   "resourceType": "Observation",
-  "id": "bmd",
-  "@id": "Observation/bmd",
-  "subject": [{"@id": "http://example.org/nonfhirurl/bmd",
-               "@type": "fhir:Patient" },
-              {"reference": "http://example.org/nonfhirurl/bmd",
-               "type": "Patient"}]
+     "resourceType": "fhir:Observation",
+     "id": "bmd",
+     "subject": [
+        {
+           "@id": "http://example.org/nonfhirurl/bmd",
+           "@type": "fhir:Patient"
+        },
+        {
+           "reference": "http://example.org/nonfhirurl/bmd",
+           "type": "Patient"
+        }
+     ],
+     "@id": "Observation/bmd",
+     "fhir:nodeRole": "fhir:treeRoot"
 }
 ```
 
 **Sample 2 RDF**
 ```text
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
 <http://example.org/nonfhirurl/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
-<http://hl7.org/fhir/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
 _:b0 <http://hl7.org/fhir/Reference.reference> "http://example.org/nonfhirurl/bmd" .
 _:b0 <http://hl7.org/fhir/Reference.type> "Patient" .
 ```
 
-http://tinyurl.com/tq45w77
+[Example](http://tinyurl.com/rgt6c6e)
 
 **Sample 3 JSON**
 ```json
@@ -460,24 +479,32 @@ http://tinyurl.com/tq45w77
 **Sample 3 R5 JSON:**
 ```json
 {
-  "resourceType": "Observation",
-  "id": "bmd",
-  "@id": "Observation/bmd",
-  "subject": [{"@id": "http://example.org/nonfhirurl/bmd"},
-              {"reference": "http://example.org/nonfhirurl/bmd"}]
+     "resourceType": "fhir:Observation",
+     "id": "bmd",
+     "subject": [
+        {
+           "@id": "http://example.org/nonfhirurl/bmd"
+        },
+        {
+           "reference": "http://example.org/nonfhirurl/bmd"
+        }
+     ],
+     "@id": "Observation/bmd",
+     "fhir:nodeRole": "fhir:treeRoot"
 }
 ```
 
 **Sample 3 RDF**
 ```text
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
-<http://hl7.org/fhir/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
-<http://hl7.org/fhir/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.subject> <http://example.org/nonfhirurl/bmd> .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Observation.subject> _:b0 .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/Resource.id> "bmd" .
+<http://build.fhir.org/Observation/bmd> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/Observation/bmd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Observation> .
 _:b0 <http://hl7.org/fhir/Reference.reference> "http://example.org/nonfhirurl/bmd" .
 ```
 
-http://tinyurl.com/sjlz7mr
+[Example](http://tinyurl.com/s3dp8gh)
 
 ## RDF Data Types
 
@@ -500,7 +527,8 @@ a value, not a JSON Object), but uses a lexical convention to associate the base
 The JSON will prepend an underscore ('_') to the key name with an object that contains the `id` and/or `extension`.
 
 This can be addressed in the context via the following, but we need to consider that it could end up being a very long
-list:
+list.  For the moment we only add the "_(tag)"s that are in the JSON, but note that this won't support the RDF->JSON
+use case
 ```json
 {
   "@context": {
@@ -530,37 +558,51 @@ Example:
 
 **Primitive Extension in R5 JSON**
 ```json
-{
-  "@context": {
-    "_birthDate": "birthDate"
-  },
-  "resourceType": "Patient",
-  "id": "somepat",
-  "@id": "Patient/somepat",
-  "birthDate": "1974-12-25",
-  "_birthDate": {
-    "extension": [
-      {
-        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-        "valueDateTime": "1974-12-25T14:35:45-05:00"
-      }
-    ]
+ {
+    "@context": {"_birthDate": "birthDate"},
+     ...
+     "resourceType": "fhir:Patient",
+     "id": "example",
+     "birthDate": "1974-12-25",
+     "_birthDate": {
+        "extension": [
+           [
+              {
+                 "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+                 "valueDateTime": "1974-12-25T14:35:45-05:00",
+                 "@id": "_:bn1_1"
+              }
+           ],
+           {
+              "fhir:ordered": [
+                 {
+                    "@id": "_:bn1_1"
+                 }
+              ]
+           }
+        ]
+    }
   }
 }
 ```
 
 **Primitive Extension in RDF**
 ```text
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Patient.birthDate> "1974-12-25" .
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Patient.birthDate> _:b0 .
-<http://hl7.org/fhir/Patient/somepat> <http://hl7.org/fhir/Resource.id> "somepat" .
-<http://hl7.org/fhir/Patient/somepat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Patient.birthDate> "1974-12-25" .
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Patient.birthDate> _:b0 .
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Resource.id> "example" .
+<http://build.fhir.org/Patient/example> <http://hl7.org/fhir/nodeRole> "fhir:treeRoot" .
+<http://build.fhir.org/Patient/example> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://hl7.org/fhir/Patient> .
 _:b0 <http://hl7.org/fhir/DomainResource.extension> _:b1 .
+_:b0 <http://hl7.org/fhir/DomainResource.extension> _:b2 .
 _:b1 <http://hl7.org/fhir/Extension.url> "http://hl7.org/fhir/StructureDefinition/patient-birthTime" .
 _:b1 <http://hl7.org/fhir/Extension.valueDateTime> "1974-12-25T14:35:45-05:00" .
+_:b2 <http://hl7.org/fhir/ordered> _:b3 .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b1 .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
 ```
       
-http://tinyurl.com/vefuc8x
+[Example](http://tinyurl.com/v5j363b)
 
 ## Concept References
     

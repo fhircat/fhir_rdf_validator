@@ -1,7 +1,0 @@
-{
-  "resourceType": "Observation",
-  "id": "bmd",
-  "subject": {
-    "reference": "http://example.org/nonfhirurl/bmd"
-  }
-}

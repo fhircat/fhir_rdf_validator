@@ -1,8 +1,8 @@
 {
   "resourceType": "Observation",
-  "id": "f001",
+  "id": "bmd",
   "subject": {
-    "reference": "Patient/f001",
-    "display": "P. van de Heuvel"
+    "reference": "http://example.org/nonfhirurl/bmd",
+    "type": "Patient"
   }
 }

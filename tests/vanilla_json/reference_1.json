@@ -1,7 +1,8 @@
 {
   "resourceType": "Observation",
-  "id": "bmd",
+  "id": "obs1",
   "subject": {
-    "reference": "Patient/pat2"
+     "reference": "Patient/f001",
+     "display": "P. van de Heuvel"
   }
 }
