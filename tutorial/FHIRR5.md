@@ -159,11 +159,11 @@ Add the following line to the root document
 
 There will be no changes to primitive values in the FHIR R5 IMPLEMENTATION    
 
-### List Order
+### List Order - Option 1
  
 JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements *when ordering matters*
 
-In R5, we propose that JSON lists will be represented as both unordered and, when order matters, as duplicate, ordered lists.
+In R5, we propose that JSON lists will be represented as both unordered and, when order matters, as duplicate, ordered lists, using existing standard RDF list conventions, which in Turtle are serialized as parenthesized lists: `( ... )`.
 
 There are two separate use cases:
 
