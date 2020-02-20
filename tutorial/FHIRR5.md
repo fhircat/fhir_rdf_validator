@@ -159,7 +159,7 @@ Add the following line to the root document
 
 There will be no changes to primitive values in the FHIR R5 IMPLEMENTATION    
 
-### List Order - Option 1
+### List Order - Option 1 (parallel RDF list)
  
 JSON lists are ordered.  JSON-LD lists are not, so it is necessary to add an ordering index to list elements *when ordering matters*
 
