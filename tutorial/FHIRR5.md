@@ -519,7 +519,7 @@ FHIR metamodel, as the JSON itself does not have sufficient typing information.
    in the FHIR metamodel, and is represented as `<tag>[x]` where `x` is the actual datatype (e.g. `valueBoolean`, 
    `valueDateTime`, etc.) The data type has to be parsed from the key and then mapped as with Case 1 above.
        
-## Primitive Type and ID Extensions
+## Primitive Type and ID Extensions - Extensions Option 1 (map underscore attributes to non-underscore)
     
 FHIR primitive types derive from [Element](http://build.fhir.org/types.html#Element), meaning that _any_ data element
 can have an `id` and/or `extension`.  The FHIR JSON rendering keeps underlying data "primitive" (i.e. represented as
@@ -587,6 +587,8 @@ Example:
 ```
 
 **Primitive Extension in RDF**
+In this option, the `@context` would map each underscore attribute to its non-underscore attribute, such that the attribute would point to both the regular value and to the extension.  For example, `_birthDate` would be mapped to `birthDate`.  The extension would be distinguishable from the regular value both by having an intervening blank node and an `extension` attribute.
+
 ```text
 <http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Patient.birthDate> "1974-12-25" .
 <http://build.fhir.org/Patient/example> <http://hl7.org/fhir/Patient.birthDate> _:b0 .
