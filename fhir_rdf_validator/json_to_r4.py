@@ -1,7 +1,7 @@
 import os
 from argparse import Namespace, ArgumentParser
 from copy import deepcopy
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union, Set
 
 import dirlistproc
 import requests
@@ -18,6 +18,7 @@ CODE_SYSTEM_MAP = {
 
 VALUE_TAG = "value"
 
+
 def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     """
     Convert the FHIR Resource in "o" into the R4 value notation
@@ -29,6 +30,10 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     """
     def to_value(v: Any) -> JsonObj:
         return JsonObj(**{VALUE_TAG: v})
+
+    def parse_resource_type(rt: str) -> str:
+        """ Parse rt returning just the resource type """
+        return rt.rsplit(':')[1] if ':' in rt else rt
 
     def from_value(v: Any) -> Any:
         return v[VALUE_TAG] if isinstance(v, JsonObj) and VALUE_TAG in as_dict(v) else v
@@ -46,7 +51,8 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             # TODO: Escape code
             n['@type'] = base + code
 
-    def dict_processor(d: JsonObj, resource_type: str,  inside: Optional[bool] = False) -> None:
+    def dict_processor(d: JsonObj, resource_type: str, resource_type_set: Set[str], inside: Optional[bool] = False) \
+            -> None:
         """
         Process the elements in dictionary d:
         1) Ignore keys that begin with "@" - this is already JSON information
@@ -57,31 +63,31 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
 
         :param d: dictionary to be processed
         :param resource_type: unedited resource type
+        :param resource_type_set: set of all resource types in the model
         :param inside: indicator of a recursive call
+        :return: List of resourceTypes referenced by the resource
         """
-        def gen_reference(d: JsonObj) -> JsonObj:
+        def gen_reference(do: JsonObj) -> JsonObj:
             """
             Return the object of a fhir:link based on the reference in d
-            :param d: object containing the reference
+            :param do: object containing the reference
             :return: link and optional type element
             """
             # TODO: find the official regular expression for the type node.  For the moment we make the (incorrect)
             #       assumption that the type is everything that preceeds the first slash
-            if "://" not in d.reference and not d.reference.startswith('/'):
-                if hasattr(d, 'type'):
-                    typ = d.type
+            if "://" not in do.reference and not do.reference.startswith('/'):
+                if hasattr(do, 'type'):
+                    typ = do.type
                 else:
-                    typ = d.reference.split('/', 1)[0]
-                link = '../' + d.reference
+                    typ = do.reference.split('/', 1)[0]
+                link = '../' + do.reference
             else:
-                link = d.reference
-                typ = getattr(d, 'type', None)
+                link = do.reference
+                typ = getattr(do, 'type', None)
             rval = JsonObj(**{"@id": link})
             if typ:
                 rval['@type'] = "fhir:" + typ
             return rval
-
-
 
         # Normalize all the elements in d.
         #  We realize the keys as a list up front to prevent messing with our own updates
@@ -90,9 +96,9 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             if k.startswith('@'):               # Ignore JSON-LD components
                 pass
             elif isinstance(v, JsonObj):        # Inner object -- process recursively
-                dict_processor(v, resource_type, True)
+                dict_processor(v, resource_type, resource_type_set, True)
             elif isinstance(v, list):           # Add ordering to the list
-                d[k] = list_processor(k, v)
+                d[k] = list_processor(k, v, resource_type_set)
             elif k == "id":                     # Internal ids are relative to the document
                 d['@id'] = ('#' if inside and not v.startswith('#') else (resource_type + '/')) + v
                 d[k] = to_value(v)
@@ -101,6 +107,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
                     d["fhir:link"] = gen_reference(d)
                 d[k] = to_value(v)
             elif k == "resourceType" and not(v.startswith('fhir:')):
+                resource_type_set.add(v)
                 d[k] = 'fhir:' + v
             elif k not in ["nodeRole", "index", "div"]:    # Convert most other nodes to value entries
                 d[k] = to_value(v)
@@ -120,12 +127,14 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
                         d[base_k][kp] = vp
             del(d[k])
 
-    def list_processor(k: str, l: List) -> Any:
+    def list_processor(k: str, lo: List, rts: Set[str]) -> List[Any]:
         """
         Process the elements in the supplied list adding indices and converting the interior nodes
 
         :param k: List key (for error reporting)
-        :param l: List to be processed
+        :param lo: List to be processed
+        :param rts: Set of referenced resource types.  May be updated
+        :return: Ordered list of entries
         """
 
         def list_element(e: Any, pos: int) -> Any:
@@ -137,7 +146,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             :return: adjusted object
             """
             if isinstance(e, JsonObj):
-                dict_processor(e, resource_type, True)
+                dict_processor(e, resource_type, rts, True)
                 if getattr(e, 'index', None) is not None:
                     print(f'Problem: "{k}" element {pos} already has an index')
                 else:
@@ -149,10 +158,11 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
                 e.index = pos
             return e
 
-        return [list_element(le, p) for le, p in zip(l, range(0,len(l)))]
+        return [list_element(le, p) for p, le in enumerate(lo)]
 
-    resource_type = o.resourceType.rsplit(':')[1] if ':' in o.resourceType else o.resourceType
-    dict_processor(o, resource_type)
+    resource_type = parse_resource_type(o.resourceType)
+    resource_type_set = {resource_type}
+    dict_processor(o, resource_type, resource_type_set)
 
     # Add nodeRole
     o['nodeRole'] = "fhir:treeRoot"
@@ -163,12 +173,12 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     hdr["owl:versionIRI"] = hdr["@id"]
     hdr["owl:imports"] = "fhir:fhir.ttl"
     # TODO: replace this with included once we get the bug fixed.
-    # o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
-    o["@included"] = hdr
+    o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
+    # o["@included"] = hdr
 
     # Fill out the rest of the context
     if add_context:
-        o['@context'] = [f"{CONTEXT_SERVER}{resource_type.lower()}.context.jsonld"]
+        o['@context'] = [f"{CONTEXT_SERVER}{rt.lower()}.context.jsonld" for rt in sorted(resource_type_set)]
         o['@context'].append(f"{CONTEXT_SERVER}root.context.jsonld")
         local_context = JsonObj()
         local_context["nodeRole"] = JsonObj(**{"@type": "@id", "@id": "fhir:nodeRole"})
@@ -180,7 +190,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     return o
 
 
-def convert_file(ifn: str, ofn: str, opts:Namespace) -> bool:
+def convert_file(ifn: str, ofn: str, opts: Namespace) -> bool:
     """
     Convert ifn to ofn
 
@@ -228,11 +238,11 @@ def addargs(parser: ArgumentParser) -> None:
     parser.add_argument("-fs", "--fhirserver", help="FHIR server base")
 
 
-def main(argv: object = None) -> object:
+def main(argv: Optional[Union[str, List[str]]] = None) -> object:
     """
     Apply R4 edits to FHIR JSON files
 
-    :param argv: Argument list.  If None, use sys.argv
+    :param argv: Argument list.  Can be an unparsed string, a list of strings or nothing.  If nothing, we use sys.argv
     :return: 0 if all RDF files that had valid FHIR in them were successful, 1 otherwise
     """
     def gen_dlp(args: List[str]) -> dirlistproc.DirectoryListProcessor:
@@ -241,7 +251,7 @@ def main(argv: object = None) -> object:
 
     dlp = gen_dlp(argv)
     if not (dlp.opts.infile or dlp.opts.indir):
-        gen_dlp(argv if argv is not None else sys.argv[1:] + "--help")  # Does not exit
+        gen_dlp(argv if argv is not None else sys.argv[1:] + ["--help"])  # Does not exit
 
     dlp.opts.converted_files = []           # If converting inline
     nfiles, nsuccess = dlp.run(convert_file, file_filter_2=check_json)
