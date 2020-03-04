@@ -1,4 +1,5 @@
 import os
+import urllib
 from argparse import Namespace, ArgumentParser
 from copy import deepcopy
 from typing import Any, List, Optional, Union, Set
@@ -42,7 +43,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
         if hasattr(n, 'system') and hasattr(n, 'code'):
             # Note: This is another reason we hate the value work
             system = from_value(n.system)
-            code = from_value(n.code)
+            code = urllib.parse.quote(from_value(n.code), safe='')
             system_root = system[:-1] if system[-1] in '/#' else system
             if system_root in CODE_SYSTEM_MAP:
                 base = CODE_SYSTEM_MAP[system_root] + ':'
@@ -118,7 +119,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
         for k in [k for k in as_dict(d).keys() if k.startswith('_')]:
             base_k = k[1:]
             if not hasattr(d, base_k) or not isinstance(d[base_k], JsonObj):
-                print(f"Badly formed extension element: {k}", file=sys.stderr)
+                d[base_k] = JsonObj()
             else:
                 for kp, vp in as_dict(d[k]).items():
                     if kp in d[base_k]:
