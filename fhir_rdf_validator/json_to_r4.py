@@ -52,7 +52,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             # TODO: Escape code
             n['@type'] = base + code
 
-    def dict_processor(d: JsonObj, resource_type: str, resource_type_set: Set[str], inside: Optional[bool] = False) \
+    def dict_processor(d: JsonObj, resource_type: str, resource_type_set: Set[str], full_url: Optional[str] = None) \
             -> None:
         """
         Process the elements in dictionary d:
@@ -65,7 +65,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
         :param d: dictionary to be processed
         :param resource_type: unedited resource type
         :param resource_type_set: set of all resource types in the model
-        :param inside: indicator of a recursive call
+        :param full_url: official ID of the resource from the containing fullURL
         :return: List of resourceTypes referenced by the resource
         """
         def gen_reference(do: JsonObj) -> JsonObj:
@@ -92,16 +92,26 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
 
         # Normalize all the elements in d.
         #  We realize the keys as a list up front to prevent messing with our own updates
+
+        # full_url is set if we're an embedded resource that has a full_url
+        inner_type = getattr(d, 'resourceType', None)
+        if inner_type:
+            resource_type = inner_type
+            if full_url:
+                d['@id'] = full_url
+        # If this has a resource type, it overrides what was passed in
         for k in list(as_dict(d).keys()):
             v = d[k]
             if k.startswith('@'):               # Ignore JSON-LD components
                 pass
             elif isinstance(v, JsonObj):        # Inner object -- process recursively
-                dict_processor(v, resource_type, resource_type_set, True)
+                dict_processor(v, resource_type, resource_type_set, getattr(d, 'fullUrl', None))
             elif isinstance(v, list):           # Add ordering to the list
                 d[k] = list_processor(k, v, resource_type_set)
-            elif k == "id":                     # Internal ids are relative to the document
-                d['@id'] = ('#' if inside and not v.startswith('#') else (resource_type + '/')) + v
+            elif k == "id":                      # Internal ids are relative to the document
+                if not full_url:
+                    d['@id'] = \
+                        ('#' if not inner_type and not v.startswith('#') else (resource_type + '/')) + v
                 d[k] = to_value(v)
             elif k == "reference":              # Link to another document
                 if not hasattr(d, 'link'):
@@ -147,7 +157,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
             :return: adjusted object
             """
             if isinstance(e, JsonObj):
-                dict_processor(e, resource_type, rts, True)
+                dict_processor(e, resource_type, rts, getattr(e, 'fullUrl', None))
                 if getattr(e, 'index', None) is not None:
                     print(f'Problem: "{k}" element {pos} already has an index')
                 else:
