@@ -173,6 +173,7 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     hdr["@id"] = o['@id'] + ".ttl"
     hdr["owl:versionIRI"] = hdr["@id"]
     hdr["owl:imports"] = "fhir:fhir.ttl"
+    hdr["@type"] = 'owl:Ontology'
     # TODO: replace this with included once we get the bug fixed.
     o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
     # o["@included"] = hdr
