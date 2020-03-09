@@ -1,0 +1,16 @@
+{
+  "http://example.org/person/id": "1173418",
+  "http://example.org/person/active": true,
+  "http://example.org/person/name": {
+    "http://example.org/person/first": "Seymour",
+    "http://example.org/person/middle": "P",
+    "http://example.org/person/last": "Snodgrass"
+  },
+  "http://example.org/person/father": "119341",
+  "http://example.org/person/birthdate": "2002-07-21",
+  "http://example.org/person/children": [
+    "Tom",
+    "Dick",
+    "Harry"
+  ]
+}

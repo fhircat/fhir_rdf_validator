@@ -1,0 +1,21 @@
+{
+  "@id": "http://identifiers.r.us/1173418",
+  "http://example.org/person/active": true,
+  "http://hl7.org/fhir/Person.name": {
+    "http://example.org/person/first": "Seymour",
+    "http://example.org/person/middle": "P",
+    "http://example.org/person/last": "Snodgrass"
+  },
+  "http://example.org/person/father": "http://identifiers.r.us/119341",
+  "http://example.org/person/birthdate": {
+    "@value": "2002-07-21",
+    "@type": "http://www.w3.org/2001/XMLSchema#date"
+  },
+  "http://example.org/person/children": {
+  "@list": [
+      "Tom",
+      "Dick",
+      "Harry"
+    ]
+  }
+}

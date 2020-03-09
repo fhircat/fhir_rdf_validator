@@ -1,0 +1,37 @@
+{
+  "@id": "http://snomed.info/id/14189004",
+  "http://snomed.info/id/900000000000003001": [
+    {
+      "@value": "Measles (disorder)",
+      "@language": "en"
+    },
+     {
+      "@value": "rugeole (trouble",
+      "@language": "fr-ca"
+    }
+  ],
+  "http://www.w3.org/2004/02/skos/core#prefLabel": [
+    {
+      "@value": "Measles",
+      "@language": "en"
+    },
+    {
+      "@value": "Mæslinger",
+      "@language": "da"
+    }
+  ],
+  "http://www.w3.org/2004/02/skos/core#altLabel": [
+     {
+      "@value": "Morbilli",
+      "@language": "en"
+    },
+    {
+      "@value": "Rubeola",
+      "@language": "en"
+    },
+    {
+      "@value": "rugeole",
+      "@language": "fr-ca"
+    }
+  ]
+}

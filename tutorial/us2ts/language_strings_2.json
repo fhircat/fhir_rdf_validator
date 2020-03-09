@@ -1,0 +1,41 @@
+{
+  "id": "14189004",
+  "fsn": [
+    {
+      "value": "Measles (disorder)",
+      "language": "en"
+    },
+    {
+      "value": "rugeole (trouble)",
+      "language": "fr_ca"
+    }
+  ],
+  "pref": [
+     {
+      "value": "Measles",
+      "language": "en"
+    },
+    {
+      "value": "rugeole",
+      "language": "fr_ca"
+    },
+    {
+      "value": "Mæslinger",
+      "language": "da"
+    }
+  ],
+  "alt": [
+    {
+      "value": "Morbilli",
+      "language": "en"
+    },
+    {
+      "value": "Rubeola",
+      "language": "en"
+    },
+    {
+      "value": "rugeole",
+      "language": "ca_fr"
+    }
+    ]
+}
