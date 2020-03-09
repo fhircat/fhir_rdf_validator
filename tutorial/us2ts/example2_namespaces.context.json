@@ -1,0 +1,9 @@
+{
+  "@context" : {
+    "skos": "http://snomed.info/id/",
+    "rdf": "http://snomed.info/id/",
+    "xsd": "http://www.w3.org/2001/XMLSchema",
+    "ex": "http://example.org/person/",
+    "idsrus": "http://identifiers.r.us/"
+  }
+}
