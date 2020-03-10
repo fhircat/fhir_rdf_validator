@@ -1,0 +1,16 @@
+{
+  "http://example.org/person/id": "1173418",
+  "http://example.org/person/active": true,
+  "http://schema.org/name": {
+    "http://xmlns.com/foaf/0.1/givenName": "Seymour",
+    "http://schema.org/additionalName": "P",
+    "http://xmlns.com/foaf/0.1/familyName": "Snodgrass"
+  },
+  "http://purl.obolibrary.org/obo/RoleO_0000006": "119341",
+  "http://hl7.org/fhir/Patient.birthdate": "2002-07-21",
+  "http://purl.obolibrary.org/obo/RoleO_0000008": [
+    "Tom",
+    "Dick",
+    "Harry"
+  ]
+}

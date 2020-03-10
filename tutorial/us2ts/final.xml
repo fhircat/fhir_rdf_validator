@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:ns1="http://example.org/person/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b3">
+    <rdf:rest rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b4"/>
+    <rdf:first>Dick</rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b4">
+    <rdf:first>Harry</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://identifiers.r.us/1173418">
+    <ns1:active rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ns1:active>
+    <ns1:name rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b2"/>
+    <ns1:father rdf:resource="http://worldfathers.org/119341"/>
+    <ns1:birthdate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2002-07-21</ns1:birthdate>
+    <ns1:children rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b1"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b2">
+    <ns1:first>Seymour</ns1:first>
+    <ns1:last>Snodgrass</ns1:last>
+    <ns1:middle>P</ns1:middle>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b1">
+    <rdf:rest rdf:nodeID="fc14735b5214c498699e2fae4326a8f74b3"/>
+    <rdf:first>Tom</rdf:first>
+  </rdf:Description>
+</rdf:RDF>
