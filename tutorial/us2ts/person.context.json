@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "ex",
+    "id": "@id",
+    "@base": "http://identifiers.r.us/",
+    "birthdate": {
+      "@type": "xsd:date"
+    },
+    "father": {
+      "@type": "@id",
+      "@context": {
+        "@base": "http://worldfathers.org/id#"
+      }
+    },
+    "children": {
+      "@container": "@list"
+    }
+  }
+}

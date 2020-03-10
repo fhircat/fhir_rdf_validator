@@ -1,20 +1,12 @@
 {
   "@id": "http://ex.org/builtins",
-  "http://ex.org/strings": [
-    "abc",
-    "17.2",
-    "http://google.org/",
-    "2012-01-17"
-  ],
-  "http://ex.org/numbers": [
-    1,
-    1.01,
-    -17,
-    245.9999
-  ],
-  "http://ex.org/bools": [
-    true,
-    false
-  ],
-  "http://ex.org/null": null
+  "str": "abc",
+  "real": 17.2,
+  "url": "http://google.org/",
+  "date": "2012-01-17",
+  "int": 1,
+  "negint": -17,
+  "dbl": 245.999631999631,
+  "bool": false,
+  "null": null
 }

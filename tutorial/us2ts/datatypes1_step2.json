@@ -1,0 +1,15 @@
+{
+  "@id": "http://ex.org/builtins",
+  "http://ex.org/builtins/str": "abc",
+  "http://ex.org/builtins/strreal": {
+    "@value": 17.2,
+    "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+  },
+  "http://ex.org/builtins/strurl": {"@value": "http://google.org/", "@type": "http://www.w3.org/2001/XMLSchema#anyURI"},
+  "http://ex.org/builtins/strdate": {"@value": "2012-01-17","@type": "http://www.w3.org/2001/XMLSchema#date"},
+  "http://ex.org/builtins/strint": 1,
+  "http://ex.org/builtins/strnegint": -17,
+  "http://ex.org/builtins/strdbl": {"@value": 245.999631999631, "@type": "http://www.w3.org/2001/XMLSchema#double"},
+  "http://ex.org/builtins/strbool": false,
+  "http://ex.org/builtins/strnull": null
+}

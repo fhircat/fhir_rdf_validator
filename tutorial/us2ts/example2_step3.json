@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://raw.githubusercontent.com/fhircat/fhir_rdf_validator/master/tutorial/us2ts/example2_namespaces.context.json",
+   {
+      "@vocab": "ex",
+      "id": "@id",
+      "@base": "http://identifiers.r.us/",
+      "father": {
+        ""@id": "idsrus:SeymouresName""
+      }
+    }
+  ],
+  "id": "1173418",
+  "active": true,
+  "name": {
+    "first": "Seymour",
+    "middle": "P",
+    "last": "Snodgrass"
+  },
+  "father": "119341",
+  "birthdate": "2002-07-21",
+  "children": [
+    "Tom",
+    "Dick",
+    "Harry"
+  ]
+}

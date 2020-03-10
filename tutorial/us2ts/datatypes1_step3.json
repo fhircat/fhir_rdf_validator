@@ -1,0 +1,17 @@
+{ "@context": {
+    "@vocab": "http://ex.org/builtins/"
+  },
+
+  "@id": "http://ex.org/builtins",
+  "str": "abc",
+  "strreal": [{
+    "@value": 17.2
+  }],
+  "strurl": {"@value": "http://google.org/", "@type": "http://www.w3.org/2001/XMLSchema#anyURI"},
+  "strdate": {"@value": "2012-01-17","@type": "http://www.w3.org/2001/XMLSchema#date"},
+  "strint": 1,
+  "strnegint": -17,
+  "strdbl": {"@value": 245.999631999631, "@type": "http://www.w3.org/2001/XMLSchema#double"},
+  "strbool": false,
+  "strnull": null
+}
