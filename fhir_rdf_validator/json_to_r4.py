@@ -9,8 +9,7 @@ import requests
 import sys
 from jsonasobj import JsonObj, loads, as_dict, as_json
 
-# CONTEXT_SERVER = "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/"
-CONTEXT_SERVER = "https://fhircat.org/fhir/contexts/r5/"
+CONTEXT_SERVER = "https://fhircat.org/fhir-r5/rdf-r4/contexts/"
 
 CODE_SYSTEM_MAP = {
     "http://snomed.info/sct": "sct",
@@ -185,8 +184,8 @@ def to_r4(o: JsonObj, server: Optional[str], add_context: bool) -> JsonObj:
     hdr["owl:imports"] = "fhir:fhir.ttl"
     hdr["@type"] = 'owl:Ontology'
     # TODO: replace this with included once we get the bug fixed.
-    o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
-    # o["@included"] = hdr
+    # o = JsonObj(**{"@graph": [deepcopy(o), hdr]})
+    o["@included"] = hdr
 
     # Fill out the rest of the context
     if add_context:
