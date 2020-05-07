@@ -1,94 +1,94 @@
 {
-   "@graph": [
-      {
-         "resourceType": "fhir:Patient",
-         "id": {
-            "value": "pat4"
-         },
-         "text": {
-            "status": {
-               "value": "generated"
-            },
-            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<p>Patient Sandy Notsowell @ Acme Healthcare, Inc. MR = 123458, DECEASED</p>\n\t\t</div>"
-         },
-         "identifier": [
-            {
-               "use": {
-                  "value": "usual"
-               },
-               "type": {
-                  "coding": [
-                     {
-                        "system": {
-                           "value": "http://terminology.hl7.org/CodeSystem/v2-0203"
-                        },
-                        "code": {
-                           "value": "MR"
-                        },
-                        "index": 0,
-                        "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR"
-                     }
-                  ]
-               },
-               "system": {
-                  "value": "urn:oid:0.1.2.3.4.5.6.7"
-               },
-               "value": {
-                  "value": "123458"
-               },
-               "index": 0
-            }
-         ],
-         "active": {
-            "value": true
-         },
-         "name": [
-            {
-               "use": {
-                  "value": "official"
-               },
-               "family": {
-                  "value": "Notsowell"
-               },
-               "given": [
-                  "Sandy"
-               ],
-               "index": 0
-            }
-         ],
-         "gender": {
-            "value": "female"
-         },
-         "birthDate": {
-            "value": "1982-08-02"
-         },
-         "deceasedBoolean": {
-            "value": true
-         },
-         "managingOrganization": {
-            "reference": {
-               "value": "Organization/1"
-            },
-            "display": {
-               "value": "ACME Healthcare, Inc"
-            },
-            "fhir:link": {
-               "@id": "../Organization/1",
-               "@type": "fhir:Organization"
-            }
-         },
-         "@id": "Patient/pat4",
-         "nodeRole": "fhir:treeRoot"
+   "resourceType": "fhir:Patient",
+   "id": {
+      "value": "pat4"
+   },
+   "text": {
+      "status": {
+         "value": "generated"
       },
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<p>Patient Sandy Notsowell @ Acme Healthcare, Inc. MR = 123458, DECEASED</p>\n\t\t</div>"
+   },
+   "identifier": [
       {
-         "@id": "Patient/pat4.ttl",
-         "owl:versionIRI": "Patient/pat4.ttl",
-         "owl:imports": "fhir:fhir.ttl"
+         "use": {
+            "value": "usual"
+         },
+         "type": {
+            "coding": [
+               {
+                  "system": {
+                     "value": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                  },
+                  "code": {
+                     "value": "MR"
+                  },
+                  "index": 0,
+                  "@type": "http://terminology.hl7.org/CodeSystem/v2-0203/MR"
+               }
+            ]
+         },
+         "system": {
+            "value": "urn:oid:0.1.2.3.4.5.6.7"
+         },
+         "value": {
+            "value": "123458"
+         },
+         "index": 0
       }
    ],
+   "active": {
+      "value": true
+   },
+   "name": [
+      {
+         "use": {
+            "value": "official"
+         },
+         "family": {
+            "value": "Notsowell"
+         },
+         "given": [
+            {
+               "value": "Sandy",
+               "index": 0
+            }
+         ],
+         "index": 0
+      }
+   ],
+   "gender": {
+      "value": "female"
+   },
+   "birthDate": {
+      "value": "1982-08-02"
+   },
+   "deceasedBoolean": {
+      "value": true
+   },
+   "managingOrganization": {
+      "reference": {
+         "value": "Organization/1"
+      },
+      "display": {
+         "value": "ACME Healthcare, Inc"
+      },
+      "fhir:link": {
+         "@id": "../Organization/1",
+         "@type": "fhir:Organization"
+      }
+   },
+   "@id": "Patient/pat4",
+   "nodeRole": "fhir:treeRoot",
+   "@included": {
+      "@id": "Patient/pat4.ttl",
+      "owl:versionIRI": "Patient/pat4.ttl",
+      "owl:imports": "fhir:fhir.ttl",
+      "@type": "owl:Ontology"
+   },
    "@context": [
-      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/patient.context.jsonld",
-      "https://raw.githubusercontent.com/fhircat/jsonld_context_files/master/contextFiles/root.context.jsonld",
+      "https://fhircat.org/fhir-r5/rdf-r4/contexts/patient.context.jsonld",
+      "https://fhircat.org/fhir-r5/rdf-r4/contexts/root.context.jsonld",
       {
          "nodeRole": {
             "@type": "@id",
